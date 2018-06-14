@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'guest' => \EICM\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'jwt_auth' => \EICM\Http\Middleware\JWT::class,
     ];
 }

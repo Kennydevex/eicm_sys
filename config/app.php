@@ -209,6 +209,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //Suport Aliases
+        'JWTSubject' => Tymon\JWTAuth\Contracts\JWTSubject::class,
+
+        //Models
+        'User' => EICM\User::class,
+
     ],
 
 ];
