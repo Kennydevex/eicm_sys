@@ -14,5 +14,16 @@
     "laravel-mix": "^2.0",
     "lodash": "^4.17.4",
     "vue": "^2.5.7"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "font-awesome": "^4.7.0",
+    "material-design-icons-iconfont": "^3.0.3",
+    "vue-alertify": "^1.0.5",
+    "vue-router": "^3.0.1",
+    "vue-sweetalert2": "^1.4.2",
+    "vuetify": "^1.0.19",
+    "vuex": "^3.0.1"
   }
 }

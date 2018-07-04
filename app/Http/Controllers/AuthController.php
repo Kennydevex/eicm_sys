@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use JWTSubject;
 use JWTAuth;
 use User;
+use Folk;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -24,21 +26,34 @@ class AuthController extends Controller
   public function register(Request $request)
   {
     $this->validate($request,[
-      'name' => 'required|max:255',
-      'email' => 'required|email|max:255|unique:users',
-      'password' => 'required|min:6',
+      'first_name' => 'required|string|max:255',
+       'last_name' => 'required|string|max:255',
+       'username' => 'required|string|max:255',
+       'email' => 'required|string|email|max:255|unique:folks',
+       'password' => 'required|string|min:6'
     ]);
     //  create db
+    $folk = new Folk();
+    $folk->first_name=$request->first_name;
+    $folk->last_name=$request->last_name;
+    $folk->identification_card='';
+    $folk->gender='M';
+    $folk->email=$request->email;
+    $folk->phone_number='';
+    $folk->save();
+
     $user= new User();
-    $user->name=$request->name;
-    $user->email=$request->email;
+    $user->username=$request->username;
     $user->password=bcrypt($request->password);
+    $user->status=false;
+    $user->folk_id=$folk->id;
     $user->save();
 
     // response
 
     return response()->json([
       'user'=>$user,
+      'folk'=>$folk,
       'message'=>'Utilizador criado com sucesso'
     ], 201);
 
@@ -53,7 +68,7 @@ class AuthController extends Controller
   {
     $credentials = request(['email', 'password']);
 
-    if (! $token = auth()->claims(['eicm' => 'eicmtoken'])->attempt($credentials)) {
+    if (! $token = auth('api')->claims(['eicm' => 'eicmtoken'])->attempt($credentials)) {
       return response()->json(['error' => 'Unauthorized'], 401);
     }
 
@@ -67,7 +82,7 @@ class AuthController extends Controller
   */
   public function me()
   {
-    return response()->json(auth()->user());
+    return response()->json(auth('api')->user());
   }
 
   /**
@@ -77,7 +92,7 @@ class AuthController extends Controller
   */
   public function logout()
   {
-    auth()->logout();
+    auth('api')->logout();
 
     return response()->json(['message' => 'Successfully logged out']);
   }
@@ -89,7 +104,7 @@ class AuthController extends Controller
   */
   public function refresh()
   {
-    return $this->respondWithToken(auth()->refresh());
+    return $this->respondWithToken(auth('api')->refresh());
   }
 
   /**
@@ -103,13 +118,19 @@ class AuthController extends Controller
   {
     return response()->json([
       'access_token' => $token,
+      'user'=>$this->guard()->user(),
       'token_type' => 'bearer',
-      'expires_in' => auth()->factory()->getTTL() * 60
+      'expires_in' => auth('api')->factory()->getTTL() * 60
     ]);
   }
 
   public function payload()
   {
-    return auth()->payload();
+    return auth('api')->payload();
+  }
+
+  public function guard()
+  {
+    return Auth::Guard('api');
   }
 }

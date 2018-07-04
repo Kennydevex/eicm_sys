@@ -1,10 +1,8 @@
 <?php
 
 Route::group([
-
-  /*  'middleware' => 'api',*/
+  // 'middleware' => 'api',
   'prefix' => 'auth'
-
 ], function ($router) {
   Route::post('register', 'AuthController@register');
   Route::post('login', 'AuthController@login');
