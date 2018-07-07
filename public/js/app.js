@@ -5539,6 +5539,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   mounted: function mounted() {
+
+    // ####################################################################################
+    //Verificando se marcador j]a se encontra em store
+    if (this.tags.length) {
+      return;
+    }
+    // ####################################################################################
+
     this.$store.dispatch('getTags');
   },
 
@@ -5557,15 +5565,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.editModel = true;
-      axios.get('/api/cmd/tag/' + tag_id, {
-        headers: {
-          "Authorization": 'Bearer ' + this.currentUser.token
-        }
-      }).then(function (response) {
-        _this.tag = response.data.tag;
-      }).catch(function (error) {
-        // Describe error!
-      });
+      //Este condi;\ao ]e muito importante, porque assim a palica;\ao naoa precisa conectar servido a cada requisi;\ao,
+      //E so pegar os dados que j]a esta\ao em local storage
+      // ####################################################################################
+
+      if (this.tags.length) {
+        this.tag = this.tags.find(function (tag) {
+          return tag.id == tag_id;
+        });
+      } else {
+        axios.get('/api/cmd/tag/' + tag_id).then(function (response) {
+          _this.tag = response.data.tag;
+        }).catch(function (error) {
+          // Describe error!
+        });
+      }
+      // ####################################################################################
     },
     onCancel: function onCancel() {
       this.tag = {};
@@ -5574,17 +5589,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   }
 
   // created: function () {
-  //   axios.get(`/api/cmd/tag/${this.$route.id}`, {
-  //     headers: {
-  //       "Authorization": `Bearer ${this.currentUser.token}`
-  //     }
-  //   })
-  //   .then((response)=>{
-  //     this.tag=response.data.tag
-  //   })
-  //   .catch((error)=>{
-  //     // Describe error!
-  //   });
+  //   //Valioda;\oes adicionais
+  //   if (this.tags.length) {
+  //     this.tags = this.tags.find((tag)=>tag.id==this.$route.id)
+  //   }else {
+  //     axios.get(`/api/cmd/tag/${this.$route.id}`, {
+  //       headers: {
+  //         "Authorization": `Bearer ${this.currentUser.token}`
+  //       }
+  //     })
+  //     .then((response)=>{
+  //       this.tag=response.data.tag
+  //     })
+  //     .catch((error)=>{
+  //       // Describe error!
+  //     });
+  //   }
   // }
 
 
@@ -5686,11 +5706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.errors = null;
       // const constraints = this.getConstraints()
       if (this.$refs.form.validate()) {
-        axios.post('/api/cmd/tag/new', this.$data.tag, {
-          headers: {
-            "Authorization": 'Bearer ' + this.currentUser.token
-          }
-        }).then(function (response) {
+        axios.post('/api/cmd/tag/new', this.$data.tag).then(function (response) {
           _this.$router.push({ name: 'tags_list' });
         });
       }
@@ -14446,7 +14462,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14476,7 +14492,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37756,9 +37772,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n            " +
+                        "\n          " +
                           _vm._s(_vm.tag.description) +
-                          "\n          "
+                          "\n        "
                       )
                     ]
                   )
@@ -37809,7 +37825,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n        fa fa-eye\n      ")]
+                      [_vm._v("\n      fa fa-eye\n    ")]
                     )
                   ],
                   1
@@ -70939,10 +70955,10 @@ function getLocalUser() {
 /* harmony export (immutable) */ __webpack_exports__["a"] = initialize;
 function initialize(store, router) {
   router.beforeEach(function (to, from, next) {
+    var currentUser = store.state.currentUser;
     var requiresAuth = to.matched.some(function (record) {
       return record.meta.requiresAuth;
     });
-    var currentUser = store.state.currentUser;
 
     if (requiresAuth && !currentUser) {
       next('/login');
@@ -70958,11 +70974,12 @@ function initialize(store, router) {
       store.commit('logout');
       router.push('/login');
     }
-
     return Promise.reject(error);
   });
 
-  // axios.default.headers.common["Authorization"] = `Bearer ${store.getters.currentUser.token}`
+  if (store.state.currentUser) {
+    axios.defaults.headers.common["Authorization"] = 'Bearer ' + store.state.currentUser.token;
+  }
 }
 
 /***/ }),
@@ -71141,11 +71158,7 @@ var user = Object(__WEBPACK_IMPORTED_MODULE_2__helpers_auth__["a" /* getLocalUse
       context.commit("login");
     },
     getTags: function getTags(context) {
-      axios.get('/api/cmd/tags', {
-        headers: {
-          "Authorization": 'Bearer ' + context.state.currentUser.token
-        }
-      }).then(function (response) {
+      axios.get('/api/cmd/tags').then(function (response) {
         context.commit('updateTags', response.data.tags);
       });
     }

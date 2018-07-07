@@ -49,11 +49,8 @@ export default {
       this.errors = null
       // const constraints = this.getConstraints()
       if (this.$refs.form.validate()) {
-        axios.post('/api/cmd/tag/new', this.$data.tag, {
-          headers: {
-            "Authorization": `Bearer ${this.currentUser.token}`
-          }
-        }).then((response) => {this.$router.push({ name: 'tags_list'})})
+        axios.post('/api/cmd/tag/new', this.$data.tag)
+        .then((response) => {this.$router.push({ name: 'tags_list'})})
       }
     },
 
