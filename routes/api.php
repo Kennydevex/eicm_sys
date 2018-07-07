@@ -11,3 +11,13 @@ Route::group([
   Route::post('me', 'AuthController@me');
   Route::post('payload', 'AuthController@payload');
 });
+
+Route::group([
+  'middleware' => 'jwt.auth',
+  'prefix' => 'cmd',
+  'namespace'=>'CMD'
+], function ($router) {
+  Route::get('tags', 'TagsController@all');
+  Route::get('tag/{id}', 'TagsController@get');
+  Route::post('tag/new', 'TagsController@new');
+});

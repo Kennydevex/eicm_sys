@@ -34,7 +34,6 @@ export default new Router({
       component: AdminHome
     }, {
       path: 'tags',
-      name: 'tags_main',
       component: TagsMain,
       children: [{
         path: '/',
