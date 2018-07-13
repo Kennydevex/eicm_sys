@@ -7,7 +7,8 @@ require('./bootstrap')
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueAlertify from "vue-alertify"
-import VueSweetalert2 from 'vue-sweetalert2';
+import VueSweetalert2 from 'vue-sweetalert2'
+
 
 
 // ========================= Vue Lib =====================
@@ -16,7 +17,7 @@ import store from './_store'
 import {
   initialize
 }
-from './_helpers/reset'
+from './_helpers/initialize'
   // ========================= Vue Lib Usage =====================
 Vue.use(Vuetify)
 Vue.use(VueAlertify);

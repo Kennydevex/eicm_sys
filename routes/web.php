@@ -5,5 +5,5 @@
 // });
 
 Route::any('{all}', function () {
-    return view('_frontend.home');
+    return view('App.home');
 })->where(['all'=>'.*']);

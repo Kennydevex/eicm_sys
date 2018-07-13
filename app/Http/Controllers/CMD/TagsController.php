@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use EICM\Http\Controllers\Controller;
 use Tag;
 use Response;
-use EICM\Http\Requests\CreateTagRequest;
+use EICM\Http\Requests\TagRequest;
 class TagsController extends Controller
 {
     public function all()
@@ -22,7 +22,7 @@ class TagsController extends Controller
         return Response::json(["tag"=>$tag], 200);
     }
 
-    public function new(CreateTagRequest $request)
+    public function new(TagRequest $request)
     {
         $tag = Tag::create($request->only(["name", "description"]));
         return Response::json(["tag"=>$tag], 200);

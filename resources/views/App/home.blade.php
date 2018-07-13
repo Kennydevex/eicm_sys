@@ -10,7 +10,6 @@
   {{-- Icone do cabecalho do site --}}
   {{-- <link rel="icon" href="/favicon.ico"> --}}
   {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
-
   <title>EICM-GDC</title>
 
 </head>
