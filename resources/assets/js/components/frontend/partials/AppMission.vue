@@ -13,7 +13,6 @@
             <h3 class="headline mb-0">Educação</h3>
             <p>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</p>
           </v-flex>
-          <v-divider vertical></v-divider>
         </v-layout>
       </v-flex>
       <v-flex xs12 sm4 pa-3>

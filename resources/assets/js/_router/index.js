@@ -4,7 +4,7 @@ import Router from 'vue-router'
 // ================================================
 import Dashboard from '../components/backend/Dashboard.vue'
 import AdminHome from '../components/backend/Home.vue'
-import Home from '../components/frontend/Home.vue'
+import Home from '../components/frontend/pages/Home.vue'
 import Login from '../components/auth/Login.vue'
 
 // ================================================

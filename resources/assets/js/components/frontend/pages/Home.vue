@@ -108,13 +108,13 @@
 </template>
 
 <script>
-import AppCaroucel from './partials/AppCaroucel.vue'
-import AppMission from './partials/AppMission.vue'
-import AppSchoolMsg from './partials/AppSchoolMsg.vue'
-import AppBlog from './partials/AppBlog.vue'
-import AppContact from './partials/AppContact.vue'
-import AppFooter from './partials/AppFooter.vue'
-import AppTeam from './partials/AppTeam.vue'
+import AppCaroucel from '../partials/AppCaroucel.vue'
+import AppMission from '../partials/AppMission.vue'
+import AppSchoolMsg from '../partials/AppSchoolMsg.vue'
+import AppBlog from '../partials/AppBlog.vue'
+import AppContact from '../partials/AppContact.vue'
+import AppFooter from '../partials/AppFooter.vue'
+import AppTeam from '../partials/AppTeam.vue'
 
 export default {
   data: () => ({
