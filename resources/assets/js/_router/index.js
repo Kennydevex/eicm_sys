@@ -4,6 +4,7 @@ import Router from 'vue-router'
 // ================================================
 import Dashboard from '../components/backend/Dashboard.vue'
 import AdminHome from '../components/backend/Home.vue'
+import Index from '../components/frontend/Index.vue'
 import Home from '../components/frontend/pages/Home.vue'
 import Login from '../components/auth/Login.vue'
   // ================================================
@@ -232,9 +233,12 @@ export default new Router({
     // ======================================================================
     {
       path: '/',
-      name: 'app-home',
-      component: Home,
+      component: Index,
       children: [{
+        path: '/',
+        name: 'home',
+        component: Home
+      }, {
         path: '/login',
         component: Login
       }, ]
