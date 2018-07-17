@@ -75465,6 +75465,76 @@ function initialize(store, router) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_backend_tags_New_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_backend_tags_New_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_backend_tags_View_vue__ = __webpack_require__("./resources/assets/js/components/backend/tags/View.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_backend_tags_View_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_backend_tags_View_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_backend_articles_Index_vue__ = __webpack_require__("./resources/assets/js/components/backend/articles/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_backend_articles_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_backend_articles_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_backend_articles_List_vue__ = __webpack_require__("./resources/assets/js/components/backend/articles/List.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_backend_articles_List_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_backend_articles_List_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_backend_articles_View_vue__ = __webpack_require__("./resources/assets/js/components/backend/articles/View.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_backend_articles_View_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_backend_articles_View_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_backend_articles_Update_vue__ = __webpack_require__("./resources/assets/js/components/backend/articles/Update.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_backend_articles_Update_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_backend_articles_Update_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_backend_articles_Create_vue__ = __webpack_require__("./resources/assets/js/components/backend/articles/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_backend_articles_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_backend_articles_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_backend_users_Index_vue__ = __webpack_require__("./resources/assets/js/components/backend/users/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_backend_users_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_backend_users_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_backend_users_List_vue__ = __webpack_require__("./resources/assets/js/components/backend/users/List.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_backend_users_List_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_backend_users_List_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_backend_users_View_vue__ = __webpack_require__("./resources/assets/js/components/backend/users/View.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_backend_users_View_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_backend_users_View_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_backend_users_Update_vue__ = __webpack_require__("./resources/assets/js/components/backend/users/Update.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_backend_users_Update_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_backend_users_Update_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_backend_users_Create_vue__ = __webpack_require__("./resources/assets/js/components/backend/users/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_backend_users_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__components_backend_users_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_backend_categories_Index_vue__ = __webpack_require__("./resources/assets/js/components/backend/categories/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_backend_categories_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__components_backend_categories_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_backend_categories_List_vue__ = __webpack_require__("./resources/assets/js/components/backend/categories/List.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_backend_categories_List_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__components_backend_categories_List_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_backend_categories_View_vue__ = __webpack_require__("./resources/assets/js/components/backend/categories/View.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_backend_categories_View_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__components_backend_categories_View_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_backend_categories_Update_vue__ = __webpack_require__("./resources/assets/js/components/backend/categories/Update.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_backend_categories_Update_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__components_backend_categories_Update_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_backend_categories_Create_vue__ = __webpack_require__("./resources/assets/js/components/backend/categories/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_backend_categories_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__components_backend_categories_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_backend_entities_Index_vue__ = __webpack_require__("./resources/assets/js/components/backend/entities/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_backend_entities_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__components_backend_entities_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_backend_entities_List_vue__ = __webpack_require__("./resources/assets/js/components/backend/entities/List.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_backend_entities_List_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__components_backend_entities_List_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_backend_entities_View_vue__ = __webpack_require__("./resources/assets/js/components/backend/entities/View.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_backend_entities_View_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__components_backend_entities_View_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_backend_entities_Update_vue__ = __webpack_require__("./resources/assets/js/components/backend/entities/Update.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_backend_entities_Update_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__components_backend_entities_Update_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_backend_entities_Create_vue__ = __webpack_require__("./resources/assets/js/components/backend/entities/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_backend_entities_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__components_backend_entities_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_backend_permissions_Index_vue__ = __webpack_require__("./resources/assets/js/components/backend/permissions/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_backend_permissions_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_backend_permissions_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_backend_permissions_List_vue__ = __webpack_require__("./resources/assets/js/components/backend/permissions/List.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_backend_permissions_List_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__components_backend_permissions_List_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_backend_permissions_View_vue__ = __webpack_require__("./resources/assets/js/components/backend/permissions/View.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_backend_permissions_View_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__components_backend_permissions_View_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_backend_permissions_Update_vue__ = __webpack_require__("./resources/assets/js/components/backend/permissions/Update.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_backend_permissions_Update_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__components_backend_permissions_Update_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_backend_permissions_Create_vue__ = __webpack_require__("./resources/assets/js/components/backend/permissions/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_backend_permissions_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__components_backend_permissions_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_backend_roles_Index_vue__ = __webpack_require__("./resources/assets/js/components/backend/roles/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_backend_roles_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35__components_backend_roles_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_backend_roles_List_vue__ = __webpack_require__("./resources/assets/js/components/backend/roles/List.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_backend_roles_List_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36__components_backend_roles_List_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_backend_roles_View_vue__ = __webpack_require__("./resources/assets/js/components/backend/roles/View.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_backend_roles_View_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_37__components_backend_roles_View_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_backend_roles_Update_vue__ = __webpack_require__("./resources/assets/js/components/backend/roles/Update.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_backend_roles_Update_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_38__components_backend_roles_Update_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_backend_roles_Create_vue__ = __webpack_require__("./resources/assets/js/components/backend/roles/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_backend_roles_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39__components_backend_roles_Create_vue__);
+
+
+
+// ================================================
+
+
+
+
+// ================================================
+
 
 
 
@@ -75479,6 +75549,37 @@ function initialize(store, router) {
 
 
 
+
+// ================================================
+
+
+
+
+
+// ================================================
+
+
+
+
+
+// ================================================
+
+
+
+
+
+// ================================================
+
+
+
+
+
+// ================================================
+// import ImageHome from '../components/backend/images/Index.vue'
+// import Images from '../components/backend/images/List.vue'
+// import Image from '../components/backend/images/View.vue'
+// import UpdateImage from '../components/backend/images/Update.vue'
+// import CreateImage from '../components/backend/images/Create.vue'
 // ================================================
 
 
@@ -75499,7 +75600,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
       path: 'home',
       name: 'admin_home',
       component: __WEBPACK_IMPORTED_MODULE_3__components_backend_Home_vue___default.a
-    }, {
+    },
+    // =====================================================================
+    {
       path: 'tags',
       component: __WEBPACK_IMPORTED_MODULE_6__components_backend_tags_Main_vue___default.a,
       children: [{
@@ -75515,8 +75618,144 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
         name: 'tag',
         component: __WEBPACK_IMPORTED_MODULE_9__components_backend_tags_View_vue___default.a
       }]
+    },
+    // ======================================================================
+    {
+      path: 'articles',
+      component: __WEBPACK_IMPORTED_MODULE_10__components_backend_articles_Index_vue___default.a,
+      children: [{
+        path: '/',
+        name: 'articles',
+        component: __WEBPACK_IMPORTED_MODULE_11__components_backend_articles_List_vue___default.a
+      }, {
+        path: 'new',
+        name: 'new_article',
+        component: __WEBPACK_IMPORTED_MODULE_14__components_backend_articles_Create_vue___default.a
+      }, {
+        path: ':id',
+        name: 'article',
+        component: __WEBPACK_IMPORTED_MODULE_12__components_backend_articles_View_vue___default.a
+      }, {
+        path: ':article_id',
+        name: 'update_article',
+        component: __WEBPACK_IMPORTED_MODULE_13__components_backend_articles_Update_vue___default.a
+      }]
+
+    },
+    // ======================================================================
+    {
+      path: 'categories',
+      component: CategoriesHome,
+      children: [{
+        path: '/',
+        name: 'categories',
+        component: __WEBPACK_IMPORTED_MODULE_21__components_backend_categories_List_vue___default.a
+      }, {
+        path: 'new',
+        name: 'new_categories',
+        component: __WEBPACK_IMPORTED_MODULE_24__components_backend_categories_Create_vue___default.a
+      }, {
+        path: ':id',
+        name: 'article',
+        component: __WEBPACK_IMPORTED_MODULE_21__components_backend_categories_List_vue___default.a
+      }, {
+        path: ':category_id',
+        name: 'update_category',
+        component: __WEBPACK_IMPORTED_MODULE_23__components_backend_categories_Update_vue___default.a
+      }]
+
+    },
+    // ======================================================================
+    {
+      path: 'users',
+      component: UsersHome,
+      children: [{
+        path: '/',
+        name: 'users',
+        component: __WEBPACK_IMPORTED_MODULE_16__components_backend_users_List_vue___default.a
+      }, {
+        path: 'new',
+        name: 'new_user',
+        component: __WEBPACK_IMPORTED_MODULE_19__components_backend_users_Create_vue___default.a
+      }, {
+        path: ':id',
+        name: 'user',
+        component: __WEBPACK_IMPORTED_MODULE_17__components_backend_users_View_vue___default.a
+      }, {
+        path: ':user_id',
+        name: 'update_user',
+        component: __WEBPACK_IMPORTED_MODULE_18__components_backend_users_Update_vue___default.a
+      }]
+    },
+    // ======================================================================
+    {
+      path: 'roles',
+      component: RolesHome,
+      children: [{
+        path: '/',
+        name: 'roles',
+        component: __WEBPACK_IMPORTED_MODULE_36__components_backend_roles_List_vue___default.a
+      }, {
+        path: 'new',
+        name: 'new_role',
+        component: __WEBPACK_IMPORTED_MODULE_39__components_backend_roles_Create_vue___default.a
+      }, {
+        path: ':id',
+        name: 'role',
+        component: __WEBPACK_IMPORTED_MODULE_37__components_backend_roles_View_vue___default.a
+      }, {
+        path: ':role_id',
+        name: 'update_role',
+        component: __WEBPACK_IMPORTED_MODULE_38__components_backend_roles_Update_vue___default.a
+      }]
+    },
+    // ======================================================================
+    {
+      path: 'permissions',
+      component: PermissionsHome,
+      children: [{
+        path: '/',
+        name: 'permissions',
+        component: __WEBPACK_IMPORTED_MODULE_31__components_backend_permissions_List_vue___default.a
+      }, {
+        path: 'new',
+        name: 'new_role',
+        component: __WEBPACK_IMPORTED_MODULE_34__components_backend_permissions_Create_vue___default.a
+      }, {
+        path: ':id',
+        name: 'permission',
+        component: __WEBPACK_IMPORTED_MODULE_32__components_backend_permissions_View_vue___default.a
+      }, {
+        path: ':permission_id',
+        name: 'update_permission',
+        component: __WEBPACK_IMPORTED_MODULE_33__components_backend_permissions_Update_vue___default.a
+      }]
+    },
+    // ======================================================================
+    {
+      path: 'entities',
+      component: EntitiesHome,
+      children: [{
+        path: '/',
+        name: 'entities',
+        component: __WEBPACK_IMPORTED_MODULE_26__components_backend_entities_List_vue___default.a
+      }, {
+        path: 'new',
+        name: 'new_entity',
+        component: __WEBPACK_IMPORTED_MODULE_29__components_backend_entities_Create_vue___default.a
+      }, {
+        path: ':id',
+        name: 'permission',
+        component: __WEBPACK_IMPORTED_MODULE_27__components_backend_entities_View_vue___default.a
+      }, {
+        path: ':permission_id',
+        name: 'update_permission',
+        component: __WEBPACK_IMPORTED_MODULE_28__components_backend_entities_Update_vue___default.a
+      }]
     }]
-  }, {
+  },
+  // ======================================================================
+  {
     path: '/',
     name: 'app-home',
     component: __WEBPACK_IMPORTED_MODULE_4__components_frontend_pages_Home_vue___default.a,
@@ -75524,6 +75763,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
       path: '/login',
       component: __WEBPACK_IMPORTED_MODULE_5__components_auth_Login_vue___default.a
     }]
+    // ======================================================================
   }]
 }));
 
@@ -75920,6 +76160,781 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/backend/articles/Create.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\articles\\Create.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/articles/Index.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\articles\\Index.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/articles/List.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\articles\\List.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/articles/Update.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\articles\\Update.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/articles/View.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\articles\\View.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/categories/Create.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\categories\\Create.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/categories/Index.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\categories\\Index.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/categories/List.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\categories\\List.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/categories/Update.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\categories\\Update.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/categories/View.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\categories\\View.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/entities/Create.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\entities\\Create.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/entities/Index.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\entities\\Index.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/entities/List.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\entities\\List.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/entities/Update.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\entities\\Update.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/entities/View.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\entities\\View.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/permissions/Create.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\permissions\\Create.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/permissions/Index.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\permissions\\Index.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/permissions/List.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\permissions\\List.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/permissions/Update.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\permissions\\Update.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/permissions/View.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\permissions\\View.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/roles/Create.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\roles\\Create.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/roles/Index.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\roles\\Index.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/roles/List.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\roles\\List.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/roles/Update.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\roles\\Update.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/roles/View.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\roles\\View.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/backend/tags/List.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -76122,6 +77137,161 @@ if (false) {(function () {
     disposed = true
   })
 })()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/users/Create.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\users\\Create.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/users/Index.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\users\\Index.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/users/List.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\users\\List.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/users/Update.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\users\\Update.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/backend/users/View.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\users\\View.vue"
 
 module.exports = Component.exports
 
