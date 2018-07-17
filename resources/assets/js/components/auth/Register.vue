@@ -1,7 +1,6 @@
 <template lang="html">
-  <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent max-width="500px">
-      <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn>
+  <v-layout row wrap>
+    <v-dialog v-model="registerDialog" persistent max-width="500px">
       <v-card>
         <v-card-title>
           <span class="headline">User Profile</span>
@@ -50,8 +49,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="setRegsiterDialog">Cancelar</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="setRegsiterDialog">Salvar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -60,9 +59,13 @@
 
 <script>
 export default {
-  data: () => ({
-    dialog: false
-  })
+  props: ['registerDialog'],
+  methods: {
+    setRegsiterDialog: function () {
+      this.$emit('test')
+    }
+  }
+
 }
 </script>
 

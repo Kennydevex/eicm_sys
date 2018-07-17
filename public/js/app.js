@@ -5410,14 +5410,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      dialog: false
-    };
+  props: ['registerDialog'],
+  methods: {
+    setRegsiterDialog: function setRegsiterDialog() {
+      this.$emit('test');
+    }
   }
+
 });
 
 /***/ }),
@@ -6014,12 +6015,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
   data: function data() {
     return {
+      // =======================================
+      registerDialog: false,
+      // =======================================
       fav: false,
       submenus: {
         alunos: [{ id: 1, name: 'Quadro de Honra' }, { id: 2, name: 'Comissão de Finalista' }, { id: 3, name: 'Disporto' }, { id: 4, name: 'Mensagem do Diretor' }],
@@ -6032,9 +6038,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    showRegsiterDialog: function showRegsiterDialog() {
+      this.registerDialog = !this.registerDialog;
+    },
+
     logout: function logout() {
       this.$store.commit('logout');
       this.$router.push('/login');
+    },
+    setRegsiterModel: function setRegsiterModel() {
+      this.$emit('showRegsiterModel');
     }
   },
 
@@ -15410,7 +15423,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15440,7 +15453,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39726,30 +39739,21 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-layout",
-    { attrs: { row: "", "justify-center": "" } },
+    { attrs: { row: "", wrap: "" } },
     [
       _c(
         "v-dialog",
         {
           attrs: { persistent: "", "max-width": "500px" },
           model: {
-            value: _vm.dialog,
+            value: _vm.registerDialog,
             callback: function($$v) {
-              _vm.dialog = $$v
+              _vm.registerDialog = $$v
             },
-            expression: "dialog"
+            expression: "registerDialog"
           }
         },
         [
-          _c(
-            "v-btn",
-            {
-              attrs: { slot: "activator", color: "primary", dark: "" },
-              slot: "activator"
-            },
-            [_vm._v("Open Dialog")]
-          ),
-          _vm._v(" "),
           _c(
             "v-card",
             [
@@ -39903,11 +39907,11 @@ var render = function() {
                       attrs: { color: "blue darken-1", flat: "" },
                       nativeOn: {
                         click: function($event) {
-                          _vm.dialog = false
+                          return _vm.setRegsiterDialog($event)
                         }
                       }
                     },
-                    [_vm._v("Close")]
+                    [_vm._v("Cancelar")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -39916,11 +39920,11 @@ var render = function() {
                       attrs: { color: "blue darken-1", flat: "" },
                       nativeOn: {
                         click: function($event) {
-                          _vm.dialog = false
+                          return _vm.setRegsiterDialog($event)
                         }
                       }
                     },
-                    [_vm._v("Save")]
+                    [_vm._v("Salvar")]
                   )
                 ],
                 1
@@ -40297,9 +40301,19 @@ var render = function() {
                           _vm._v("\n    Entrar\n  ")
                         ]),
                         _vm._v(" "),
-                        _c("v-btn", { attrs: { flat: "", to: "register" } }, [
-                          _vm._v("Registar")
-                        ])
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { flat: "" },
+                            on: {
+                              click: function($event) {
+                                $event.stopPropagation()
+                                return _vm.showRegsiterDialog($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Registar")]
+                        )
                       ]
                     : [
                         _c("v-btn", { attrs: { flat: "" } }, [
@@ -40442,7 +40456,18 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-content", [
-            _c("section", [_c("Register"), _vm._v(" "), _c("router-view")], 1)
+            _c(
+              "section",
+              [
+                _c("Register", {
+                  attrs: { registerDialog: _vm.registerDialog },
+                  on: { test: _vm.showRegsiterDialog }
+                }),
+                _vm._v(" "),
+                _c("router-view")
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
           _c("AppFooter", { attrs: { app: "" } })

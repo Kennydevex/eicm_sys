@@ -95,7 +95,7 @@
   <v-btn flat to="/login">
     Entrar
   </v-btn>
-  <v-btn flat to="register">Registar</v-btn>
+  <v-btn flat @click.stop="showRegsiterDialog">Registar</v-btn>
 </template>
 <!-- ====================================================================== -->
 <template v-else>
@@ -144,7 +144,8 @@
   <!-- ====================================================================== -->
   <section>
     <!-- ====================================================================== -->
-    <Register></Register>
+    <Register :registerDialog="registerDialog" v-on:test="showRegsiterDialog"></Register>
+    <!-- ============================== Regsiter Diagol =============================== -->
     <router-view></router-view>
     <!-- ====================================================================== -->
   </section>
@@ -160,7 +161,12 @@
 import AppFooter from './partials/AppFooter.vue'
 import Register from '../auth/Register.vue'
 export default {
+
+
   data: () => ({
+    // =======================================
+    registerDialog: false,
+    // =======================================
     fav: false,
     submenus: {
       alunos: [
@@ -192,9 +198,15 @@ export default {
   }),
 
   methods: {
+    showRegsiterDialog(){
+      this.registerDialog = !this.registerDialog
+    },
     logout: function () {
       this.$store.commit('logout')
       this.$router.push('/login')
+    },
+    setRegsiterModel: function () {
+      this.$emit('showRegsiterModel')
     }
   },
 
