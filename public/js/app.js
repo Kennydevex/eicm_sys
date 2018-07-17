@@ -5395,6 +5395,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -38245,7 +38264,18 @@ var render = function() {
       _c(
         "v-navigation-drawer",
         {
-          attrs: { clipped: "", fixed: "", app: "" },
+          attrs: {
+            fixed: "",
+            app: "",
+            "mini-variant": _vm.mini,
+            "hide-overlay": "",
+            stateless: ""
+          },
+          on: {
+            "update:miniVariant": function($event) {
+              _vm.mini = $event
+            }
+          },
           model: {
             value: _vm.drawer,
             callback: function($$v) {
@@ -38259,6 +38289,34 @@ var render = function() {
             "v-list",
             { attrs: { dense: "" } },
             [
+              _c(
+                "v-list",
+                [
+                  _c(
+                    "v-list-tile",
+                    { attrs: { avatar: "" } },
+                    [
+                      _c("v-list-tile-avatar", [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://randomuser.me/api/portraits/men/85.jpg"
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-tile-content",
+                        [_c("v-list-tile-title", [_vm._v("John Leider")])],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
                 "v-list-tile",
                 { attrs: { to: "home" } },
@@ -38305,7 +38363,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-toolbar",
-        { attrs: { app: "", fixed: "", "clipped-left": "" } },
+        { attrs: { app: "", fixed: "" } },
         [
           _c("v-toolbar-side-icon", {
             on: {
@@ -38316,7 +38374,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("v-toolbar-title", [_vm._v("Application")])
+          _c("v-toolbar-title", [_vm._v("EICM-GDC")])
         ],
         1
       ),
