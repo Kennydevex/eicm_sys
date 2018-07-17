@@ -5898,7 +5898,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -5910,7 +5909,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      fav: false
+    };
   },
 
   methods: {
@@ -15107,7 +15108,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38664,13 +38665,6 @@ var render = function() {
                               "close-on-content-click": false,
                               "nudge-width": 200,
                               "offset-y": ""
-                            },
-                            model: {
-                              value: _vm.menu,
-                              callback: function($$v) {
-                                _vm.menu = $$v
-                              },
-                              expression: "menu"
                             }
                           },
                           [
@@ -39612,11 +39606,11 @@ var render = function() {
                                     "v-flex",
                                     { attrs: { xs12: "" } },
                                     [
-                                      _c("v-text-field", {
+                                      _c("v-textarea", {
                                         attrs: {
-                                          label: "Mensagem",
-                                          box: "",
-                                          "multi-line": ""
+                                          outline: "",
+                                          name: "input-7-4",
+                                          label: "Solo textarea"
                                         }
                                       })
                                     ],
@@ -75645,7 +75639,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     // ======================================================================
     {
       path: 'categories',
-      component: CategoriesHome,
+      component: __WEBPACK_IMPORTED_MODULE_20__components_backend_categories_Index_vue___default.a,
       children: [{
         path: '/',
         name: 'categories',
@@ -75656,7 +75650,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
         component: __WEBPACK_IMPORTED_MODULE_24__components_backend_categories_Create_vue___default.a
       }, {
         path: ':id',
-        name: 'article',
+        name: 'category',
         component: __WEBPACK_IMPORTED_MODULE_21__components_backend_categories_List_vue___default.a
       }, {
         path: ':category_id',
@@ -75668,7 +75662,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     // ======================================================================
     {
       path: 'users',
-      component: UsersHome,
+      component: __WEBPACK_IMPORTED_MODULE_15__components_backend_users_Index_vue___default.a,
       children: [{
         path: '/',
         name: 'users',
@@ -75690,7 +75684,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     // ======================================================================
     {
       path: 'roles',
-      component: RolesHome,
+      component: __WEBPACK_IMPORTED_MODULE_35__components_backend_roles_Index_vue___default.a,
       children: [{
         path: '/',
         name: 'roles',
@@ -75712,14 +75706,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     // ======================================================================
     {
       path: 'permissions',
-      component: PermissionsHome,
+      component: __WEBPACK_IMPORTED_MODULE_30__components_backend_permissions_Index_vue___default.a,
       children: [{
         path: '/',
         name: 'permissions',
         component: __WEBPACK_IMPORTED_MODULE_31__components_backend_permissions_List_vue___default.a
       }, {
         path: 'new',
-        name: 'new_role',
+        name: 'new_permission',
         component: __WEBPACK_IMPORTED_MODULE_34__components_backend_permissions_Create_vue___default.a
       }, {
         path: ':id',
@@ -75734,7 +75728,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     // ======================================================================
     {
       path: 'entities',
-      component: EntitiesHome,
+      component: __WEBPACK_IMPORTED_MODULE_25__components_backend_entities_Index_vue___default.a,
       children: [{
         path: '/',
         name: 'entities',
@@ -75745,11 +75739,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
         component: __WEBPACK_IMPORTED_MODULE_29__components_backend_entities_Create_vue___default.a
       }, {
         path: ':id',
-        name: 'permission',
+        name: 'entity',
         component: __WEBPACK_IMPORTED_MODULE_27__components_backend_entities_View_vue___default.a
       }, {
-        path: ':permission_id',
-        name: 'update_permission',
+        path: ':entity_id',
+        name: 'update_entity',
         component: __WEBPACK_IMPORTED_MODULE_28__components_backend_entities_Update_vue___default.a
       }]
     }]

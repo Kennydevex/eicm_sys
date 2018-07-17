@@ -71,11 +71,11 @@
             ></v-text-field>
           </v-flex>
           <v-flex xs12>
-            <v-text-field
-              label="Mensagem"
-              box
-              multi-line
-            ></v-text-field>
+            <v-textarea
+            outline
+            name="input-7-4"
+            label="Solo textarea"
+            ></v-textarea>
           </v-flex>
 
         </v-layout>

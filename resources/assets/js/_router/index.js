@@ -12,37 +12,37 @@ import TagsList from '../components/backend/tags/List.vue'
 import NewTag from '../components/backend/tags/New.vue'
 import Tag from '../components/backend/tags/View.vue'
   // ================================================
-import ArticleHome from '../components/backend/articles/Index.vue'
+import ArticlesHome from '../components/backend/articles/Index.vue'
 import Articles from '../components/backend/articles/List.vue'
 import Article from '../components/backend/articles/View.vue'
 import UpdateArticle from '../components/backend/articles/Update.vue'
 import CreateArticle from '../components/backend/articles/Create.vue'
   // ================================================
-import UserHome from '../components/backend/users/Index.vue'
+import UsersHome from '../components/backend/users/Index.vue'
 import Users from '../components/backend/users/List.vue'
 import User from '../components/backend/users/View.vue'
 import UpdateUser from '../components/backend/users/Update.vue'
 import CreateUser from '../components/backend/users/Create.vue'
   // ================================================
-import CategoryHome from '../components/backend/categories/Index.vue'
+import CategoriesHome from '../components/backend/categories/Index.vue'
 import Categories from '../components/backend/categories/List.vue'
 import Category from '../components/backend/categories/View.vue'
 import UpdateCategory from '../components/backend/categories/Update.vue'
 import CreateCategory from '../components/backend/categories/Create.vue'
   // ================================================
-import EntityHome from '../components/backend/entities/Index.vue'
+import EntitiesHome from '../components/backend/entities/Index.vue'
 import Entities from '../components/backend/entities/List.vue'
 import Entity from '../components/backend/entities/View.vue'
 import UpdateEntity from '../components/backend/entities/Update.vue'
 import CreateEntity from '../components/backend/entities/Create.vue'
   // ================================================
-import PermissionHome from '../components/backend/permissions/Index.vue'
+import PermissionsHome from '../components/backend/permissions/Index.vue'
 import Permissions from '../components/backend/permissions/List.vue'
 import Permission from '../components/backend/permissions/View.vue'
 import UpdatePermission from '../components/backend/permissions/Update.vue'
 import CreatePermission from '../components/backend/permissions/Create.vue'
   // ================================================
-import RoleHome from '../components/backend/roles/Index.vue'
+import RolesHome from '../components/backend/roles/Index.vue'
 import Roles from '../components/backend/roles/List.vue'
 import Role from '../components/backend/roles/View.vue'
 import UpdateRole from '../components/backend/roles/Update.vue'
@@ -95,7 +95,7 @@ export default new Router({
         // ======================================================================
         {
           path: 'articles',
-          component: ArticleHome,
+          component: ArticlesHome,
           children: [{
             path: '/',
             name: 'articles',
@@ -129,7 +129,7 @@ export default new Router({
             component: CreateCategory
           }, {
             path: ':id',
-            name: 'article',
+            name: 'category',
             component: Categories
           }, {
             path: ':category_id',
@@ -192,7 +192,7 @@ export default new Router({
             component: Permissions
           }, {
             path: 'new',
-            name: 'new_role',
+            name: 'new_permission',
             component: CreatePermission
           }, {
             path: ':id',
@@ -218,11 +218,11 @@ export default new Router({
             component: CreateEntity
           }, {
             path: ':id',
-            name: 'permission',
+            name: 'entity',
             component: Entity
           }, {
-            path: ':permission_id',
-            name: 'update_permission',
+            path: ':entity_id',
+            name: 'update_entity',
             component: UpdateEntity
           }]
         },

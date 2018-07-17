@@ -32,7 +32,6 @@
           <v-menu
           :close-on-content-click="false"
           :nudge-width="200"
-          v-model="menu"
           offset-y
           >
           <v-btn slot="activator" flat><v-icon>more_vert</v-icon></v-btn>
@@ -118,7 +117,7 @@ import AppTeam from '../partials/AppTeam.vue'
 
 export default {
   data: () => ({
-
+    fav: false
   }),
 
   methods: {
