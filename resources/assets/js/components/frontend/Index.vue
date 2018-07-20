@@ -95,8 +95,8 @@
   <v-btn flat to="/login">
     Entrar
   </v-btn>
-  <v-btn flat @click.stop="showRegsiterDialog">Registar</v-btn>
-  <v-btn flat @click.stop="dialogTeste = true">Teste</v-btn>
+  <!-- <v-btn flat @click.stop="showRegsiterDialog">Registar</v-btn> -->
+  <v-btn flat @click.stop="showAuthModel"><v-icon>fa fa-sign-in fa-1x</v-icon></v-btn>
 </template>
 <!-- ====================================================================== -->
 <template v-else>
@@ -141,88 +141,10 @@
 </v-toolbar-items>
 </v-toolbar>
 <v-content>
-  <!-- ====================================================================== -->
-  <!-- tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
-  <v-dialog
-  v-model="dialogTeste"
-  max-width="940"
-  >
-  <v-card pa-1>
-    <v-layout row wrap>
-      <v-flex xs8 pa-0>
-        <v-card-text>
-          <v-card flat>
-            <v-card-text>
-              <v-tabs
-              centered
-              icons-and-text
-              >
-              <v-tabs-slider color="yellow"></v-tabs-slider>
-
-              <v-tab href="#loginTab">
-                <v-icon>fa fa-sign-in fa-2x</v-icon>
-              </v-tab>
-
-              <v-tab href="#registerTab">
-                <v-icon>fa fa-user-plus fa-2x</v-icon>
-              </v-tab>
-
-
-              <v-tab-item
-              :id="'loginTab'"
-              :key="1"
-              >
-              <v-card flat>
-                <v-card-text>{{ text }}</v-card-text>
-              </v-card>
-            </v-tab-item>
-
-            <v-tab-item
-            :id="'registerTab'"
-            :key="2"
-            >
-            <v-card flat>
-              <v-card-text>{{ text }}</v-card-text>
-            </v-card>
-          </v-tab-item>
-        </v-tabs>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn
-        color="green darken-1"
-        flat="flat"
-        @click="dialogTeste = false"
-        >
-        Disagree
-      </v-btn>
-
-      <v-btn
-      color="green darken-1"
-      flat="flat"
-      @click="dialogTeste = false"
-      >
-      Agree
-    </v-btn>
-  </v-card-actions>
-</v-card>
-</v-card-text>
-</v-flex>
-<v-flex xs4>
-  <v-card-media
-  src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
-  height="400px"
-  ></v-card-media>
-
-</v-flex>
-</v-layout>
-</v-card>
-</v-dialog>
-<!-- tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
-
 <!-- ====================================================================== -->
 <section>
   <!-- ====================================================================== -->
-  <!-- <Register :registerDialog="registerDialog" v-on:test="showRegsiterDialog"></Register> -->
+  <AppAuth :authModel="authModel" v-on:setAuthModel="showAuthModel"></AppAuth>
   <!-- ============================== Regsiter Diagol =============================== -->
   <router-view></router-view>
   <!-- ====================================================================== -->
@@ -237,13 +159,14 @@
 
 <script>
 import AppFooter from './partials/AppFooter.vue'
+import AppAuth from '../auth/AppAuth.vue'
 // import Register from '../auth/Register.vue'
 export default {
 
 
   data: () => ({
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    dialogTeste: false,
+
+    authModel: false,
     // =======================================
     // registerDialog: false,
     // =======================================
@@ -278,16 +201,13 @@ export default {
   }),
 
   methods: {
-    showRegsiterDialog(){
-      this.registerDialog = !this.registerDialog
+    showAuthModel(){
+      this.authModel = !this.authModel
     },
     logout: function () {
       this.$store.commit('logout')
       this.$router.push('/login')
     },
-    setRegsiterModel: function () {
-      this.$emit('showRegsiterModel')
-    }
   },
 
   computed: {
@@ -297,7 +217,8 @@ export default {
   },
   components: {
     AppFooter,
-    Register
+    AppAuth,
+    // Register
   }
 }
 </script>
