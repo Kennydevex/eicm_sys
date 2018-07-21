@@ -5321,16 +5321,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -15504,7 +15494,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39142,37 +39132,29 @@ var render = function() {
                                 [
                                   _c(
                                     "v-tabs",
-                                    {
-                                      attrs: {
-                                        centered: "",
-                                        "icons-and-text": ""
-                                      }
-                                    },
                                     [
                                       _c("v-tabs-slider", {
-                                        attrs: { color: "yellow" }
+                                        attrs: { color: "teal darken-4" }
                                       }),
                                       _vm._v(" "),
                                       _c(
                                         "v-tab",
                                         { attrs: { href: "#loginTab" } },
                                         [
-                                          _c("v-icon", [
-                                            _vm._v("fa fa-sign-in fa-2x")
-                                          ])
-                                        ],
-                                        1
+                                          _vm._v(
+                                            "\n                  Login\n                  "
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
                                         "v-tab",
                                         { attrs: { href: "#registerTab" } },
                                         [
-                                          _c("v-icon", [
-                                            _vm._v("fa fa-user-plus fa-2x")
-                                          ])
-                                        ],
-                                        1
+                                          _vm._v(
+                                            "\n                  Registar\n                  "
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -39224,6 +39206,8 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
+                              _c("v-divider"),
+                              _vm._v(" "),
                               _c(
                                 "v-card-actions",
                                 [
@@ -39240,23 +39224,8 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("\n          Disagree\n        ")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        color: "green darken-1",
-                                        flat: "flat"
-                                      },
-                                      nativeOn: {
-                                        click: function($event) {
-                                          return _vm.setAuthModel($event)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("\n        Agree\n      ")]
+                                    [_c("v-icon", [_vm._v("fa-times")])],
+                                    1
                                   )
                                 ],
                                 1
@@ -39670,9 +39639,7 @@ var render = function() {
                 "v-flex",
                 { attrs: { xs12: "", sm6: "" } },
                 [
-                  _c("v-text-field", {
-                    attrs: { label: "Legal first name", required: "" }
-                  })
+                  _c("v-text-field", { attrs: { label: "Nome", required: "" } })
                 ],
                 1
               ),
@@ -39680,11 +39647,19 @@ var render = function() {
               _c(
                 "v-flex",
                 { attrs: { xs12: "", sm6: "" } },
+                [_c("v-text-field", { attrs: { label: "Apelido" } })],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs12: "" } },
                 [
                   _c("v-text-field", {
                     attrs: {
-                      label: "Legal middle name",
-                      hint: "example of helper text only on focus"
+                      label: "Email",
+                      required: "",
+                      hint: "Insira um email válido"
                     }
                   })
                 ],
@@ -39696,18 +39671,11 @@ var render = function() {
                 { attrs: { xs12: "" } },
                 [
                   _c("v-text-field", {
-                    attrs: { label: "Email", required: "" }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { xs12: "" } },
-                [
-                  _c("v-text-field", {
-                    attrs: { label: "Password", type: "password", required: "" }
+                    attrs: {
+                      label: "Palavra Passe",
+                      type: "password",
+                      required: ""
+                    }
                   })
                 ],
                 1

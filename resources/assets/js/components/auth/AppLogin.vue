@@ -60,6 +60,7 @@ export default {
 
 
   methods:{
+
     authenticate(){
       this.$store.dispatch('login')
       login(this.$data.loginForm).then((response) => {

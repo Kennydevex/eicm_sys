@@ -13,19 +13,17 @@
             <v-card flat>
               <v-card-text>
                 <v-tabs
-                centered
-                icons-and-text
                 >
-                <v-tabs-slider color="yellow"></v-tabs-slider>
+                <v-tabs-slider color="teal darken-4"></v-tabs-slider>
                 <v-tab href="#loginTab">
-                  <v-icon>fa fa-sign-in fa-2x</v-icon>
+                  Login
+                  <!-- <v-icon>fa-sign-in</v-icon> -->
                 </v-tab>
 
                 <v-tab href="#registerTab">
-                  <v-icon>fa fa-user-plus fa-2x</v-icon>
+                  Registar
+                  <!-- <v-icon>fa-user-plus</v-icon> -->
                 </v-tab>
-
-
                 <v-tab-item
                 :id="'loginTab'"
                 :key="1"
@@ -36,7 +34,6 @@
                   </v-card-text>
                 </v-card>
               </v-tab-item>
-
               <v-tab-item
               :id="'registerTab'"
               :key="2"
@@ -44,28 +41,21 @@
               <v-card flat>
                 <v-card-text>
                   <AppRegister></AppRegister>
-
                 </v-card-text>
               </v-card>
             </v-tab-item>
           </v-tabs>
         </v-card-text>
+        <v-divider></v-divider>
         <v-card-actions>
           <v-btn
           color="green darken-1"
           flat="flat"
           @click.native="setAuthModel"
           >
-          Disagree
+          <v-icon>fa-times</v-icon>
         </v-btn>
 
-        <v-btn
-        color="green darken-1"
-        flat="flat"
-        @click.native="setAuthModel"
-        >
-        Agree
-      </v-btn>
     </v-card-actions>
   </v-card>
 </v-card-text>

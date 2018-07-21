@@ -4,19 +4,19 @@
       <v-layout wrap>
 
         <v-flex xs12 sm6>
-          <v-text-field label="Legal first name" required></v-text-field>
+          <v-text-field label="Nome" required></v-text-field>
         </v-flex>
-        
+
         <v-flex xs12 sm6>
-          <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
+          <v-text-field label="Apelido"></v-text-field>
         </v-flex>
 
         <v-flex xs12>
-          <v-text-field label="Email" required></v-text-field>
+          <v-text-field label="Email" required  hint="Insira um email válido"></v-text-field>
         </v-flex>
 
         <v-flex xs12>
-          <v-text-field label="Password" type="password" required></v-text-field>
+          <v-text-field label="Palavra Passe" type="password" required></v-text-field>
         </v-flex>
         <v-flex xs12 sm6>
           <v-select
