@@ -148,8 +148,8 @@ export default new Router({
             name: 'users',
             component: Users
           }, {
-            path: 'new',
-            name: 'new_user',
+            path: 'newUser',
+            name: 'newUser',
             component: CreateUser
           }, {
             path: ':id',
@@ -157,7 +157,7 @@ export default new Router({
             component: User
           }, {
             path: ':user_id',
-            name: 'update_user',
+            name: 'updateUser',
             component: UpdateUser
           }]
         },

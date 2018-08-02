@@ -28,28 +28,29 @@ class AuthController extends Controller
     $this->validate($request,[
       'first_name' => 'required|string|max:255',
        'last_name' => 'required|string|max:255',
-       'username' => 'required|string|max:255',
+       'username' => 'required|unique:users|string|max:255',
        'email' => 'required|string|email|max:255|unique:folks',
-       'password' => 'required|string|min:6'
+       'password' => 'required|string|min:8'
     ]);
     //  create db
+    // $input = $request->only(['first_name', 'last_name', 'identification_card', 'gender', 'email', 'phone_number']);
     $folk = new Folk();
     $folk->first_name=$request->first_name;
     $folk->last_name=$request->last_name;
-    $folk->identification_card='';
-    $folk->gender='M';
+    $folk->identification_card=$request->identification_card;
+    $folk->gender=$request->gender;
     $folk->email=$request->email;
-    $folk->phone_number='';
+    $folk->phone_number=$request->phone_number;
     $folk->save();
 
     $user= new User();
     $user->username=$request->username;
     $user->password=bcrypt($request->password);
-    $user->status=false;
+    $user->status=$request->status;
     $user->folk_id=$folk->id;
     $user->save();
 
-    // response
+    // Return response
 
     return response()->json([
       'user'=>$user,

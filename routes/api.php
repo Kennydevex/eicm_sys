@@ -27,3 +27,17 @@ Route::group([
   // ================   Articles   ============================
   // ==========================================================
 });
+
+
+Route::group([
+  'middleware' => 'jwt.auth',
+  'prefix' => 'sys',
+  'namespace'=>'System'
+], function ($router) {
+  // ==========================================================
+  // ================   Users   ================================
+  // ==========================================================
+  Route::get('users', 'UsersController@all');
+  Route::get('tag/{id}', 'UsersController@get');
+  Route::post('tag/new', 'UsersController@new');
+});

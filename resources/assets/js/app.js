@@ -9,8 +9,6 @@ import Vuetify from 'vuetify'
 import VueAlertify from "vue-alertify"
 import VueSweetalert2 from 'vue-sweetalert2'
 
-
-
 // ========================= Vue Lib =====================
 import router from './_router'
 import store from './_store'
