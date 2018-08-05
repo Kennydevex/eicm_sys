@@ -1,73 +1,50 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer
-    fixed
-    v-model="drawer"
-    app
-    :mini-variant.sync="mini"
-    hide-overlay
-    stateless
-    >
+  <div class="" id="appRoop">
+    <!-- <template v-if="!$route.meta.public"> -->
+    <v-app id="inspire">
+      <app-drawer class="app--drawer"></app-drawer>
+      <app-toolbar class="app--toolbar"></app-toolbar>
 
-    <v-list dense>
-      <!-- ================================================================== -->
-      <v-list>
-        <v-list-tile avatar>
-          <v-list-tile-avatar>
-            <img src="https://randomuser.me/api/portraits/men/85.jpg" >
-          </v-list-tile-avatar>
+      <v-content>
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <router-view></router-view>
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+      </v-content>
+    </v-app>
+    <!-- </template> -->
 
-          <v-list-tile-content>
-            <v-list-tile-title>John Leider</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-      <!-- <v-divider></v-divider> -->
+  </div>
 
-      <!-- ================================================================== -->
-
-      <v-list-tile to="home">
-        <v-list-tile-action>
-          <v-icon>dashboard</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Dashboard</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile to="home">
-        <v-list-tile-action>
-          <v-icon>settings</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Settings</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </v-navigation-drawer>
-  <!-- <v-toolbar app fixed clipped-left> -->
-  <v-toolbar app fixed>
-    <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    <v-toolbar-title>EICM-GDC</v-toolbar-title>
-  </v-toolbar>
-  <v-content>
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <router-view></router-view>
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-  </v-container>
-</v-content>
-<v-footer app fixed>
-  <span>&copy; 2017</span>
-</v-footer>
-</v-app>
 </template>
 
 <script>
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+import AppDrawer from './partials/AppDrawer.vue'
+import AppToolbar from './partials/AppToolbar';
+// import AppFab from '@/components/AppFab';
+// import PageHeader from '@/components/PageHeader';
+// import menu from '@/api/menu';
+// import ThemeSettings from '@/components/ThemeSettings';
+// import AppEvents from  './event';
 export default {
-  data: () => ({
-    drawer: true
-  }),
-  props: {
-    source: String
-  }
+  components: {
+    VuePerfectScrollbar,
+    AppDrawer,
+    AppToolbar
+  },
+  created () {
+    window.getApp = this
+  },
 }
 </script>
+
+
+<style lang="stylus" scoped>
+.setting-fab
+  top:50%!important;
+  right:0;
+  border-radius:0
+  .page-wrapper
+    min-height:calc(100vh - 64px - 50px - 81px );
+
+    </style>
