@@ -36,66 +36,59 @@
 
   <!-- ==================================================================== -->
   <v-list dense>
-    <template v-for="item in items">
-      <v-layout
-      v-if="item.heading"
-      :key="item.heading"
-      row
-      align-center
-      >
-      <v-flex xs6>
-        <v-subheader v-if="item.heading">
-          {{ item.heading }}
-        </v-subheader>
-      </v-flex>
-      <v-flex xs6 class="text-xs-center">
-        <a href="#!" class="body-2 black--text">EDIT</a>
-      </v-flex>
-    </v-layout>
-    <v-list-group
-    v-else-if="item.children"
-    v-model="item.model"
-    :key="item.text"
-    :prepend-icon="item.model ? item.icon : item['icon-alt']"
-    append-icon=""
-    >
-    <v-list-tile slot="activator">
-      <v-list-tile-content>
-        <v-list-tile-title>
-          {{ item.text }}
-        </v-list-tile-title>
-      </v-list-tile-content>
-    </v-list-tile>
-    <v-list-tile
-    v-for="(child, i) in item.children"
-    :key="i"
-    @click=""
-    :to="child.link"
-    >
-    <v-list-tile-action v-if="child.icon">
-      <v-icon>{{ child.icon }}</v-icon>
-    </v-list-tile-action>
-    <v-list-tile-content>
-      <v-list-tile-title>
-        {{ child.text }}
-      </v-list-tile-title>
-    </v-list-tile-content>
-  </v-list-tile>
-</v-list-group>
-
-<v-list-tile v-else :key="item.text" @click=""  :to="item.link">
-  <v-list-tile-action>
-    <v-icon>{{ item.icon }}</v-icon>
-  </v-list-tile-action>
-  <v-list-tile-content>
-    <v-list-tile-title>
-      {{ item.text }}
-    </v-list-tile-title>
-  </v-list-tile-content>
-</v-list-tile>
-</template>
-</v-list>
-<!-- ==================================================================== -->
+    <template v-for="(item, i) in menus">
+      <!--group with subitems-->
+      <v-list-group v-if="item.items" :key="item.name" :group="item.group" :prepend-icon="item.icon" no-action="no-action">
+        <v-list-tile slot="activator" ripple="ripple">
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <template v-for="(subItem, i) in item.items">
+          <!--sub group-->
+          <v-list-group v-if="subItem.items" :key="subItem.name" :group="subItem.group" sub-group="sub-group">
+            <v-list-tile slot="activator" ripple="ripple">
+              <v-list-tile-content>
+                <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile v-for="(grand, i) in subItem.children" :key="i" :to="genChildTarget(item, grand)" :href="grand.href" ripple="ripple">
+              <v-list-tile-content>
+                <v-list-tile-title>{{ grand.title }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list-group>
+          <!--child item-->
+          <v-list-tile v-else :key="i" :to="genChildTarget(item, subItem)" :href="subItem.href" :disabled="subItem.disabled" :target="subItem.target" ripple="ripple">
+            <v-list-tile-content>
+              <v-list-tile-title><span>{{ subItem.title }}</span></v-list-tile-title>
+            </v-list-tile-content>
+            <!-- <v-circle class="white--text pa-0 circle-pill" v-if="subItem.badge" color="red" disabled="disabled">{{ subItem.badge }}</v-circle> -->
+            <v-list-tile-action v-if="subItem.action">
+              <v-icon :class="[subItem.actionClass || 'success--text']">{{ subItem.action }}</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </template>
+      </v-list-group>
+      <v-subheader v-else-if="item.header" :key="i">{{ item.header }}</v-subheader>
+      <v-divider v-else-if="item.divider" :key="i"></v-divider>
+      <!--top-level link-->
+      <v-list-tile v-else :to="!item.href ? { name: item.name } : null" :href="item.href" ripple="ripple" :disabled="item.disabled" :target="item.target" rel="noopener" :key="item.name">
+        <v-list-tile-action v-if="item.icon">
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+        </v-list-tile-content>
+        <!-- <v-circle class="white--text pa-0 chip--x-small" v-if="item.badge" :color="item.color || 'primary'" disabled="disabled">{{ item.badge }}</v-circle> -->
+        <v-list-tile-action v-if="item.subAction">
+          <v-icon class="success--text">{{ item.subAction }}</v-icon>
+        </v-list-tile-action>
+        <!-- <v-circle class="caption blue lighten-2 white--text mx-0" v-else-if="item.chip" label="label" small="small">{{ item.chip }}</v-circle> -->
+      </v-list-tile>
+    </template>
+  </v-list>
+  <!-- ==================================================================== -->
 </vue-perfect-scrollbar>
 
 </v-navigation-drawer>
@@ -103,100 +96,49 @@
 
 <script>
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+import menu from '../../../_api/app/menu';
+
 export default {
   name: 'appDrawer',
   data: () => ({
+    menus: menu,
     drawer: true,
     mini: true,
     right: null,
     scrollSettings: {
       maxScrollbarLength: 160
     },
-
-    items: [
-      {
-        icon: 'keyboard_arrow_up',
-        'icon-alt': 'show_chart',
-        text: 'Gestão',
-        model: false,
-        children: [
-
-        ]
-      },
-      {
-        icon: 'keyboard_arrow_up',
-        'icon-alt': 'web',
-        text: 'CMS',
-        model: false,
-        children: [
-          { icon: 'art_track', text: 'Artigos', link: 'articles' },
-          { icon: 'folder', text: 'Categorias', link: 'categories' },
-          { icon: 'bookmark', text: 'Marcadores', link: {name: 'users'} },
-          { icon: 'photo', text: 'Imagens', link: 'images' },
-          { icon: 'art_track', text: 'Artigos', link: 'articles' },
-          { icon: 'folder', text: 'Categorias', link: 'categories' },
-          { icon: 'bookmark', text: 'Marcadores', link: {name: 'users'} },
-          { icon: 'photo', text: 'Imagens', link: 'images' },
-          { icon: 'art_track', text: 'Artigos', link: 'articles' },
-          { icon: 'folder', text: 'Categorias', link: 'categories' },
-          { icon: 'bookmark', text: 'Marcadores', link: {name: 'users'} },
-          { icon: 'photo', text: 'Imagens', link: 'images' },
-          { icon: 'art_track', text: 'Artigos', link: 'articles' },
-          { icon: 'folder', text: 'Categorias', link: 'categories' },
-          { icon: 'bookmark', text: 'Marcadores', link: {name: 'users'} },
-          { icon: 'photo', text: 'Imagens', link: 'images' },
-          { icon: 'art_track', text: 'Artigos', link: 'articles' },
-          { icon: 'folder', text: 'Categorias', link: 'categories' },
-          { icon: 'bookmark', text: 'Marcadores', link: {name: 'users'} },
-          { icon: 'photo', text: 'Imagens', link: 'images' },
-          { icon: 'art_track', text: 'Artigos', link: 'articles' },
-          { icon: 'folder', text: 'Categorias', link: 'categories' },
-          { icon: 'bookmark', text: 'Marcadores', link: {name: 'users'} },
-          { icon: 'photo', text: 'Imagens', link: 'images' },
-          { icon: 'art_track', text: 'Artigos', link: 'articles' },
-          { icon: 'folder', text: 'Categorias', link: 'categories' },
-          { icon: 'bookmark', text: 'Marcadores', link: {name: 'users'} },
-          { icon: 'photo', text: 'Imagens', link: 'images' },
-        ]
-      },
-      {
-        icon: 'keyboard_arrow_up',
-        'icon-alt': 'tune',
-        text: 'Sistema',
-        model: false,
-        children: [
-          { icon: 'group', text: 'Utilizadores', link: {name: 'users'} },
-          { icon: 'vpn_key', text: 'Permissões', link: 'permissions' },
-          { icon: 'assignment_turned_in', text: 'Papeis', link: 'roles'},
-        ]
-      },
-      { icon: 'settings', text: 'Settings', link: 'home1'},
-      { icon: 'help', text: 'Help', link: 'home2'},
-    ]
   }),
 
   computed: {
-   // computeGroupActive () {
-   //   return true;
-   // },
-   // computeLogo () {
-   //   return '/static/m.png';
-   // },
+    sideToolbarColor () {
+      return this.$vuetify.options.extra.sideNav;
+    }
+  },
 
-   sideToolbarColor () {
-     return this.$vuetify.options.extra.sideNav;
-   }
- },
- created () {
-   window.getApp.$on('APP_DRAWER_TOGGLED', () => {
-     this.drawer = (!this.drawer);
-   });
- },
+  created () {
+    window.getApp.$on('APP_DRAWER_TOGGLED', () => {
+      this.drawer = (!this.drawer);
+    });
+  },
 
   components: {
     VuePerfectScrollbar,
   },
+
+  methods: {
+    genChildTarget (item, subItem) {
+      if (subItem.href) return
+      if (subItem.component) {
+        return {
+          name: subItem.component,
+        };
+      }
+      return { name: `${item.group}/${(subItem.name)}` }
+    },
+  }
 }
+
 </script>
 
 <style lang="stylus" scoped>

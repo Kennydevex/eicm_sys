@@ -22,6 +22,7 @@
     "babel-polyfill": "^6.26.0",
     "font-awesome": "^4.7.0",
     "material-design-icons-iconfont": "^3.0.3",
+    "nprogress": "^0.2.0",
     "vue-alertify": "^1.0.5",
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-router": "^3.0.1",
