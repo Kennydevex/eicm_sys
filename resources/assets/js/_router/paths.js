@@ -1,5 +1,7 @@
 // ================================================
-import Dashboard from '../components/backend/Dashboard.vue'
+import AppBackend from '../components/backend/App.vue'
+  // import Dashboard from '../components/backend/Dashboard.vue'
+import Dashboard from '../_pages/backend/Dashboard.vue'
 import AdminHome from '../components/backend/Home.vue'
 import Index from '../components/frontend/Index.vue'
 import Home from '../components/frontend/pages/Home.vue'
@@ -62,31 +64,47 @@ import Help from '../components/backend/help/Index.vue'
 
 export default [{
     path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard,
+    name: 'AppBackend',
+    component: AppBackend,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      breadcrumb: true
     },
     children: [{
-        path: 'home',
-        name: 'admin_home',
-        component: AdminHome
+        path: '/',
+        name: 'dashboard',
+        meta: {
+          breadcrumb: true
+        },
+        component: Dashboard
       },
       // =====================================================================
       {
         path: 'tags',
         component: TagsMain,
+        meta: {
+          breadcrumb: true
+        },
         children: [{
           path: '/',
           name: 'tags_list',
+          meta: {
+            breadcrumb: true
+          },
           component: TagsList
         }, {
           path: 'new',
           name: 'new_tag',
+          meta: {
+            breadcrumb: true
+          },
           component: NewTag
         }, {
           path: ':id',
           name: 'tag',
+          meta: {
+            breadcrumb: true
+          },
           component: Tag
         }]
       },
@@ -97,18 +115,30 @@ export default [{
         children: [{
           path: '/',
           name: 'articles',
+          meta: {
+            breadcrumb: true
+          },
           component: Articles
         }, {
           path: 'new',
           name: 'new_article',
+          meta: {
+            breadcrumb: true
+          },
           component: CreateArticle
         }, {
           path: ':id',
           name: 'article',
+          meta: {
+            breadcrumb: true
+          },
           component: Article
         }, {
           path: ':article_id',
           name: 'update_article',
+          meta: {
+            breadcrumb: true
+          },
           component: UpdateArticle
         }]
 
@@ -120,18 +150,30 @@ export default [{
         children: [{
           path: '/',
           name: 'categories',
+          meta: {
+            breadcrumb: true
+          },
           component: Categories
         }, {
           path: 'new',
           name: 'new_categories',
+          meta: {
+            breadcrumb: true
+          },
           component: CreateCategory
         }, {
           path: ':id',
           name: 'category',
+          meta: {
+            breadcrumb: true
+          },
           component: Categories
         }, {
           path: ':category_id',
           name: 'update_category',
+          meta: {
+            breadcrumb: true
+          },
           component: UpdateCategory
         }]
 
@@ -143,18 +185,30 @@ export default [{
         children: [{
           path: '/',
           name: 'users',
+          meta: {
+            breadcrumb: true
+          },
           component: Users
         }, {
           path: 'newUser',
           name: 'newUser',
+          meta: {
+            breadcrumb: true
+          },
           component: CreateUser
         }, {
           path: ':id',
           name: 'user',
+          meta: {
+            breadcrumb: true
+          },
           component: User
         }, {
           path: ':user_id',
           name: 'updateUser',
+          meta: {
+            breadcrumb: true
+          },
           component: UpdateUser
         }]
       },
@@ -165,18 +219,30 @@ export default [{
         children: [{
           path: '/',
           name: 'roles',
+          meta: {
+            breadcrumb: true
+          },
           component: Roles
         }, {
           path: 'new',
           name: 'new_role',
+          meta: {
+            breadcrumb: true
+          },
           component: CreateRole
         }, {
           path: ':id',
           name: 'role',
+          meta: {
+            breadcrumb: true
+          },
           component: Role
         }, {
           path: ':role_id',
           name: 'update_role',
+          meta: {
+            breadcrumb: true
+          },
           component: UpdateRole
         }]
       },
@@ -187,18 +253,30 @@ export default [{
         children: [{
           path: '/',
           name: 'permissions',
+          meta: {
+            breadcrumb: true
+          },
           component: Permissions
         }, {
           path: 'new',
           name: 'new_permission',
+          meta: {
+            breadcrumb: true
+          },
           component: CreatePermission
         }, {
           path: ':id',
           name: 'permission',
+          meta: {
+            breadcrumb: true
+          },
           component: Permission
         }, {
           path: ':permission_id',
           name: 'update_permission',
+          meta: {
+            breadcrumb: true
+          },
           component: UpdatePermission
         }]
       },
@@ -209,18 +287,30 @@ export default [{
         children: [{
           path: '/',
           name: 'entities',
+          meta: {
+            breadcrumb: true
+          },
           component: Entities
         }, {
           path: 'new',
           name: 'new_entity',
+          meta: {
+            breadcrumb: true
+          },
           component: CreateEntity
         }, {
           path: ':id',
           name: 'entity',
+          meta: {
+            breadcrumb: true
+          },
           component: Entity
         }, {
           path: ':entity_id',
           name: 'update_entity',
+          meta: {
+            breadcrumb: true
+          },
           component: UpdateEntity
         }]
       },
@@ -228,15 +318,24 @@ export default [{
       {
         path: 'settings',
         component: Settings,
-        name: 'settings'
+        name: 'settings',
+        meta: {
+          breadcrumb: true
+        },
       }, {
         path: 'manager',
         component: Manager,
-        name: 'reports'
+        name: 'reports',
+        meta: {
+          breadcrumb: true
+        },
       }, {
         path: 'help',
         component: Help,
-        name: 'help'
+        name: 'help',
+        meta: {
+          breadcrumb: true
+        },
       },
 
     ]
