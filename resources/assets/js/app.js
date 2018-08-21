@@ -6,8 +6,16 @@ require('./bootstrap')
   // ============================= Main Lib ======================
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import VueAlertify from "vue-alertify"
 import VueSweetalert2 from 'vue-sweetalert2'
+  // import VeeValidate from 'vee-validate';
+import pt from 'vee-validate/dist/locale/pt_PT'
+import VeeValidate, {
+  Validator
+}
+from 'vee-validate'
+import VTooltip from 'v-tooltip'
+
+
 
 // ========================= Main Components ===================
 import App from './components/App.vue'
@@ -30,6 +38,8 @@ import {
 }
 from './_helpers/initialize'
   // ========================= Vue Lib Usage =====================
+Validator.localize('pt', pt);
+
 Vue.use(Vuetify, {
   // theme: {
   //   primary: colors.indigo.base, // #E53935
@@ -49,8 +59,10 @@ Vue.use(Vuetify, {
     }
   }
 })
-Vue.use(VueAlertify);
-Vue.use(VueSweetalert2);
+Vue.use(VueSweetalert2)
+Vue.use(VeeValidate)
+Vue.use(VTooltip)
+
 
 initialize(store, router)
 

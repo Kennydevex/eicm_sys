@@ -73,7 +73,7 @@ export default {
     },
 
     errorAlert(message){
-      // this.$alertify.error(message)
+
       this.$swal(message,
         'That thing is still around?',
         'question');

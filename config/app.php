@@ -223,6 +223,12 @@ return [
     'Tag' => EICM\Models\CMD\Tag::class,
     'Image' => EICM\Models\CMD\Image::class,
 
+    //Resources
+    //################################# My Resources ##############################
+    'UserCollection' => EICM\Http\Resources\System\UserCollection::class,
+    'UserResource' => EICM\Http\Resources\System\User::class,
+
+
   ],
 
 ];

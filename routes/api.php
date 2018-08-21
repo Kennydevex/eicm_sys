@@ -1,5 +1,7 @@
 <?php
 
+
+
 Route::group([
   // 'middleware' => 'api',
   'prefix' => 'auth'
@@ -29,15 +31,32 @@ Route::group([
 });
 
 
+// Route::group([
+//   'middleware' => 'jwt.auth',
+//   'prefix' => 'sys',
+//   'namespace'=>'System'
+// ], function ($router) {
+//   // ==========================================================
+//   // ================   Users   ================================
+//   // ==========================================================
+//   Route::get('users', 'UsersController@all');
+//   Route::get('tag/{id}', 'UsersController@get');
+//   Route::post('tag/new', 'UsersController@new');
+// });
+
 Route::group([
-  'middleware' => 'jwt.auth',
+  // 'middleware' => 'jwt.auth',
   'prefix' => 'sys',
   'namespace'=>'System'
 ], function ($router) {
-  // ==========================================================
-  // ================   Users   ================================
-  // ==========================================================
-  Route::get('users', 'UsersController@all');
-  Route::get('tag/{id}', 'UsersController@get');
-  Route::post('tag/new', 'UsersController@new');
+  Route::apiResource(
+    'users', 'UserController'
+  );
 });
+
+
+// Route::apiResource('Test', 'TestController');
+// Route::apiResource([
+//   // 'Test1' => 'TestController',
+//   // 'Test2' => 'Test2Controller'
+// ]);

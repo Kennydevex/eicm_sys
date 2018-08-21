@@ -27,6 +27,17 @@ class Logon extends Authenticatable implements JWTSubject
     'password', 'remember_token',
   ];
 
+  protected $fillable = [
+    'first_name',
+    'last_name',
+    'username',
+    'email',
+    'phone_number',
+    'password',
+    'identification_card',
+    'gender'
+  ];
+
 
   // Rest omitted for brevity
 

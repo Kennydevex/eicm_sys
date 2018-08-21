@@ -20,7 +20,9 @@ export default new Vuex.Store({
     isLoggedIn: !!user,
     loading: false,
     auth_error: null,
-    tags: []
+    // ================================================
+    tags: [],
+    users: []
 
   },
   // // ==================================================
@@ -38,8 +40,13 @@ export default new Vuex.Store({
       authError(state) {
         return state.auth_error
       },
+      // ================================================
       tags(state) {
         return state.tags
+      },
+
+      users(state) {
+        return state.users
       },
 
   },
@@ -70,8 +77,14 @@ export default new Vuex.Store({
         state.isLoggedIn = false
         state.currentUser = null
       },
+
+      // ==================================================
       updateTags(state, payload) {
         state.tags = payload
+      },
+
+      updateUsers(state, payload) {
+        state.users = payload
       }
   },
   // // ==================================================
@@ -84,6 +97,11 @@ export default new Vuex.Store({
       getTags(context) {
         axios.get('/api/cmd/tags').then(function(response) {
           context.commit('updateTags', response.data.tags)
+        })
+      },
+      getUsers(context) {
+        axios.get('/api/sys/users').then(function(response) {
+          context.commit('updateUsers', response.data.data)
         })
       }
 

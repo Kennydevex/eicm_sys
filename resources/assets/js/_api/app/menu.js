@@ -36,7 +36,7 @@ const Menu = [
     }, {
       name: 'images',
       title: 'imagens',
-      component: 'components/widget-list'
+      component: 'images'
     }, ]
   },
   // ===============================================

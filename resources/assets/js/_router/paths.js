@@ -1,8 +1,6 @@
 // ================================================
 import AppBackend from '../components/backend/App.vue'
-  // import Dashboard from '../components/backend/Dashboard.vue'
 import Dashboard from '../_pages/backend/Dashboard.vue'
-import AdminHome from '../components/backend/Home.vue'
 import Index from '../components/frontend/Index.vue'
 import Home from '../components/frontend/pages/Home.vue'
 import Login from '../components/auth/Login.vue'
@@ -64,7 +62,6 @@ import Help from '../components/backend/help/Index.vue'
 
 export default [{
     path: '/dashboard',
-    name: 'AppBackend',
     component: AppBackend,
     meta: {
       requiresAuth: true,
