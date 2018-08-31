@@ -228,6 +228,9 @@ return [
     'UserCollection' => EICM\Http\Resources\System\UserCollection::class,
     'UserResource' => EICM\Http\Resources\System\User::class,
 
+    'PermissionCollection' => EICM\Http\Resources\System\PermissionCollection::class,
+    'PermissionResource' => EICM\Http\Resources\System\Permission::class,
+
 
   ],
 

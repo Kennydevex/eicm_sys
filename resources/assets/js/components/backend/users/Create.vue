@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import CreareUserForm from '../partials/widgets/forms/CreateUserForm';
+import CreareUserForm from '../partials/widgets/forms/user/CreateUserForm';
 
 export default {
   components: {

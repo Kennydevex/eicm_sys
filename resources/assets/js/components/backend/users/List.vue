@@ -2,95 +2,130 @@
   <v-container grid-list-xl fluid>
     <div class="">
       <v-card id="create">
-        <v-speed-dial v-model="fab" :top="top" :bottom="bottom" :right="right" :left="left" :direction="direction" :hover="hover" :transition="transition" fixed="">
-          <v-btn slot="activator" color="blue darken-2" dark="" fab="" hover="" v-model="fab" v-tooltip:left="{ html: 'Delete, open or add a new dashboard layout or module' }">
-            <v-icon>add</v-icon>
-            <v-icon>close</v-icon>
-          </v-btn>
+        <v-speed-dial
+        v-model="fab"
+        :top="top"
+        :bottom="bottom"
+        :right="right"
+        :left="left"
+        :direction="direction"
+        :hover="hover"
+        :transition="transition"
+        fixed="">
+        <v-btn
+        slot="activator"
+        color="blue darken-2"
+        dark
+        fab
+        v-model="fab">
+        <v-icon>account_circle</v-icon>
+        <v-icon>close</v-icon>
+      </v-btn>
 
 
-          <v-btn fab dark small color="blue" @click="dialog = true">
-            <v-icon>fa-user-plus</v-icon>
-          </v-btn>
+      <v-btn
+      fab
+      dark
+      small
+      color="indigo"
+      @click="createUserDialog = true">
+      <v-icon>fa-user-plus</v-icon>
+    </v-btn>
 
-          <!-- Exemplo com router-link -->
-          <!-- <v-btn fab dark small color="blue" :to="{name: 'newUser'}">
-          <v-icon>fa-user-plus</v-icon>
-        </v-btn> -->
+    <!-- Exemplo com router-link -->
+    <!-- <v-btn fab dark small color="blue" :to="{name: 'newUser'}">
+    <v-icon>fa-user-plus</v-icon>
+  </v-btn> -->
 
-        <v-btn fab dark small color="green" v-tooltip.top-center="'Teste de tooltip'">
-          <v-icon>fa-cloud-download</v-icon>
-        </v-btn>
+  <v-btn
+  fab
+  dark
+  small
+  color="indigo"
+  v-tooltip.top-center="'Teste de tooltip'">
+  <v-icon>fa-cloud-download</v-icon>
+</v-btn>
 
-        <v-btn fab dark small color="green">
-          <v-icon>fa-trash</v-icon>
-        </v-btn>
+<v-btn
+fab
+dark
+small
+color="indigo">
+<v-icon>fa-trash</v-icon>
+</v-btn>
 
-        <v-btn fab dark small color="green">
-          <v-icon>fa-file-pdf-o</v-icon>
-        </v-btn>
+<v-btn
+fab
+dark
+small
+color="indigo">
+<v-icon>fa-file-pdf-o</v-icon>
+</v-btn>
 
-        <v-btn fab dark small color="green">
-          <v-icon>fa-file-excel-o</v-icon>
-        </v-btn>
-      </v-speed-dial>
+<v-btn
+fab
+dark
+small
+color="indigo">
+<v-icon>fa-file-excel-o</v-icon>
+</v-btn>
+</v-speed-dial>
+</v-card>
+
+<!-- ============================================================================= -->
+<div class="">
+  <v-layout row justify-center>
+    <v-dialog v-model="createUserDialog" persistent max-width="940px">
+      <v-card>
+        <v-card-title class="blue text-blue">
+          <span class="headline">Criar novo utilizador</span>
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <creare-user-form></creare-user-form>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          <small>Campos com (*) são obrigatórios</small>
+        </v-card-text>
+        <!-- <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="blue darken-1" flat @click.native="dialog = false">Cancelar</v-btn>
+      </v-card-actions> -->
     </v-card>
-
-    <!-- ============================================================================= -->
-    <div class="">
-      <v-layout row justify-center>
-        <v-dialog v-model="dialog" persistent max-width="940px">
-          <v-card>
-            <v-card-title class="blue text-blue">
-              <span class="headline">Criar novo utilizador</span>
-            </v-card-title>
-            <v-divider></v-divider>
-            <v-card-text>
-              <v-container grid-list-md>
-                <v-layout wrap>
-                  <v-flex xs12>
-                    <creare-user-form></creare-user-form>
-
-                  </v-flex>
-                </v-layout>
-              </v-container>
-              <small>Campos com (*) são obrigatórios</small>
-            </v-card-text>
-            <!-- <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" flat @click.native="dialog = false">Cancelar</v-btn>
-          </v-card-actions> -->
-        </v-card>
-      </v-dialog>
-    </v-layout>
-    <v-layout row wrap>
-      <!-- mini statistic start -->
-      <v-flex lg3 sm6 xs12>
-        <mini-statistic
-        icon="fa-users"
-        title="200+"
-        sub-title="Utilizadores ativo"
-        color="indigo"
-        >
-      </mini-statistic>
-    </v-flex>
-    <v-flex lg3 sm6 xs12>
-      <mini-statistic
-      icon="fa-user"
-      title="200+"
-      sub-title="Utilizadores ativo"
-      color="red"
-      >
-    </mini-statistic>
-  </v-flex>
+  </v-dialog>
+</v-layout>
+<v-layout row wrap>
+  <!-- mini statistic start -->
   <v-flex lg3 sm6 xs12>
     <mini-statistic
-    icon="fa fa-twitter"
-    title="200+"
-    sub-title="Followers"
-    color="light-blue"
+    icon="fa-users"
+    :title="users.length"
+    sub-title="Total de Utilizadores"
+    color="indigo"
     >
   </mini-statistic>
+</v-flex>
+<v-flex lg3 sm6 xs12>
+  <mini-statistic
+  icon="fa-user"
+  title="200+"
+  sub-title="Utilizadores ativo"
+  color="red"
+  >
+</mini-statistic>
+</v-flex>
+<v-flex lg3 sm6 xs12>
+  <mini-statistic
+  icon="fa fa-twitter"
+  title="200+"
+  sub-title="Followers"
+  color="light-blue"
+  >
+</mini-statistic>
 </v-flex>
 <v-flex lg3 sm6 xs12>
   <mini-statistic
@@ -119,16 +154,16 @@
 </template>
 
 <script>
-import CreareUserForm from '../partials/widgets/forms/CreateUserForm'
+import CreareUserForm from '../partials/widgets/forms/user/CreateUserForm'
 import MiniStatistic from '../partials/widgets/statistic/MiniStatistic'
 import AppAllUser from '../partials/datas/AppAllUser'
 
 
 export default {
   data: () => ({
-    dialog: false,
+    createUserDialog: false,
 
-    direction: 'left',
+    direction: 'top',
     fab: false,
     fling: false,
     hover: false,
@@ -149,11 +184,14 @@ export default {
 
   created () {
     window.getApp.$on('APP_SHOW_CREATE_USER_DIALOG', () => {
-      this.dialog = (!this.dialog);
+      this.createUserDialog = (!this.createUserDialog);
     });
   },
 
   computed: {
+    users: function () {
+      return this.$store.getters.users
+    },
     activeFab () {
       switch (this.tabs) {
         case 'one': return { 'class': 'purple', icon: 'account_circle' }
@@ -184,6 +222,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.fab-text
-  rgba(0,0,0,0.54);
-  </style>
+.icon_btn
+  height:auto;
+  .fab-text
+    rgba(0,0,0,0.54);
+    </style>

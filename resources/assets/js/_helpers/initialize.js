@@ -1,6 +1,6 @@
 export function initialize(store, router) {
   router.beforeEach((to, from, next) => {
-    const currentUser = store.state.currentUser
+    const currentUser = store.state.auth.currentUser
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
 
@@ -21,9 +21,9 @@ export function initialize(store, router) {
     return Promise.reject(error)
   })
 
-  if (store.state.currentUser) {
+  if (store.state.auth.currentUser) {
     axios.defaults.headers.common["Authorization"] =
-      `Bearer ${store.state.currentUser.token}`
+      `Bearer ${store.state.auth.currentUser.token}`
   }
 
 }

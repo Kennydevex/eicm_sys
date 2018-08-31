@@ -7,13 +7,7 @@
 </template>
 
 <script>
-import CreareUserForm from '../partials/widgets/forms/CreateUserForm';
-
 export default {
-  components: {
-    CreareUserForm,
-  },
-  
 }
 
 </script>

@@ -49,14 +49,17 @@ Route::group([
   'prefix' => 'sys',
   'namespace'=>'System'
 ], function ($router) {
-  Route::apiResource(
-    'users', 'UserController'
-  );
+  Route::apiResource('users', 'UserController');
+  Route::apiResource('permissions', 'PermissionController');
 });
 
-
-// Route::apiResource('Test', 'TestController');
-// Route::apiResource([
-//   // 'Test1' => 'TestController',
-//   // 'Test2' => 'Test2Controller'
-// ]);
+// Route::group([
+//   // 'middleware' => 'jwt.auth',
+//   'prefix' => 'cmd',
+//   'namespace'=>'CMD'
+// ], function ($router) {
+//   Route::apiResource([
+//     'tags', 'TagController',
+//     'articles', 'ArticleController'
+//   ]);
+// });
