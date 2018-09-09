@@ -55,7 +55,7 @@
         <v-btn outline icon dark color="warning" small @click="onGetUser(props.item.id)">
           <v-icon>fa-pencil</v-icon>
         </v-btn>
-        <v-btn outline icon dark color="error" small @click="onDeleteUser(props.item.id)">
+        <v-btn outline icon dark color="error" small @click="onDeleteUser(props.item)">
           <v-icon>fa-trash-o</v-icon>
         </v-btn>
       </td>
@@ -79,6 +79,7 @@
 <script>
 import { Items as UsersApi } from '../../../../_api/source/user'
 import UpdateUserForm from '../widgets/forms/user/UpdateUserForm.vue'
+// import swalAlert from '../../../../_helpers/_flash/swalAlert.js'
 // import {users} from '../../../../_api/system/users'
 export default {
   data () {
@@ -169,23 +170,65 @@ export default {
     },
 
     onUpdateUser: function (user_id) {
-      console.log('Utilizador a ver e: '+user_id);
+      console.log('Utilizador a ver e: '+user_id)
     },
 
     onGetUser: function (user_id) {
-      console.log('Utilizador a atualizar e: '+user_id);
+      console.log('Utilizador a atualizar e: '+user_id)
     },
 
-    onDeleteUser: function (user_id) {
-      console.log('Utilizador a apagar e: '+user_id);
+    onDeleteUser: function (user) {
+      this.$swal({
+        title: 'Eliminar utilizador '+user.first_name+' '+user.last_name+'!',
+        text: "Ação irreversivel, queres continuar?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, Apagar!',
+        cancelButtonText: 'Não, Cancelar!'
+      }).then((result) => {
+        if (result.value) {
+          this.onGetUser(user.first_name+' '+user.last_name)
+          this.showSuccessAlert()
+        }else if (result.dismiss === this.$swal.DismissReason.cancel) {
+          this.showCancelAlert()
+        }
+      })
     },
 
-    toggleAll () {
-      if (this.selected.length) this.selected = []
-      else this.selected = this.users.slice()
-    },
+    showSuccessAlert () {
+      this.$swal({
+        title: 'Operação bem sucedida!',
+        // title: 'Operação bem sucedida <i class="fa fa-arrow-right"></i>!',
+        type: 'success',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000
+      }
+    )
+  },
 
-  }
+  showCancelAlert () {
+    this.$swal({
+      title: 'Operação cancelada',
+      // title: 'Operação bem sucedida <i class="fa fa-arrow-right"></i>!',
+      type: 'error',
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 5000
+    }
+  )
+},
+
+  toggleAll () {
+    if (this.selected.length) this.selected = []
+    else this.selected = this.users.slice()
+  },
+
+}
 
 
 }

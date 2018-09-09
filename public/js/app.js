@@ -2688,6 +2688,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+// import swalAlert from '../../../../_helpers/_flash/swalAlert.js'
 // import {users} from '../../../../_api/system/users'
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2779,10 +2780,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log('Utilizador a atualizar e: ' + user_id);
     },
 
-    onDeleteUser: function onDeleteUser(user_id) {
-      console.log('Utilizador a apagar e: ' + user_id);
+    onDeleteUser: function onDeleteUser(user) {
+      var _this2 = this;
+
+      this.$swal({
+        title: 'Eliminar utilizador ' + user.first_name + ' ' + user.last_name + '!',
+        text: "Ação irreversivel, queres continuar?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, Apagar!',
+        cancelButtonText: 'Não, Cancelar!'
+      }).then(function (result) {
+        if (result.value) {
+          _this2.onGetUser(user.first_name + ' ' + user.last_name);
+          _this2.showSuccessAlert();
+        } else if (result.dismiss === _this2.$swal.DismissReason.cancel) {
+          _this2.showCancelAlert();
+        }
+      });
     },
 
+    showSuccessAlert: function showSuccessAlert() {
+      this.$swal({
+        title: 'Operação bem sucedida!',
+        // title: 'Operação bem sucedida <i class="fa fa-arrow-right"></i>!',
+        type: 'success',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000
+      });
+    },
+    showCancelAlert: function showCancelAlert() {
+      this.$swal({
+        title: 'Operação cancelada',
+        // title: 'Operação bem sucedida <i class="fa fa-arrow-right"></i>!',
+        type: 'error',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000
+      });
+    },
     toggleAll: function toggleAll() {
       if (this.selected.length) this.selected = [];else this.selected = this.users.slice();
     }
@@ -14049,7 +14090,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56107,7 +56148,7 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      _vm.onDeleteUser(props.item.id)
+                                      _vm.onDeleteUser(props.item)
                                     }
                                   }
                                 },
