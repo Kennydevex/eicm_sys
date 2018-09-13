@@ -4,9 +4,11 @@ namespace EICM\Models\System;
 use JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Laratrust\Traits\LaratrustUserTrait;
 
 class Logon extends Authenticatable implements JWTSubject
 {
+  // use LaratrustUserTrait;
   use Notifiable;
 
   /**
@@ -59,5 +61,13 @@ class Logon extends Authenticatable implements JWTSubject
   public function getJWTCustomClaims()
   {
     return [];
+  }
+
+  public function getStatusAttribute($value)
+  {
+    if ($value) {
+      return true;
+    }
+    return false;
   }
 }
