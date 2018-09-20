@@ -194,7 +194,7 @@ export default [{
           },
           component: CreateUser
         }, {
-          path: ':id',
+          path: 'user/:id',
           name: 'user',
           meta: {
             breadcrumb: true

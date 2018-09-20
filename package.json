@@ -25,10 +25,11 @@
     "nprogress": "^0.2.0",
     "v-tooltip": "^2.0.0-rc.33",
     "vee-validate": "^2.1.0-beta.7",
+    "vue-flux": "^4.0.0",
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-router": "^3.0.1",
     "vue-sweetalert2": "^1.4.2",
-    "vuetify": "^1.1.14",
+    "vuetify": "^1.2.3",
     "vuex": "^3.0.1"
   }
 }

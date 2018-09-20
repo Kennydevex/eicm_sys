@@ -20,10 +20,10 @@ import VTooltip from 'v-tooltip'
 // ========================= Main Components ===================
 import App from './components/App.vue'
   // ========================= Import Styles =====================
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'font-awesome/css/font-awesome.min.css'
 // import 'fortawesome/fontawesome-free/css/all.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 // ========================== Suport Libs ========================
 import 'babel-polyfill'
 // ===============================================================

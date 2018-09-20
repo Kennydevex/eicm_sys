@@ -49,14 +49,15 @@
       <td>{{ props.item.phone_number }}</td>
       <td>{{ props.item.identification_card }}</td>
       <td align="center">
-        <v-btn outline icon dark color="primary" small @click.stop="handleToggleUserInfoDialog(props.item.id)">
-          <v-icon>fa-info</v-icon>
+        <!-- <v-btn outline icon dark color="primary" small @click.stop="handleToggleUserInfoDialog(props.item.id)"> -->
+        <v-btn :to="{ name: 'user', params: { id: props.item.id }}" outline icon dark color="primary" small @click.stop="handleToggleUserInfoDialog(props.item.id)">
+          <v-icon small>fa-info</v-icon>
         </v-btn>
         <v-btn outline icon dark color="warning" small @click="onGetUser(props.item.id)">
-          <v-icon>fa-pencil</v-icon>
+          <v-icon small>fa-pencil</v-icon>
         </v-btn>
         <v-btn outline icon dark color="error" small @click="onDeleteUser(props.item)">
-          <v-icon>fa-trash-o</v-icon>
+          <v-icon small>fa-trash</v-icon>
         </v-btn>
       </td>
     </template>

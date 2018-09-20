@@ -2,7 +2,10 @@
   <div class="">
       <!-- ====================================================================== -->
       <section>
-        <AppCaroucel></AppCaroucel>
+        <!-- <AppCaroucel></AppCaroucel> -->
+      </section>
+      <section>
+        <app-front-caroucel></app-front-caroucel>
       </section>
       <!-- ====================================================================== -->
       <section>
@@ -37,6 +40,7 @@ import AppSchoolMsg from '../partials/AppSchoolMsg.vue'
 import AppBlog from '../partials/AppBlog.vue'
 import AppContact from '../partials/AppContact.vue'
 import AppTeam from '../partials/AppTeam.vue'
+import AppFrontCaroucel from '../partials/sliders/AppFrontCaroucel'
 
 export default {
   components: {
@@ -45,7 +49,8 @@ export default {
     AppSchoolMsg,
     AppTeam,
     AppBlog,
-    AppContact
+    AppContact,
+    AppFrontCaroucel
   }
 
 }

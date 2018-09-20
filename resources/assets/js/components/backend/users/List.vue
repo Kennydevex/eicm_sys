@@ -14,7 +14,7 @@
         fixed="">
         <v-btn
         slot="activator"
-        color="blue darken-2"
+        color="indigo"
         dark
         fab
         v-model="fab">
@@ -27,7 +27,7 @@
       fab
       dark
       small
-      color="indigo"
+      color="amber accent-4"
       @click="createUserDialog = true">
       <v-icon>fa-user-plus</v-icon>
     </v-btn>
@@ -41,7 +41,7 @@
   fab
   dark
   small
-  color="indigo"
+  color="teal "
   v-tooltip.top-center="'Teste de tooltip'">
   <v-icon>fa-cloud-download</v-icon>
 </v-btn>
@@ -50,11 +50,11 @@
 fab
 dark
 small
-color="indigo">
+color="red lighten-1">
 <v-icon>fa-trash</v-icon>
 </v-btn>
 
-<v-btn
+<!-- <v-btn
 fab
 dark
 small
@@ -68,7 +68,7 @@ dark
 small
 color="indigo">
 <v-icon>fa-file-excel-o</v-icon>
-</v-btn>
+</v-btn> -->
 </v-speed-dial>
 </v-card>
 
