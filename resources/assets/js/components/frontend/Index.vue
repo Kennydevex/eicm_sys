@@ -3,7 +3,7 @@
     <v-app app>
       <v-toolbar
       app
-      color="indigo darken-4"
+      color="blue darken-1"
       dark
       height="75"
       card
@@ -19,7 +19,9 @@
           slot="activator"
           flat
           >
-          Escola
+          <span>Escola</span>
+          <v-icon dark>arrow_drop_down</v-icon>
+
         </v-btn>
         <v-list>
           <v-list-tile
@@ -38,7 +40,9 @@
       slot="activator"
       flat
       >
-      Cursos
+
+      <span>Cursos</span>
+      <v-icon dark>arrow_drop_down</v-icon>
     </v-btn>
     <v-list>
       <v-list-tile
@@ -56,7 +60,9 @@
   slot="activator"
   flat
   >
-  Alunos
+
+  <span>Alunos</span>
+  <v-icon dark>arrow_drop_down</v-icon>
 </v-btn>
 <v-list>
   <v-list-tile
@@ -74,7 +80,9 @@
   slot="activator"
   flat
   >
-  Dinâmica
+
+  <span>Dinâmica</span>
+  <v-icon dark>arrow_drop_down</v-icon>
 </v-btn>
 <v-list>
   <v-list-tile

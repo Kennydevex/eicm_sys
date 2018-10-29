@@ -21,7 +21,7 @@
         <v-data-table
         :headers="headers"
         :search="search"
-        :items="permissions"
+        :items="entities"
         :rows-per-page-items="[5,10,25,50,{text:'All','value':-1}]"
         class="elevation-1"
         item-key="name"
@@ -40,7 +40,7 @@
           </td>
 
           <td>{{ props.item.name }} </td>
-          <td>{{ props.item.display_name }}</td>
+
           <td align="center">
             <template  v-if="props.item.description">
               <v-icon v-if="props.expanded" @click="props.expanded = !props.expanded" small>fa-minus</v-icon>
@@ -48,10 +48,10 @@
             </template>
           </td>
           <td align="center">
-            <v-btn outline icon dark color="warning" small @click="handleTogglePermissionUpdateDialog(props.item.id)">
+            <v-btn outline icon dark color="warning" small @click="handleToggleEntityUpdateDialog(props.item.id)">
               <v-icon small>fa-pencil</v-icon>
             </v-btn>
-            <v-btn outline icon dark color="error" small @click="onDeletePermission(props.item.id)">
+            <v-btn outline icon dark color="error" small @click="onDeleteEntity(props.item.id)">
               <v-icon small>fa-trash</v-icon>
             </v-btn>
           </td>
@@ -71,14 +71,14 @@
     </v-card-text>
   </v-card>
 
-  <update-permission-form :permission="permission"></update-permission-form>
+  <update-entity-form :entity="entity"></update-entity-form>
 </div>
 
 
 </template>
 
 <script>
-import UpdatePermissionForm from '../widgets/forms/permission/UpdatePermissionForm.vue'
+import UpdateEntityForm from '../widgets/forms/entity/UpdateEntityForm.vue'
 export default {
   data () {
     return {
@@ -89,10 +89,6 @@ export default {
         {
           text: 'Nome',
           value: 'name'
-        },
-        {
-          text: 'Rótulo',
-          value: 'display_name'
         },
         {
           text: 'Descrição',
@@ -107,66 +103,66 @@ export default {
           sortable: false,
         },
       ],
-      permission: [],
+      entity: [],
     }
   },
 
   components: {
-    UpdatePermissionForm,
+    UpdateEntityForm,
   },
 
   created: function () {
-    this.getPermissions()
-    window.getApp.$on('APP_UPDATE_ALL_PERMISSTIONS_DATA', () => {
-      this.getUpdatedPermissions()
+    this.getEntities()
+    window.getApp.$on('APP_UPDATE_ALL_ENTITIES_DATA', () => {
+      this.getUpdatedEntities()
     });
   },
 
   computed: {
-    permissions: function () {
-      return this.$store.getters.permissions
+    entities: function () {
+      return this.$store.getters.entities
     },
   },
 
   methods: {
-    handleTogglePermissionUpdateDialog (permission_id) {
-      this.getSinglePermission(permission_id)
-      window.getApp.$emit('APP_PERMISSION_UPDATE_DIALOG', this.permission)
+    handleToggleEntityUpdateDialog (entity_id) {
+      this.getSingleEntity(entity_id)
+      window.getApp.$emit('APP_ENTITY_UPDATE_DIALOG', this.entity)
     },
 
-    getPermissions: function () {
-      if(this.permissions.length){
+    getEntities: function () {
+      if(this.entity.length){
         return
       }
-      this.getUpdatedPermissions()
+      this.getUpdatedEntities()
     },
 
-    getUpdatedPermissions: function () {
-      this.$store.dispatch('getPermissions')
+    getUpdatedEntities: function () {
+      this.$store.dispatch('getEntities')
     },
 
-    getSinglePermission: function (permission_id) {
-      if (this.permissions.length) {
-        this.permission = this.permissions.find((permission)=>permission.id == permission_id)
+    getSingleEntity: function (entity_id) {
+      if (this.entities.length) {
+        this.entity = this.entities.find((entity)=>entity.id == entity_id)
       }else {
-        axios.get('/api/sys/permissions/'+permission_id)
+        axios.get('/api/helpers/entities/'+entity_id)
         .then((response)=>{
-          this.permission = response.data.data
+          this.entity = response.data.data
         })
         .catch((error)=>{
         });
       }
     },
 
-    onUpdatePermission: function (permission_id) {
-      console.log('Utilizador a ver e: '+permission_id)
+    onUpdateEntity: function (entity_id) {
+      console.log('Utilizador a ver e: '+entity_id)
     },
 
-    onGetPermission: function (permission_id) {
-      console.log('Permissao: '+permission_id)
+    onGetEntity: function (entity_id) {
+      console.log('Permissao: '+entity_id)
     },
 
-    onDeletePermission: function (permission) {
+    onDeleteEntity: function (entity) {
       this.$swal({
         title: 'Eliminar Permissão',
         text: "Ação irreversível, queres continuar?",
@@ -178,17 +174,17 @@ export default {
         cancelButtonText: 'Não, Cancelar!'
       }).then((result) => {
         if (result.value) {
-          this.deletePermission(permission)
+          this.deleteEntity(entity)
         }else if (result.dismiss === this.$swal.DismissReason.cancel) {
           this.showToastAlert('error', 'Operação cancelada!')
         }
       })
     },
 
-    deletePermission: function (permission_id) {
-      axios.delete('/api/sys/permissions/'+permission_id)
+    deleteEntity: function (entity_id) {
+      axios.delete('/api/helpers/entities/'+entity_id)
       .then((response) => {
-        this.getUpdatedPermissions()
+        this.getUpdatedEntities()
         this.showToastAlert('success', 'Operação efetuada com sucesso!')
       })
       .catch((err) => {console.log()})
@@ -210,7 +206,7 @@ export default {
 
   toggleAll () {
     if (this.selected.length) this.selected = []
-    else this.selected = this.permissions.slice()
+    else this.selected = this.entity.slice()
   },
 
 }

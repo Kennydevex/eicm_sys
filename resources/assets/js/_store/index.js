@@ -5,6 +5,8 @@ import Vuex from 'vuex'
 import users from './modules/Backend/Users'
 import tags from './modules/Backend/Tags'
 import permissions from './modules/Backend/Permissions'
+import roles from './modules/Backend/Roles'
+import entities from './modules/Backend/Entities'
 import auth from './modules/Backend/Auth/Authentication'
 
 Vue.use(Vuex)
@@ -15,6 +17,8 @@ export default new Vuex.Store({
     users,
     tags,
     permissions,
+    roles,
+    entities,
     auth,
   },
 

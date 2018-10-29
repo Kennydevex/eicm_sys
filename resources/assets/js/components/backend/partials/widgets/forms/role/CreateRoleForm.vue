@@ -1,12 +1,11 @@
 <template lang="html">
   <v-dialog
-  v-model="showEditModel"
+  v-model="showCreateModel"
   max-width="640px"
   persistent
   >
   <v-card>
-    <v-card-title class="headline grey">Atualizar Permissão</v-card-title>
-
+    <v-card-title class="headline grey">Criar Funções</v-card-title>
     <v-card-text>
       <v-form v-model="valid">
         <v-layout row wrap>
@@ -14,12 +13,12 @@
             <v-text-field
             label="* Nome da Permisssão"
             name="name"
-            v-model="permission_data.name"
+            v-model="role.name"
             v-validate="'required'"
             data-vv-name="name"
             :error-messages="errors.collect('name')"
             required
-            hint="Idendificador único da permissão"
+            hint="Idendificador único da funções"
             ></v-text-field>
           </v-flex>
 
@@ -27,8 +26,8 @@
             <v-text-field
             label="* Rótulo"
             name="display_name"
-            hint="Nome de apresentação da permissão"
-            v-model="permission_data.display_name"
+            hint="Nome de apresentação da funções"
+            v-model="role.display_name"
             required
             v-validate="'required'"
             data-vv-name="rotulo"
@@ -38,12 +37,28 @@
 
           <v-flex xs12>
             <v-textarea
-            label="Descrição da permissão"
+            label="Descrição da funções"
             name="description"
-            hint="Escreva aqui uma pequena descrição desta permissão"
-            v-model="permission_data.description"
-            solo>
+            hint="Escreva aqui uma pequena descrição desta funções"
+            v-model="role.description"
+            solo
+            >
           </v-textarea>
+        </v-flex>
+
+
+        <v-flex xs12 d-flex>
+          <v-select
+          :items="permissions"
+          :item-text="name"
+          :item-value="id"
+          v-model="role.permissions_data"
+          multiple
+          label="Associar permissções"
+          solo
+          chips
+
+          ></v-select>
         </v-flex>
 
       </v-layout>
@@ -56,7 +71,7 @@
     <v-btn
     color="red"
     flat="flat"
-    @click="showEditModel = false"
+    @click="showCreateModel = false"
     outline
     >
     Sair
@@ -67,7 +82,6 @@
   flat="flat"
   @click="clear"
   outline
-
   >
   Limpar
 </v-btn>
@@ -75,11 +89,14 @@
 <v-btn
 color="green darken-1"
 flat="flat"
-@click="updatePermission"
 outline
+@click="addrole"
 >
-Alterar
+Registar
 </v-btn>
+
+</v-flex>
+
 </v-card-actions>
 </v-card>
 </v-dialog>
@@ -87,20 +104,20 @@ Alterar
 
 <script>
 export default {
-  props: ['permission'],
   $_veeValidate: {
     validator: 'new'
   },
   data () {
     return {
-      permission_id: '',
-      permission_data: {
-        id: '',
+      permissionName: [],
+      permissionValue: [],
+      role: {
         name: '',
         display_name: '',
         description: '',
+        permissions_data: []
       },
-      showEditModel: false,
+      showCreateModel: false,
       valid: true,
       dictionary: {
         custom: {
@@ -121,52 +138,64 @@ export default {
   },
 
   created () {
-    window.getApp.$on('APP_PERMISSION_UPDATE_DIALOG', (permission) => {
-      this.showEditModel = (!this.showEditModel)
-      this.permission_data.id = permission.id
-      this.permission_data.name = permission.name
-      this.permission_data.display_name = permission.display_name
-      this.permission_data.description = permission.description
-    });
+    this.getPermissions()
+    window.getApp.$on('APP_ROLE_CREATE_DIALOG', () => {
+      this.showCreateModel =!this.showCreateModel
+      this.setPermissionDataForRole()
+    })
+  },
+
+  computed: {
+    permissions: function () {
+      return this.$store.getters.permissions
+    },
   },
 
   methods: {
-    clear () {
-      this.permission_data.name=''
-      this.permission_data.display_name=''
-      this.permission_data.description=''
-      this.$validator.reset()
+
+    getPermissions: function () {
+      if(this.permissions.length){
+        return
+      }
+      this.getUpdatedPermissions()
     },
 
-    updatePermission(){
+
+    setPermissionDataForRole: function () {
+      for (var perm in this.permissions) {
+        if (this.permissions.hasOwnProperty(perm)) {
+          this.permissionName.push(this.permissions[perm]["display_name"])
+          this.permissionValue.push(this.permissions[perm]["id"])
+        }
+      }
+      console.log(this.items2);
+    },
+
+
+    getUpdatedPermissions: function () {
+      this.$store.dispatch('getPermissions')
+    },
+
+    addrole(){
       this.$validator.validateAll().then(noErrorOnValidate => {
         if (noErrorOnValidate) {
-          axios.put('/api/sys/permissions/'+this.permission_data.id, this.$data.permission_data)
+          axios.post('/api/sys/roles', this.$data.role)
           .then((response) => {
-            window.getApp.$emit('APP_UPDATE_ALL_PERMISSTIONS_DATA')
             this.clear()
-            this.showEditModel = (!this.showEditModel)
-            this.showToastAlert('success', 'Operação efetuada com sucesso <i class="fa fa-arrow-right"></i>!')
+            window.getApp.$emit('APP_UPDATE_ALL_ROLE_DATA')
           })
           .catch((err) => {console.log()})
         }
       });
     },
 
-    showToastAlert (type, msg) {
-      this.$swal({
-        title: msg,
-        // title: 'Operação bem sucedida <i class="fa fa-arrow-right"></i>!',
-        type: type,
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 5000
-      }
-    )
-  },
+    clear () {
+      this.role = {};
+      this.$validator.reset()
+    },
 
   }
+
 }
 </script>
 

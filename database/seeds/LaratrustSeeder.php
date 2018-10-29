@@ -3,116 +3,133 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+// use Folk;
+// use User;
+// use Permission;
+// use Role;
+
 class LaratrustSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return  void
-     */
-    public function run()
-    {
-        $this->command->info('Truncating User, Role and Permission tables');
-        $this->truncateLaratrustTables();
+  /**
+  * Run the database seeds.
+  *
+  * @return  void
+  */
+  public function run()
+  {
+    $this->command->info('Truncating User, Role and Permission tables');
+    $this->truncateLaratrustTables();
 
-        $config = config('laratrust_seeder.role_structure');
-        $userPermission = config('laratrust_seeder.permission_structure');
-        $mapPermission = collect(config('laratrust_seeder.permissions_map'));
+    $config = config('laratrust_seeder.role_structure');
+    $userPermission = config('laratrust_seeder.permission_structure');
+    $mapPermission = collect(config('laratrust_seeder.permissions_map'));
 
-        foreach ($config as $key => $modules) {
+    foreach ($config as $key => $modules) {
 
-            // Create a new role
-            $role = \App\Role::create([
-                'name' => $key,
-                'display_name' => ucwords(str_replace('_', ' ', $key)),
-                'description' => ucwords(str_replace('_', ' ', $key))
+      // Create a new role
+      $role = Role::create([
+        'name' => $key,
+        'display_name' => ucwords(str_replace('_', ' ', $key)),
+        'description' => ucwords(str_replace('_', ' ', $key))
+      ]);
+      $permissions = [];
+
+      $this->command->info('Creating Role '. strtoupper($key));
+
+      // Reading role permission modules
+      foreach ($modules as $module => $value) {
+
+        foreach (explode(',', $value) as $p => $perm) {
+
+          $permissionValue = $mapPermission->get($perm);
+
+          $permissions[] = Permission::firstOrCreate([
+            'name' => $permissionValue . '-' . $module,
+            'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
+            'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
+            ])->id;
+
+            $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
+          }
+        }
+
+        // Attach all permissions to the role
+        $role->permissions()->sync($permissions);
+
+        $this->command->info("Creating '{$key}' user");
+
+        // Create default user for each role
+        $folk = Folk::create([
+          'first_name' => ucwords(str_replace('_', ' ', $key)),
+          'last_name' => ucwords(str_replace('_', ' ', $key)),
+          'email' => $key.'@app.com',
+        ]);
+        $user = User::create([
+          'username' => ucwords(str_replace('_', ' ', $key)),
+          'password' => bcrypt('password'),
+          'folk_id'=>$folk->id,
+          'status'=>0,
+        ]);
+
+        $user->attachRole($role);
+      }
+
+      // Creating user with permissions
+      if (!empty($userPermission)) {
+
+        foreach ($userPermission as $key => $modules) {
+
+          foreach ($modules as $module => $value) {
+
+            // Create default user for each permission set
+            $folk = Folk::create([
+              'first_name' => ucwords(str_replace('_', ' ', $key)),
+              'last_name' => ucwords(str_replace('_', ' ', $key)),
+              'email' => $key.'@app.com',
+              'gender' => 'M',
+            ]);
+            $user = User::create([
+              'username' => ucwords(str_replace('_', ' ', $key)),
+              'password' => bcrypt('password'),
+              'folk_id'=>$folk->id,
+              'status'=>0,
             ]);
             $permissions = [];
 
-            $this->command->info('Creating Role '. strtoupper($key));
+            foreach (explode(',', $value) as $p => $perm) {
 
-            // Reading role permission modules
-            foreach ($modules as $module => $value) {
+              $permissionValue = $mapPermission->get($perm);
 
-                foreach (explode(',', $value) as $p => $perm) {
+              $permissions[] = Permission::firstOrCreate([
+                'name' => $permissionValue . '-' . $module,
+                'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
+                'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
+                ])->id;
 
-                    $permissionValue = $mapPermission->get($perm);
-
-                    $permissions[] = \App\Permission::firstOrCreate([
-                        'name' => $permissionValue . '-' . $module,
-                        'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
-                        'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
-                    ])->id;
-
-                    $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
-                }
+                $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
+              }
             }
 
-            // Attach all permissions to the role
-            $role->permissions()->sync($permissions);
-
-            $this->command->info("Creating '{$key}' user");
-
-            // Create default user for each role
-            $user = \EICM\Models\System\User::create([
-                'name' => ucwords(str_replace('_', ' ', $key)),
-                'email' => $key.'@app.com',
-                'password' => bcrypt('password')
-            ]);
-
-            $user->attachRole($role);
+            // Attach all permissions to the user
+            $user->permissions()->sync($permissions);
+          }
         }
+      }
 
-        // Creating user with permissions
-        if (!empty($userPermission)) {
-
-            foreach ($userPermission as $key => $modules) {
-
-                foreach ($modules as $module => $value) {
-
-                    // Create default user for each permission set
-                    $user = \EICM\Models\System\User::create([
-                        'name' => ucwords(str_replace('_', ' ', $key)),
-                        'email' => $key.'@app.com',
-                        'password' => bcrypt('password'),
-                        'remember_token' => str_random(10),
-                    ]);
-                    $permissions = [];
-
-                    foreach (explode(',', $value) as $p => $perm) {
-
-                        $permissionValue = $mapPermission->get($perm);
-
-                        $permissions[] = \App\Permission::firstOrCreate([
-                            'name' => $permissionValue . '-' . $module,
-                            'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
-                            'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
-                        ])->id;
-
-                        $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
-                    }
-                }
-
-                // Attach all permissions to the user
-                $user->permissions()->sync($permissions);
-            }
-        }
-    }
-
-    /**
-     * Truncates all the laratrust tables and the users table
-     *
-     * @return    void
-     */
-    public function truncateLaratrustTables()
-    {
+      /**
+      * Truncates all the laratrust tables and the users table
+      *
+      * @return    void
+      */
+      public function truncateLaratrustTables()
+      {
         Schema::disableForeignKeyConstraints();
         DB::table('permission_role')->truncate();
         DB::table('permission_user')->truncate();
         DB::table('role_user')->truncate();
-        \EICM\Models\System\User::truncate();
-        \App\Role::truncate();
-        \App\Permission::truncate();
+        User::truncate();
+        Role::truncate();
+        Permission::truncate();
         Schema::enableForeignKeyConstraints();
+      }
     }
-}

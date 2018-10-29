@@ -21,7 +21,7 @@
         <v-data-table
         :headers="headers"
         :search="search"
-        :items="permissions"
+        :items="roles"
         :rows-per-page-items="[5,10,25,50,{text:'All','value':-1}]"
         class="elevation-1"
         item-key="name"
@@ -48,10 +48,10 @@
             </template>
           </td>
           <td align="center">
-            <v-btn outline icon dark color="warning" small @click="handleTogglePermissionUpdateDialog(props.item.id)">
+            <v-btn outline icon dark color="warning" small @click="handleToggleRoleUpdateDialog(props.item.id)">
               <v-icon small>fa-pencil</v-icon>
             </v-btn>
-            <v-btn outline icon dark color="error" small @click="onDeletePermission(props.item.id)">
+            <v-btn outline icon dark color="error" small @click="onDeleteRole(props.item.id)">
               <v-icon small>fa-trash</v-icon>
             </v-btn>
           </td>
@@ -71,14 +71,14 @@
     </v-card-text>
   </v-card>
 
-  <update-permission-form :permission="permission"></update-permission-form>
+  <update-role-form :role="role"></update-role-form>
 </div>
 
 
 </template>
 
 <script>
-import UpdatePermissionForm from '../widgets/forms/permission/UpdatePermissionForm.vue'
+import UpdateRoleForm from '../widgets/forms/role/UpdateRoleForm.vue'
 export default {
   data () {
     return {
@@ -107,68 +107,68 @@ export default {
           sortable: false,
         },
       ],
-      permission: [],
+      role: [],
     }
   },
 
   components: {
-    UpdatePermissionForm,
+    UpdateRoleForm,
   },
 
   created: function () {
-    this.getPermissions()
-    window.getApp.$on('APP_UPDATE_ALL_PERMISSTIONS_DATA', () => {
-      this.getUpdatedPermissions()
+    this.getRoles()
+    window.getApp.$on('APP_UPDATE_ALL_ROLE_DATA', () => {
+      this.getUpdatedRoles()
     });
   },
 
   computed: {
-    permissions: function () {
-      return this.$store.getters.permissions
+    roles: function () {
+      return this.$store.getters.roles
     },
   },
 
   methods: {
-    handleTogglePermissionUpdateDialog (permission_id) {
-      this.getSinglePermission(permission_id)
-      window.getApp.$emit('APP_PERMISSION_UPDATE_DIALOG', this.permission)
+    handleToggleRoleUpdateDialog (role_id) {
+      this.getSingleRole(role_id)
+      window.getApp.$emit('APP_ROLE_UPDATE_DIALOG', this.role)
     },
 
-    getPermissions: function () {
-      if(this.permissions.length){
+    getRoles: function () {
+      if(this.roles.length){
         return
       }
-      this.getUpdatedPermissions()
+      this.getUpdatedRoles()
     },
 
-    getUpdatedPermissions: function () {
-      this.$store.dispatch('getPermissions')
+    getUpdatedRoles: function () {
+      this.$store.dispatch('getRoles')
     },
 
-    getSinglePermission: function (permission_id) {
-      if (this.permissions.length) {
-        this.permission = this.permissions.find((permission)=>permission.id == permission_id)
+    getSingleRole: function (role_id) {
+      if (this.roles.length) {
+        this.role = this.roles.find((role)=>role.id == role_id)
       }else {
-        axios.get('/api/sys/permissions/'+permission_id)
+        axios.get('/api/sys/roles/'+role_id)
         .then((response)=>{
-          this.permission = response.data.data
+          this.role = response.data.data
         })
         .catch((error)=>{
         });
       }
     },
 
-    onUpdatePermission: function (permission_id) {
-      console.log('Utilizador a ver e: '+permission_id)
+    onUpdateRole: function (role_id) {
+      console.log('Utilizador a ver e: '+role_id)
     },
 
-    onGetPermission: function (permission_id) {
-      console.log('Permissao: '+permission_id)
+    onGetRole: function (role_id) {
+      console.log('Função: '+role_id)
     },
 
-    onDeletePermission: function (permission) {
+    onDeleteRole: function (role) {
       this.$swal({
-        title: 'Eliminar Permissão',
+        title: 'Eliminar Função',
         text: "Ação irreversível, queres continuar?",
         type: 'warning',
         showCancelButton: true,
@@ -178,17 +178,17 @@ export default {
         cancelButtonText: 'Não, Cancelar!'
       }).then((result) => {
         if (result.value) {
-          this.deletePermission(permission)
+          this.deleteRole(role)
         }else if (result.dismiss === this.$swal.DismissReason.cancel) {
           this.showToastAlert('error', 'Operação cancelada!')
         }
       })
     },
 
-    deletePermission: function (permission_id) {
-      axios.delete('/api/sys/permissions/'+permission_id)
+    deleteRole: function (role_id) {
+      axios.delete('/api/sys/roles/'+role_id)
       .then((response) => {
-        this.getUpdatedPermissions()
+        this.getUpdatedRoles()
         this.showToastAlert('success', 'Operação efetuada com sucesso!')
       })
       .catch((err) => {console.log()})
@@ -210,7 +210,7 @@ export default {
 
   toggleAll () {
     if (this.selected.length) this.selected = []
-    else this.selected = this.permissions.slice()
+    else this.selected = this.roles.slice()
   },
 
 }

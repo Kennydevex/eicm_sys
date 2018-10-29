@@ -5,43 +5,30 @@
   persistent
   >
   <v-card>
-    <v-card-title class="headline grey">Atualizar Permissão</v-card-title>
+    <v-card-title class="headline grey">Atualizar Entidade</v-card-title>
 
     <v-card-text>
       <v-form v-model="valid">
         <v-layout row wrap>
           <v-flex xs12>
             <v-text-field
-            label="* Nome da Permisssão"
+            label="* Nome da Entidade"
             name="name"
-            v-model="permission_data.name"
+            v-model="entity_data.name"
             v-validate="'required'"
             data-vv-name="name"
             :error-messages="errors.collect('name')"
             required
-            hint="Idendificador único da permissão"
-            ></v-text-field>
-          </v-flex>
-
-          <v-flex xs12>
-            <v-text-field
-            label="* Rótulo"
-            name="display_name"
-            hint="Nome de apresentação da permissão"
-            v-model="permission_data.display_name"
-            required
-            v-validate="'required'"
-            data-vv-name="rotulo"
-            :error-messages="errors.collect('rotulo')"
+            hint="Idendificador único da entidade"
             ></v-text-field>
           </v-flex>
 
           <v-flex xs12>
             <v-textarea
-            label="Descrição da permissão"
+            label="Descrição da entidade"
             name="description"
-            hint="Escreva aqui uma pequena descrição desta permissão"
-            v-model="permission_data.description"
+            hint="Escreva aqui uma pequena descrição desta entidade"
+            v-model="entity_data.description"
             solo>
           </v-textarea>
         </v-flex>
@@ -73,12 +60,15 @@
 </v-btn>
 
 <v-btn
+:loading="sending"
+:disabled="sending"
 color="green darken-1"
 flat="flat"
-@click="updatePermission"
+@click="updateEntity"
 outline
 >
 Alterar
+<span slot="loader">Enviando...</span>
 </v-btn>
 </v-card-actions>
 </v-card>
@@ -87,17 +77,16 @@ Alterar
 
 <script>
 export default {
-  props: ['permission'],
+  props: ['entity'],
   $_veeValidate: {
     validator: 'new'
   },
   data () {
     return {
-      permission_id: '',
-      permission_data: {
+      sending: false,
+      entity_data: {
         id: '',
         name: '',
-        display_name: '',
         description: '',
       },
       showEditModel: false,
@@ -108,9 +97,6 @@ export default {
             required: () => 'Campo de prenchimento obrigatório',
           },
 
-          rotulo: {
-            required: () => 'Campo de prenchimento obrigatório',
-          },
         }
       }
     }
@@ -121,29 +107,30 @@ export default {
   },
 
   created () {
-    window.getApp.$on('APP_PERMISSION_UPDATE_DIALOG', (permission) => {
+    window.getApp.$on('APP_ENTITY_UPDATE_DIALOG', (entity) => {
       this.showEditModel = (!this.showEditModel)
-      this.permission_data.id = permission.id
-      this.permission_data.name = permission.name
-      this.permission_data.display_name = permission.display_name
-      this.permission_data.description = permission.description
+      this.entity_data.id = entity.id
+      this.entity_data.name = entity.name
+      this.entity_data.description = entity.description
     });
   },
 
   methods: {
     clear () {
-      this.permission_data.name=''
-      this.permission_data.display_name=''
-      this.permission_data.description=''
+      this.entity_data.name=''
+      this.entity_data.description=''
       this.$validator.reset()
     },
 
-    updatePermission(){
+    updateEntity(){
       this.$validator.validateAll().then(noErrorOnValidate => {
         if (noErrorOnValidate) {
-          axios.put('/api/sys/permissions/'+this.permission_data.id, this.$data.permission_data)
+          this.sending= true
+
+          axios.put('/api/helpers/entities/'+this.entity_data.id, this.$data.entity_data)
           .then((response) => {
-            window.getApp.$emit('APP_UPDATE_ALL_PERMISSTIONS_DATA')
+            window.getApp.$emit('APP_UPDATE_ALL_ENTITIES_DATA')
+            this.sending= false
             this.clear()
             this.showEditModel = (!this.showEditModel)
             this.showToastAlert('success', 'Operação efetuada com sucesso <i class="fa fa-arrow-right"></i>!')

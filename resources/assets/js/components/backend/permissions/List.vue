@@ -18,105 +18,68 @@
         dark
         fab
         v-model="fab">
-        <v-icon>account_circle</v-icon>
-        <v-icon>close</v-icon>
+        <v-icon>fa-lock</v-icon>
+        <v-icon>fa-unlock</v-icon>
       </v-btn>
-
 
       <v-btn
       fab
       dark
       small
-      color="indigo"
-      @click="createUserDialog = true">
-      <v-icon>fa-user-plus</v-icon>
+      color="amber accent-4"
+      @click="handleToggleCreatePermissionDialog">
+      <v-icon>fa-plus</v-icon>
     </v-btn>
 
-    <!-- Exemplo com router-link -->
-    <!-- <v-btn fab dark small color="blue" :to="{name: 'newUser'}">
-    <v-icon>fa-user-plus</v-icon>
-  </v-btn> -->
+    <v-btn
+    fab
+    dark
+    small
+    color="teal "
+    v-tooltip.top-center="'Teste de tooltip'">
+    <v-icon>fa-cloud-download</v-icon>
+  </v-btn>
 
   <v-btn
   fab
   dark
   small
-  color="indigo"
-  v-tooltip.top-center="'Teste de tooltip'">
-  <v-icon>fa-cloud-download</v-icon>
-</v-btn>
-
-<v-btn
-fab
-dark
-small
-color="indigo">
-<v-icon>fa-trash</v-icon>
-</v-btn>
-
-<v-btn
-fab
-dark
-small
-color="indigo">
-<v-icon>fa-file-pdf-o</v-icon>
-</v-btn>
-
-<v-btn
-fab
-dark
-small
-color="indigo">
-<v-icon>fa-file-excel-o</v-icon>
+  color="red lighten-1">
+  <v-icon>fa-trash</v-icon>
 </v-btn>
 </v-speed-dial>
 </v-card>
 
 <!-- ============================================================================= -->
 <div class="">
+
+  <!-- ============================================================================= -->
+  <!-- ============================================================================= -->
   <v-layout row justify-center>
-    <v-dialog v-model="createUserDialog" persistent max-width="940px">
-      <v-card>
-        <v-card-title class="blue text-blue">
-          <span class="headline">Criar novo utilizador</span>
-        </v-card-title>
-        <v-divider></v-divider>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12>
-                <creare-user-form></creare-user-form>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          <small>Campos com (*) são obrigatórios</small>
-        </v-card-text>
-        <!-- <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" flat @click.native="dialog = false">Cancelar</v-btn>
-      </v-card-actions> -->
-    </v-card>
-  </v-dialog>
-</v-layout>
-<v-layout row wrap>
+    <create-permission-form></create-permission-form>
+  </v-layout>
+  <!-- ============================================================================= -->
+  <!-- ============================================================================= -->
+
   <!-- mini statistic start -->
+  <v-layout row wrap>
+    <v-flex lg3 sm6 xs12>
+      <mini-statistic
+      icon="fa-users"
+      title="200+"
+      sub-title="Utilizadores ativo"
+      color="indigo"
+      >
+    </mini-statistic>
+  </v-flex>
   <v-flex lg3 sm6 xs12>
     <mini-statistic
-    icon="fa-users"
+    icon="fa-user"
     title="200+"
     sub-title="Utilizadores ativo"
-    color="indigo"
+    color="red"
     >
   </mini-statistic>
-</v-flex>
-<v-flex lg3 sm6 xs12>
-  <mini-statistic
-  icon="fa-user"
-  title="200+"
-  sub-title="Utilizadores ativo"
-  color="red"
-  >
-</mini-statistic>
 </v-flex>
 <v-flex lg3 sm6 xs12>
   <mini-statistic
@@ -136,14 +99,18 @@ color="indigo">
   >
 </mini-statistic>
 </v-flex>
-<!-- mini statistic  end -->
 </v-layout>
+<!-- mini statistic  end -->
 <v-divider></v-divider>
 
 <v-layout row wrap>
   <v-flex xs12>
-    <app-all-user></app-all-user>
+    <app-all-permissions></app-all-permissions>
   </v-flex>
+
+  <!-- <v-flex xs6>
+  <app-all-permissions></app-all-permissions>
+</v-flex> -->
 </v-layout>
 
 </div>
@@ -154,15 +121,13 @@ color="indigo">
 </template>
 
 <script>
-import CreareUserForm from '../partials/widgets/forms/user/CreateUserForm'
+import CreatePermissionForm from '../partials/widgets/forms/permission/CreatePermissionForm'
 import MiniStatistic from '../partials/widgets/statistic/MiniStatistic'
-import AppAllUser from '../partials/datas/AppAllUser'
+import AppAllPermissions from '../partials/datas/AppAllPermissions'
 
 
 export default {
   data: () => ({
-    createUserDialog: false,
-
     direction: 'top',
     fab: false,
     fling: false,
@@ -177,26 +142,13 @@ export default {
   }),
 
   components: {
-    CreareUserForm,
+    CreatePermissionForm,
+    AppAllPermissions,
     MiniStatistic,
-    AppAllUser,
-  },
-
-  created () {
-    window.getApp.$on('APP_SHOW_CREATE_USER_DIALOG', () => {
-      this.createUserDialog = (!this.createUserDialog);
-    });
   },
 
   computed: {
-    activeFab () {
-      switch (this.tabs) {
-        case 'one': return { 'class': 'purple', icon: 'account_circle' }
-        case 'two': return { 'class': 'red', icon: 'edit' }
-        case 'three': return { 'class': 'green', icon: 'keyboard_arrow_up' }
-        default: return {}
-      }
-    }
+
   },
 
   watch: {
@@ -213,6 +165,12 @@ export default {
       this.right = !val
     }
   },
+
+  methods: {
+    handleToggleCreatePermissionDialog () {
+      window.getApp.$emit('APP_PERMISSION_CREATE_DIALOG')
+    },
+  }
 
 
 }

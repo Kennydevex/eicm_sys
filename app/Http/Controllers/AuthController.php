@@ -70,7 +70,7 @@ class AuthController extends Controller
     $credentials = request(['email', 'password']);
 
     if (! $token = auth('api')->claims(['eicm' => 'eicmtoken'])->attempt($credentials)) {
-      return response()->json(['error' => 'Unauthorized'], 401);
+      return response()->json(['error' => "errrrrrrrrooooooooo"], 401);
     }
 
     return $this->respondWithToken($token);

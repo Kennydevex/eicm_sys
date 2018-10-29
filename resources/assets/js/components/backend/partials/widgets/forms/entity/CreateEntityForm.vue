@@ -5,43 +5,31 @@
   persistent
   >
   <v-card>
-    <v-card-title class="headline grey">Criar Permissão</v-card-title>
+    <v-card-title class="headline grey">Criar Entidade</v-card-title>
 
     <v-card-text>
       <v-form v-model="valid">
         <v-layout row wrap>
           <v-flex xs12>
             <v-text-field
-            label="* Nome da Permisssão"
+            label="* Nome da Entidade"
             name="name"
-            v-model="permission.name"
+            v-model="entity.name"
             v-validate="'required'"
             data-vv-name="name"
             :error-messages="errors.collect('name')"
             required
-            hint="Idendificador único da permissão"
+            hint="Idendificador único da entidade"
             ></v-text-field>
           </v-flex>
 
-          <v-flex xs12>
-            <v-text-field
-            label="* Rótulo"
-            name="display_name"
-            hint="Nome de apresentação da permissão"
-            v-model="permission.display_name"
-            required
-            v-validate="'required'"
-            data-vv-name="rotulo"
-            :error-messages="errors.collect('rotulo')"
-            ></v-text-field>
-          </v-flex>
 
           <v-flex xs12>
             <v-textarea
-            label="Descrição da permissão"
+            label="Descrição da entidade"
             name="description"
-            hint="Escreva aqui uma pequena descrição desta permissão"
-            v-model="permission.description"
+            hint="Escreva aqui uma pequena descrição desta entidade"
+            v-model="entity.description"
             solo>
           </v-textarea>
         </v-flex>
@@ -72,21 +60,17 @@
 </v-btn>
 
 <v-btn
+:loading="sending"
+:disabled="sending"
 color="green darken-1"
 flat="flat"
 outline
-@click="addPermission"
+@click="addEntity"
 >
 Registar
+<span slot="loader">Enviando...</span>
 </v-btn>
 
-
-<v-overflow-btn
-:items="dropdown_icon"
-label="Guardar"
-segmented
-target="#dropdown-example"
-></v-overflow-btn>
 </v-flex>
 
 </v-card-actions>
@@ -101,16 +85,9 @@ export default {
   },
   data () {
     return {
-      dropdown_icon: [
-        { text: 'list', callback: () => console.log('list') },
-        { text: 'favorite', callback: () => console.log('favorite') },
-        { text: 'delete', callback: () => console.log('delete') }
-      ],
-
-
-      permission: {
+      sending: false,
+      entity: {
         name: '',
-        display_name: '',
         description: '',
       },
       showCreateModel: false,
@@ -121,9 +98,6 @@ export default {
             required: () => 'Campo de prenchimento obrigatório',
           },
 
-          rotulo: {
-            required: () => 'Campo de prenchimento obrigatório',
-          },
         }
       }
     }
@@ -134,19 +108,21 @@ export default {
   },
 
   created () {
-    window.getApp.$on('APP_PERMISSION_CREATE_DIALOG', () => {
+    window.getApp.$on('APP_ENTITY_CREATE_DIALOG', () => {
       this.showCreateModel =!this.showCreateModel
     });
   },
 
   methods: {
-    addPermission(){
+    addEntity(){
       this.$validator.validateAll().then(noErrorOnValidate => {
         if (noErrorOnValidate) {
-          axios.post('/api/sys/permissions', this.$data.permission)
+          this.sending= true
+          axios.post('/api/helpers/entities', this.$data.entity)
           .then((response) => {
+            this.sending=false
             this.clear()
-            window.getApp.$emit('APP_UPDATE_ALL_PERMISSTIONS_DATA')
+            window.getApp.$emit('APP_UPDATE_ALL_ENTITIES_DATA')
           })
           .catch((err) => {console.log()})
         }
@@ -154,7 +130,7 @@ export default {
     },
 
     clear () {
-      this.permission = {};
+      this.entity = {};
       this.$validator.reset()
     },
 

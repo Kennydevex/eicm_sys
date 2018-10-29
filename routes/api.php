@@ -51,6 +51,17 @@ Route::group([
 ], function ($router) {
   Route::apiResource('users', 'UserController');
   Route::apiResource('permissions', 'PermissionController');
+  Route::apiResource('roles', 'RoleController');
+});
+
+Route::group([
+  // 'middleware' => 'jwt.auth',
+  'prefix' => 'helpers',
+  'namespace'=>'Helpers'
+], function ($router) {
+  Route::apiResource('entities', 'EntitiesController');
+  Route::apiResource('folks', 'FolkController');
+  Route::apiResource('categories', 'CategoryController');
 });
 
 // Route::group([

@@ -11,13 +11,13 @@ export default ({
   },
 
   mutations: {
-    updateUsers(state, payload) {
+    updatePermissions(state, payload) {
       state.permissions = payload
     },
   },
 
   actions: {
-    getUsers(context) {
+    getPermissions(context) {
       axios.get('/api/sys/permissions').then(function(response) {
         context.commit('updatePermissions', response.data.data)
       })

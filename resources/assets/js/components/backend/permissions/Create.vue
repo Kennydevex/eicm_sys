@@ -1,5 +1,5 @@
 <template>
-  <div id="user-form">
+  <div id="permission-form">
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
         <v-flex xs12>
@@ -11,7 +11,7 @@
             </v-toolbar>
             <v-divider></v-divider>
             <v-card-text class="">
-              <creare-user-form></creare-user-form>
+              <creare-permission-form></creare-permission-form>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import CreareUserForm from '../partials/widgets/forms/user/CreateUserForm';
+import CrearePermissionForm from '../partials/widgets/forms/permission/CreatePermissionForm';
 
 export default {
   components: {
-    CreareUserForm,
+    CrearePermissionForm,
 
   },
   data () {

@@ -5,7 +5,7 @@
   persistent
   >
   <v-card>
-    <v-card-title class="headline grey">Atualizar Permissão</v-card-title>
+    <v-card-title class="headline grey">Atualizar Função</v-card-title>
 
     <v-card-text>
       <v-form v-model="valid">
@@ -14,12 +14,12 @@
             <v-text-field
             label="* Nome da Permisssão"
             name="name"
-            v-model="permission_data.name"
+            v-model="role_data.name"
             v-validate="'required'"
             data-vv-name="name"
             :error-messages="errors.collect('name')"
             required
-            hint="Idendificador único da permissão"
+            hint="Idendificador único da função"
             ></v-text-field>
           </v-flex>
 
@@ -27,8 +27,8 @@
             <v-text-field
             label="* Rótulo"
             name="display_name"
-            hint="Nome de apresentação da permissão"
-            v-model="permission_data.display_name"
+            hint="Nome de apresentação da função"
+            v-model="role_data.display_name"
             required
             v-validate="'required'"
             data-vv-name="rotulo"
@@ -38,10 +38,10 @@
 
           <v-flex xs12>
             <v-textarea
-            label="Descrição da permissão"
+            label="Descrição da função"
             name="description"
-            hint="Escreva aqui uma pequena descrição desta permissão"
-            v-model="permission_data.description"
+            hint="Escreva aqui uma pequena descrição desta função"
+            v-model="role_data.description"
             solo>
           </v-textarea>
         </v-flex>
@@ -75,7 +75,7 @@
 <v-btn
 color="green darken-1"
 flat="flat"
-@click="updatePermission"
+@click="updateRole"
 outline
 >
 Alterar
@@ -87,14 +87,14 @@ Alterar
 
 <script>
 export default {
-  props: ['permission'],
+  props: ['role'],
   $_veeValidate: {
     validator: 'new'
   },
   data () {
     return {
-      permission_id: '',
-      permission_data: {
+      role_id: '',
+      role_data: {
         id: '',
         name: '',
         display_name: '',
@@ -121,32 +121,33 @@ export default {
   },
 
   created () {
-    window.getApp.$on('APP_PERMISSION_UPDATE_DIALOG', (permission) => {
+    window.getApp.$on('APP_ROLE_UPDATE_DIALOG', (role) => {
       this.showEditModel = (!this.showEditModel)
-      this.permission_data.id = permission.id
-      this.permission_data.name = permission.name
-      this.permission_data.display_name = permission.display_name
-      this.permission_data.description = permission.description
+      this.role_data.id = role.id
+      this.role_data.name = role.name
+      this.role_data.display_name = role.display_name
+      this.role_data.description = role.description
     });
   },
 
   methods: {
     clear () {
-      this.permission_data.name=''
-      this.permission_data.display_name=''
-      this.permission_data.description=''
+      this.role_data.name=''
+      this.role_data.display_name=''
+      this.role_data.description=''
       this.$validator.reset()
     },
 
-    updatePermission(){
+    updateRole(){
       this.$validator.validateAll().then(noErrorOnValidate => {
         if (noErrorOnValidate) {
-          axios.put('/api/sys/permissions/'+this.permission_data.id, this.$data.permission_data)
+          axios.put('/api/sys/roles/'+this.role_data.id, this.$data.role_data)
           .then((response) => {
-            window.getApp.$emit('APP_UPDATE_ALL_PERMISSTIONS_DATA')
+            window.getApp.$emit('APP_UPDATE_ALL_ROLE_DATA')
             this.clear()
             this.showEditModel = (!this.showEditModel)
             this.showToastAlert('success', 'Operação efetuada com sucesso <i class="fa fa-arrow-right"></i>!')
+            
           })
           .catch((err) => {console.log()})
         }
@@ -165,7 +166,6 @@ export default {
       }
     )
   },
-
   }
 }
 </script>

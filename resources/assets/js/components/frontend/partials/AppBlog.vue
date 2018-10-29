@@ -2,7 +2,7 @@
   <v-container grid-list-xs,sm,md,lg,xl fluid>
     <v-layout row wrap align-center>
       <v-flex xs12 text-xs-center pa-4>
-        <h2>Blog</h2>
+        <h2>Notícias e Eventos</h2>
       </v-flex>
     </v-layout>
     <v-layout row wrap>

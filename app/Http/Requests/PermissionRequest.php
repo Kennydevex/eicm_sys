@@ -13,7 +13,7 @@ class PermissionRequest extends FormRequest
   */
   public function authorize()
   {
-    return false;
+    return true;
   }
 
   /**
@@ -24,8 +24,9 @@ class PermissionRequest extends FormRequest
   public function rules()
   {
     return [
-      'title' => 'required|unique:posts|max:255',
-      'body' => 'required',
+      'name' => 'required|string|max:60|unique:permissions',
+      'display_name' => 'required|string|max:60|unique:permissions',
+      'description' => 'max:500',
     ];
   }
 }

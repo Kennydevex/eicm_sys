@@ -201,15 +201,16 @@ export default {
   },
   methods: {
     addUser(){
-
-      this.$validator.validateAll()
-      axios.post('/api/auth/register', this.$data.user)
-      .then((response) => {
-        // console.log(response.data)
-        this.clear()
-
-      })
-      .catch((err) => {console.log(err)})
+      this.$validator.validateAll().then(noErrorOnValidate => {
+        if (noErrorOnValidate) {
+          axios.post('/api/auth/register', this.$data.user)
+          .then((response) => {
+            // console.log(response.data)
+            this.clear()
+          })
+          .catch((err) => {console.log(err)})
+        }
+      });
     },
 
 
