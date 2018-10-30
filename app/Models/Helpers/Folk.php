@@ -17,8 +17,9 @@ class Folk extends Model
       'last_name',
       'identification_card',
       'gender',
-      'email',
       'phone_number',
+      'status',
+      'avatar',
   ];
   /**
    * Indicates if the model should be timestamped.
@@ -32,6 +33,11 @@ class Folk extends Model
    public function user()
    {
        return $this->hasOne('User');
+   }
+
+   public function category()
+   {
+     return $this->belongsTo('Category');
    }
 
 }

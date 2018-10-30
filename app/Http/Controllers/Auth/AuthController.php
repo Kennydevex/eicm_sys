@@ -1,7 +1,7 @@
 <?php
 
-namespace EICM\Http\Controllers;
-
+namespace EICM\Http\Controllers\Auth;
+use EICM\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use JWTSubject;
 use JWTAuth;
@@ -18,46 +18,29 @@ class AuthController extends Controller
   */
   public function __construct()
   {
-    /*$this->middleware('auth:api', ['except' => ['login', 'register']]);*/
     $this->middleware('jwt_auth', ['except' => ['login', 'register']]);
   }
 
 
   public function register(Request $request)
   {
-    $this->validate($request,[
-      'first_name' => 'required|string|max:255',
-       'last_name' => 'required|string|max:255',
-       'username' => 'required|unique:users|string|max:255',
-       'email' => 'required|string|email|max:255|unique:folks',
-       'password' => 'required|string|min:8'
-    ]);
-    //  create db
-    // $input = $request->only(['first_name', 'last_name', 'identification_card', 'gender', 'email', 'phone_number']);
+    // ======================================================================================================================
+    // ======================================================================================================================
     $folk = new Folk();
-    $folk->first_name=$request->first_name;
-    $folk->last_name=$request->last_name;
-    $folk->identification_card=$request->identification_card;
-    $folk->gender=$request->gender;
-    $folk->email=$request->email;
-    $folk->phone_number=$request->phone_number;
+    $folk->fill($request->only('first_name', 'last_name', 'last_name', 'identification_card', 'gender', 'phone_number'));
+    $folk->category_id=1;
     $folk->save();
-
+    // ======================================================================================================================
+    // ======================================================================================================================
     $user= new User();
-    $user->username=$request->username;
+    $user->fill($request->only('username', 'email', 'status'));
     $user->password=bcrypt($request->password);
-    $user->status=$request->status;
     $user->folk_id=$folk->id;
     $user->save();
-
-    // Return response
-
-    return response()->json([
-      'user'=>$user,
-      'folk'=>$folk,
-      'message'=>'Utilizador criado com sucesso'
-    ], 201);
-
+    // ======================================================================================================================
+    // ======================================================================================================================
+    $token = JWTAuth::fromUser($user);
+    return response()->json(compact('token', 'user'));
   }
 
   /**
@@ -65,15 +48,19 @@ class AuthController extends Controller
   *
   * @return \Illuminate\Http\JsonResponse
   */
-  public function login()
+  public function login(Request $request)
   {
-    $credentials = request(['email', 'password']);
-
-    if (! $token = auth('api')->claims(['eicm' => 'eicmtoken'])->attempt($credentials)) {
-      return response()->json(['error' => "errrrrrrrrooooooooo"], 401);
+    $credentials = $request->only('email', 'password');
+    $token = JWTAuth::attempt($credentials);
+    $user = User::where('email', $request->email)->with('folk')->first();
+    if ($user->status) {
+      if($token){
+        return response()->json(compact('token', 'user'));
+      }
+      return response()->Json(['code'=>2, 'message'=>'Credenciais inv]alidas'], 401);
     }
+    return response()->Json(['message'=>'Conta desativada, por favor contacte o administrador do sitema'], 401);
 
-    return $this->respondWithToken($token);
   }
 
   /**

@@ -19,8 +19,12 @@ class CreateFolksTable extends Migration
       $table->string('last_name', 50);
       $table->string('identification_card', 15)->nullable();//Identification Card: Bilhete de Identidade
       $table->enum('gender', ['M', 'F', 'Other'])->default('Other');
-      $table->string('email', 60)->unique();
       $table->string('phone_number', 20)->nullable();
+      $table->unsignedInteger('category_id');
+
+      $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
+
     });
   }
 

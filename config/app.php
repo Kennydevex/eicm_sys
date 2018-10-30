@@ -218,7 +218,6 @@ return [
     'Permission' => EICM\Models\System\Permission::class,
     'Role' => EICM\Models\System\Role::class,
     'Team' => EICM\Models\System\Team::class,
-    'Logon' => EICM\Models\System\Logon::class,
     'Folk' => EICM\Models\Helpers\Folk::class,
     'Entity' => EICM\Models\Helpers\Entity::class,
     'Category' => EICM\Models\Helpers\Category::class,
