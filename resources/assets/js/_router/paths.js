@@ -347,7 +347,8 @@ export default [{
       component: Home
     }, {
       path: '/login',
-      component: Login
+      component: Login,
+      name: 'login',
     }]
   }
 ]

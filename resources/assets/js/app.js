@@ -7,13 +7,14 @@ require('./bootstrap')
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueSweetalert2 from 'vue-sweetalert2'
-  // import VeeValidate from 'vee-validate';
 import pt from 'vee-validate/dist/locale/pt_PT'
 import VeeValidate, {
   Validator
 }
 from 'vee-validate'
 import VTooltip from 'v-tooltip'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
 
 
 
@@ -21,6 +22,7 @@ import VTooltip from 'v-tooltip'
 import App from './components/App.vue'
   // ========================= Import Styles =====================
 import 'font-awesome/css/font-awesome.min.css'
+import 'swiper/dist/css/swiper.css'
 // import 'fortawesome/fontawesome-free/css/all.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
@@ -62,6 +64,7 @@ Vue.use(Vuetify, {
 Vue.use(VueSweetalert2)
 Vue.use(VeeValidate)
 Vue.use(VTooltip)
+Vue.use(VueAwesomeSwiper /* { default global options } */)
 
 
 initialize(store, router)

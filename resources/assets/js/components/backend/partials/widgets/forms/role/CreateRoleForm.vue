@@ -5,7 +5,8 @@
   persistent
   >
   <v-card>
-    <v-card-title class="headline grey">Criar Funções</v-card-title>
+    <v-card-title class="grey lighten-5"><h4>Criar Funções</h4></v-card-title>
+    <v-divider></v-divider>
     <v-card-text>
       <v-form v-model="valid">
         <v-layout row wrap>
@@ -35,6 +36,22 @@
             ></v-text-field>
           </v-flex>
 
+          <v-flex xs12 d-flex>
+            <v-select
+            :items="permissions"
+            v-model="role.permissions"
+            item-text="name"
+            item-value="id"
+            multiple
+            label="Associar permissões"
+            chips
+            deletable-chips
+            prepend-icon="map"
+            hide-selected
+            no-data-text="Sem dados"
+            ></v-select>
+          </v-flex>
+
           <v-flex xs12>
             <v-textarea
             label="Descrição da funções"
@@ -47,19 +64,7 @@
         </v-flex>
 
 
-        <v-flex xs12 d-flex>
-          <v-select
-          :items="permissions"
-          :item-text="name"
-          :item-value="id"
-          v-model="role.permissions_data"
-          multiple
-          label="Associar permissções"
-          solo
-          chips
 
-          ></v-select>
-        </v-flex>
 
       </v-layout>
     </v-form>
@@ -109,13 +114,12 @@ export default {
   },
   data () {
     return {
-      permissionName: [],
-      permissionValue: [],
+
       role: {
         name: '',
         display_name: '',
         description: '',
-        permissions_data: []
+        permissions: []
       },
       showCreateModel: false,
       valid: true,
@@ -140,8 +144,7 @@ export default {
   created () {
     this.getPermissions()
     window.getApp.$on('APP_ROLE_CREATE_DIALOG', () => {
-      this.showCreateModel =!this.showCreateModel
-      this.setPermissionDataForRole()
+      this.handleShowHideModel()
     })
   },
 
@@ -152,7 +155,6 @@ export default {
   },
 
   methods: {
-
     getPermissions: function () {
       if(this.permissions.length){
         return
@@ -160,21 +162,14 @@ export default {
       this.getUpdatedPermissions()
     },
 
-
-    setPermissionDataForRole: function () {
-      for (var perm in this.permissions) {
-        if (this.permissions.hasOwnProperty(perm)) {
-          this.permissionName.push(this.permissions[perm]["display_name"])
-          this.permissionValue.push(this.permissions[perm]["id"])
-        }
-      }
-      console.log(this.items2);
-    },
-
-
     getUpdatedPermissions: function () {
       this.$store.dispatch('getPermissions')
     },
+
+    handleShowHideModel: function () {
+      this.showCreateModel =!this.showCreateModel
+    },
+
 
     addrole(){
       this.$validator.validateAll().then(noErrorOnValidate => {
@@ -182,6 +177,7 @@ export default {
           axios.post('/api/sys/roles', this.$data.role)
           .then((response) => {
             this.clear()
+            this.handleShowHideModel()
             window.getApp.$emit('APP_UPDATE_ALL_ROLE_DATA')
           })
           .catch((err) => {console.log()})

@@ -135,18 +135,26 @@ export default {
 
   created () {
     window.getApp.$on('APP_PERMISSION_CREATE_DIALOG', () => {
-      this.showCreateModel =!this.showCreateModel
+      this.handleShowHideModel()
     });
   },
 
+
+
   methods: {
+
+    handleShowHideModel: function() {
+      this.showCreateModel =!this.showCreateModel
+    },
     addPermission(){
       this.$validator.validateAll().then(noErrorOnValidate => {
         if (noErrorOnValidate) {
           axios.post('/api/sys/permissions', this.$data.permission)
           .then((response) => {
             this.clear()
+            this.handleShowHideModel()
             window.getApp.$emit('APP_UPDATE_ALL_PERMISSTIONS_DATA')
+
           })
           .catch((err) => {console.log()})
         }
