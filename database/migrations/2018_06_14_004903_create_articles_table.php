@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
       $table->string('title')->unique();
       $table->longText('content');
       $table->boolean('status');
-      $table->enum('featurung', ['1', '2', '3']);
+      $table->enum('featuring', ['1', '2', '3']);
       $table->date('start');
       $table->date('end');
       $table->unsignedInteger('user_id');

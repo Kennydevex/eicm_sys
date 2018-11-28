@@ -6,16 +6,26 @@ require('./bootstrap')
   // ============================= Main Lib ======================
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import VueAlertify from "vue-alertify"
 import VueSweetalert2 from 'vue-sweetalert2'
+import pt from 'vee-validate/dist/locale/pt_PT'
+import VeeValidate, {
+  Validator
+}
+from 'vee-validate'
+import VTooltip from 'v-tooltip'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+
+
 
 // ========================= Main Components ===================
 import App from './components/App.vue'
   // ========================= Import Styles =====================
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'font-awesome/css/font-awesome.min.css'
+import 'swiper/dist/css/swiper.css'
 // import 'fortawesome/fontawesome-free/css/all.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 // ========================== Suport Libs ========================
 import 'babel-polyfill'
 // ===============================================================
@@ -30,6 +40,8 @@ import {
 }
 from './_helpers/initialize'
   // ========================= Vue Lib Usage =====================
+Validator.localize('pt', pt);
+
 Vue.use(Vuetify, {
   // theme: {
   //   primary: colors.indigo.base, // #E53935
@@ -49,8 +61,11 @@ Vue.use(Vuetify, {
     }
   }
 })
-Vue.use(VueAlertify);
-Vue.use(VueSweetalert2);
+Vue.use(VueSweetalert2)
+Vue.use(VeeValidate)
+Vue.use(VTooltip)
+Vue.use(VueAwesomeSwiper /* { default global options } */)
+
 
 initialize(store, router)
 

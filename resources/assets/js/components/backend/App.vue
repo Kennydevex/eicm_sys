@@ -4,12 +4,18 @@
     <v-app id="inspire">
       <app-drawer class="app--drawer"></app-drawer>
       <app-toolbar class="app--toolbar"></app-toolbar>
-
       <v-content>
+        <!-- Page Header -->
+        <page-header v-if="$route.meta.breadcrumb"></page-header>
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <router-view></router-view>
+        <div class="page-wrapper">
+          <router-view></router-view>
+        </div>
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <app-footer class="app--footer"></app-footer>
       </v-content>
+      <!-- Go to top -->
+      <app-fab></app-fab>
     </v-app>
     <!-- </template> -->
 
@@ -19,10 +25,12 @@
 
 <script>
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import AppDrawer from './partials/AppDrawer.vue'
-import AppToolbar from './partials/AppToolbar';
-// import AppFab from '@/components/AppFab';
-// import PageHeader from '@/components/PageHeader';
+import AppDrawer from './partials/AppDrawer'
+import AppToolbar from './partials/AppToolbar'
+import PageHeader from './partials/PageHeader'
+import AppFooter from './partials/AppFooter'
+import AppFab from './partials/AppFab'
+import MiniStatistic from './partials/widgets/statistic/MiniStatistic'
 // import menu from '@/api/menu';
 // import ThemeSettings from '@/components/ThemeSettings';
 // import AppEvents from  './event';
@@ -30,7 +38,10 @@ export default {
   components: {
     VuePerfectScrollbar,
     AppDrawer,
-    AppToolbar
+    AppToolbar,
+    PageHeader,
+    AppFab,
+    AppFooter,
   },
   created () {
     window.getApp = this

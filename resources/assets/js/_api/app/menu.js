@@ -1,17 +1,17 @@
 const Menu = [
   // ===============================================
   {
-    header: 'Apps'
+    header: 'Genéricos'
   }, {
     title: 'Dashboard',
-    group: 'apps',
+    group: 'general',
     icon: 'dashboard',
     name: 'dashboard',
   },
   // ===============================================
   {
     title: 'Gestão',
-    group: 'apps',
+    group: 'general',
     icon: 'show_chart',
     name: 'reports',
   },
@@ -22,26 +22,28 @@ const Menu = [
     component: 'cms',
     icon: 'web',
     items: [{
-      name: 'articles',
-      title: 'Artigos',
-      component: 'articles'
-    }, {
-      name: 'categories',
-      title: 'Categorias',
-      component: 'categories'
-    }, {
-      name: 'tags',
-      title: 'Marcadores',
-      component: 'tags_list'
-    }, {
-      name: 'images',
-      title: 'imagens',
-      component: 'components/widget-list'
-    }, ]
+        name: 'articles',
+        title: 'Artigos',
+        component: 'articles'
+      }, {
+        name: 'categories',
+        title: 'Categorias',
+        component: 'categories'
+      }, {
+        name: 'tags',
+        title: 'Marcadores',
+        component: 'tags_list'
+      },
+      // {
+      //   name: 'images',
+      //   title: 'imagens',
+      //   component: 'images'
+      // },
+    ]
   },
   // ===============================================
   {
-    header: 'UI Elements'
+    header: 'Sistema'
   }, {
     title: 'Sistema',
     group: 'system',
@@ -67,16 +69,29 @@ const Menu = [
   },
   // ===============================================
   {
-    header: 'Extras'
+    header: 'Parâmetros e Suporte'
   }, {
-    title: 'Settings',
-    group: 'extra',
-    icon: 'settings',
-    name: 'settings',
+    title: 'Configuração',
+    group: 'settings',
+    component: 'settings',
+    icon: 'build',
+    items: [{
+      name: 'entities',
+      title: 'Entidades do sistema',
+      component: 'entities'
+    }, {
+      name: 'folks',
+      title: 'Registos do pessoal',
+      component: 'folks'
+    }, {
+      title: 'Geral',
+      icon: 'help',
+      name: 'general',
+    }]
   },
   // ===============================================
   {
-    title: 'help',
+    title: 'Ajuda',
     group: 'extra',
     icon: 'help',
     name: 'help',

@@ -6,25 +6,27 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PermissionRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
+  /**
+  * Determine if the user is authorized to make this request.
+  *
+  * @return bool
+  */
+  public function authorize()
+  {
+    return true;
+  }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            //
-        ];
-    }
+  /**
+  * Get the validation rules that apply to the request.
+  *
+  * @return array
+  */
+  public function rules()
+  {
+    return [
+      'name' => 'required|string|max:60|unique:permissions',
+      'display_name' => 'required|string|max:60|unique:permissions',
+      'description' => 'max:500',
+    ];
+  }
 }

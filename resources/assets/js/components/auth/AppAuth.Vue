@@ -25,7 +25,7 @@
                   <!-- <v-icon>fa-user-plus</v-icon> -->
                 </v-tab>
                 <v-tab-item
-                :id="'loginTab'"
+                :value="'loginTab'"
                 :key="1"
                 >
                 <v-card flat>
@@ -35,7 +35,7 @@
                 </v-card>
               </v-tab-item>
               <v-tab-item
-              :id="'registerTab'"
+              :value="'registerTab'"
               :key="2"
               >
               <v-card flat>
@@ -49,22 +49,23 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-btn
-          color="green darken-1"
-          flat="flat"
+          block
           @click.native="setAuthModel"
           >
-          <v-icon>fa-times</v-icon>
+          Fechar
         </v-btn>
 
-    </v-card-actions>
-  </v-card>
-</v-card-text>
+      </v-card-actions>
+    </v-card>
+  </v-card-text>
 </v-flex>
 <v-flex xs4>
-  <v-card-media
+
+
+  <v-img
   src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
   height="100%"
-  ></v-card-media>
+  ></v-img>
 
 </v-flex>
 </v-layout>
@@ -77,11 +78,22 @@
 import AppLogin from './AppLogin.vue'
 import AppRegister from './AppRegister.vue'
 export default {
-  props: ['authModel'],
+  data () {
+    return {
+      authModel: false
+    }
+  },
+
+  created: function () {
+    window.getApp.$on('APP_SHOW_AUTH_MODEL', () => {
+      this.setAuthModel()
+    });
+  },
 
   methods: {
     setAuthModel: function () {
-      this.$emit('setAuthModel')
+      this.authModel = !this.authModel
+
     }
   },
   components: {

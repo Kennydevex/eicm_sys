@@ -18,4 +18,9 @@ class Category extends Model
   {
     return $this->belongsTo('Entity');
   }
+
+  public function folks()
+  {
+      return $this->hasMany('Folk');
+  }
 }

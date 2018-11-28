@@ -215,13 +215,33 @@ return [
     //Models
     //################################# My Models ##############################
     'User' => EICM\Models\System\User::class,
-    'Logon' => EICM\Models\System\Logon::class,
+    'Permission' => EICM\Models\System\Permission::class,
+    'Role' => EICM\Models\System\Role::class,
+    'Team' => EICM\Models\System\Team::class,
     'Folk' => EICM\Models\Helpers\Folk::class,
     'Entity' => EICM\Models\Helpers\Entity::class,
     'Category' => EICM\Models\Helpers\Category::class,
     'Article' => EICM\Models\CMD\Article::class,
     'Tag' => EICM\Models\CMD\Tag::class,
     'Image' => EICM\Models\CMD\Image::class,
+
+    //Resources
+    //################################# My Resources ##############################
+    'UserCollection' => EICM\Http\Resources\System\UserCollection::class,
+    'UserResource' => EICM\Http\Resources\System\User::class,
+    'PermissionCollection' => EICM\Http\Resources\System\PermissionCollection::class,
+    'PermissionResource' => EICM\Http\Resources\System\Permission::class,
+    'RoleCollection' => EICM\Http\Resources\System\RoleCollection::class,
+    'RoleResource' => EICM\Http\Resources\System\Role::class,
+    'EntityCollection' => EICM\Http\Resources\Helpers\EntityCollection::class,
+    'EntityResource' => EICM\Http\Resources\Helpers\Entity::class,
+
+    //Requests
+    'PermissionRequest' => EICM\Http\Requests\PermissionRequest::class,
+    'RoleRequest' => EICM\Http\Requests\RoleRequest::class,
+
+    'EntityRequest' => EICM\Http\Requests\EntityRequest::class,
+
 
   ],
 

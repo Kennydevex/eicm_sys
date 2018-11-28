@@ -1,10 +1,13 @@
 <?php
 
-namespace EICM\Http\Controllers;
-
+namespace EICM\Http\Controllers\System;
+use Logon;
+use UserCollection;
+use UserResource;
 use Illuminate\Http\Request;
+use EICM\Http\Controllers\Controller;
 
-class TestController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +16,8 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $users = Logon::all();
+        return new UserCollection($users);
     }
 
     /**
@@ -45,18 +39,8 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+      $user = Logon::find($id);
+      return new UserResource($user);
     }
 
     /**

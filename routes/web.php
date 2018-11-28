@@ -1,9 +1,9 @@
 <?php
 
-// Route::get('/', function () {
-//     return view('_frontend.home');
-// });
-
 Route::any('{all}', function () {
     return view('App.home');
 })->where(['all'=>'.*']);
+
+// Route::get('/users', function () {
+//     return new UserCollection(Logon::paginate());
+// });
