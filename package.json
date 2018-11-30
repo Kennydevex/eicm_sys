@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-loader": "7",
     "babel-polyfill": "^6.26.0",
     "font-awesome": "^4.7.0",
     "material-design-icons-iconfont": "^3.0.3",
