@@ -1,8 +1,15 @@
 export function initialize(store, router) {
+
+
   router.beforeEach((to, from, next) => {
     const currentUser = store.state.auth.currentUser
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
+    //==============================================================
+    if (currentUser) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${currentUser.token}`
+    }
+    //==============================================================
 
     if (requiresAuth && !currentUser) {
       next('/login')
@@ -11,6 +18,8 @@ export function initialize(store, router) {
     } else {
       next()
     }
+
+
   })
 
   axios.interceptors.response.use(null, (error) => {
@@ -21,9 +30,5 @@ export function initialize(store, router) {
     return Promise.reject(error)
   })
 
-  if (store.state.auth.currentUser) {
-    axios.defaults.headers.common["Authorization"] =
-      `Bearer ${store.state.auth.currentUser.token}`
-  }
 
-}
+} 

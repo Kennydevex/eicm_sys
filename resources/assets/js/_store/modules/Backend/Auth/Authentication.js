@@ -37,8 +37,10 @@ export default ({
         state.loading = false
         state.auth_error = null
         state.isLoggedIn = true
+
+        
         state.currentUser = Object.assign({}, payload.user, {
-          token: payload.access_token
+          token: payload.token
         })
 
         localStorage.setItem("user", JSON.stringify(state.currentUser))

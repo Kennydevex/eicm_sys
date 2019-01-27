@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \EICM\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \EICM\Http\Middleware\TrustProxies::class,
+        //Package for handle app headers on request
         \Barryvdh\Cors\HandleCors::class,
     ];
 
@@ -61,6 +62,11 @@ class Kernel extends HttpKernel
         'guest' => \EICM\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'jwt.auth' => \EICM\Http\Middleware\JWT::class,
+        'role' => \Laratrust\Middleware\LaratrustRole::class,
+        'permission' => \Laratrust\Middleware\LaratrustPermission::class,
+        'ability' => \Laratrust\Middleware\LaratrustAbility::class,
+        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken1::class,
+        'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+
     ];
 }

@@ -55,7 +55,7 @@ export default {
       }
     },
     drawer: null,
-    e1: true,
+    e1: true, 
   }),
 
 

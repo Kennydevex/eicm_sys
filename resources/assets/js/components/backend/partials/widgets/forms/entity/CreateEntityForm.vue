@@ -30,8 +30,20 @@
             name="description"
             hint="Escreva aqui uma pequena descrição desta entidade"
             v-model="entity.description"
-            solo>
+            v-validate="'required'"
+            data-vv-name="description"
+            :error-messages="errors.collect('description')"
+            outline>
           </v-textarea>
+        </v-flex>
+
+         <v-divider></v-divider>
+
+        <v-flex xs12>
+           <v-switch
+      label="Estado"
+      v-model="entity.status"
+    ></v-switch>
         </v-flex>
 
       </v-layout>
@@ -66,6 +78,7 @@ color="green darken-1"
 flat="flat"
 outline
 @click="addEntity"
+
 >
 Registar
 <span slot="loader">Enviando...</span>
@@ -81,62 +94,68 @@ Registar
 <script>
 export default {
   $_veeValidate: {
-    validator: 'new'
+    validator: "new"
   },
-  data () {
+
+  data() {
     return {
       sending: false,
       entity: {
-        name: '',
-        description: '',
+        name: "",
+        description: "",
+        status: ""
       },
       showCreateModel: false,
       valid: true,
       dictionary: {
         custom: {
           name: {
-            required: () => 'Campo de prenchimento obrigatório',
+            required: () => "Campo de prenchimento obrigatório"
           },
-
+          description: {
+            required: () => "Campo de prenchimento obrigatório"
+          }
         }
       }
-    }
+    };
   },
 
-  mounted () {
-    this.$validator.localize('pt', this.dictionary)
+  mounted() {
+    this.$validator.localize("pt", this.dictionary);
   },
 
-  created () {
-    window.getApp.$on('APP_ENTITY_CREATE_DIALOG', () => {
-      this.showCreateModel =!this.showCreateModel
+  created() {
+    window.getApp.$on("APP_ENTITY_CREATE_DIALOG", () => {
+      this.showCreateModel = !this.showCreateModel;
     });
   },
 
   methods: {
-    addEntity(){
+    addEntity() {
       this.$validator.validateAll().then(noErrorOnValidate => {
         if (noErrorOnValidate) {
-          this.sending= true
-          axios.post('/api/helpers/entities', this.$data.entity)
-          .then((response) => {
-            this.sending=false
-            this.clear()
-            window.getApp.$emit('APP_UPDATE_ALL_ENTITIES_DATA')
-          })
-          .catch((err) => {console.log()})
+          this.sending = true;
+          axios
+            .post("/api/helpers/entities", this.$data.entity)
+            .then(response => {
+              this.sending = false;
+
+              this.clear();
+              window.getApp.$emit("APP_UPDATE_ALL_ENTITIES_DATA");
+            })
+            .catch(err => {
+              this.sending = false;
+            });
         }
       });
     },
 
-    clear () {
+    clear() {
       this.entity = {};
-      this.$validator.reset()
-    },
-
+      this.$validator.reset();
+    }
   }
-
-}
+};
 </script>
 
 <style lang="css">

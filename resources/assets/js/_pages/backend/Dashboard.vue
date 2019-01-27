@@ -7,7 +7,7 @@
           <mini-statistic
           icon="fa-users"
           :title="user.length"
-          sub-title="Utilizadores ativo"
+          sub-title="Utilizadores ativos"
           color="indigo"
           >
         </mini-statistic>
@@ -16,7 +16,7 @@
         <mini-statistic
         icon="fa-user"
         :title="user.length"
-        sub-title="Utilizadores ativo"
+        sub-title="Utilizadores ativos"
         color="red"
         >
       </mini-statistic>

@@ -1,6 +1,6 @@
 <?php
 
-namespace EICM\Models\CMD;
+namespace EICM\Models\CMS;
 
 use Illuminate\Database\Eloquent\Model;
 

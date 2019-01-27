@@ -1,7 +1,7 @@
 <?php
 
 namespace EICM\Http\Controllers\System;
-use Logon;
+use User;
 use UserCollection;
 use UserResource;
 use Illuminate\Http\Request;
@@ -16,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = Logon::all();
+        // $users = User::all();
+        $users = User::with('folk')->get();
+
         return new UserCollection($users);
     }
 
@@ -39,7 +41,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-      $user = Logon::find($id);
+      $user = User::find($id);
       return new UserResource($user);
     }
 

@@ -7,6 +7,8 @@ import tags from './modules/Backend/Tags'
 import permissions from './modules/Backend/Permissions'
 import roles from './modules/Backend/Roles'
 import entities from './modules/Backend/Entities'
+import articles from './modules/Backend/Articles'
+import categories from './modules/Backend/Categories'
 import auth from './modules/Backend/Auth/Authentication'
 
 Vue.use(Vuex)
@@ -17,8 +19,10 @@ export default new Vuex.Store({
     users,
     tags,
     permissions,
-    roles,
     entities,
+    categories,
+    roles,
+    articles,
     auth,
   },
 

@@ -1,13 +1,15 @@
-<template lang="html">
-  <div class="">
-    Artigos
+<template>
+  <div id="article-form">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
 }
+
 </script>
 
-<style lang="css">
+<style scoped>
+
 </style>

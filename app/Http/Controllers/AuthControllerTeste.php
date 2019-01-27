@@ -40,7 +40,7 @@ class AuthController extends Controller
     $folk->identification_card=$request->identification_card;
     $folk->gender=$request->gender;
     $folk->phone_number=$request->phone_number;
-    $folk->category_id=1;
+    $folk->category_id=5;
     $folk->save();
 
     $user= new User();

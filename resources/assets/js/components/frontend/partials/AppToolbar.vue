@@ -11,7 +11,7 @@
   <v-spacer></v-spacer>
   <v-toolbar-items class="hidden-sm-and-down">
     <!-- ====================================================================== -->
-    <v-btn flat>Início</v-btn>
+    <v-btn to="/" flat>Início</v-btn>
     <v-menu offset-y :nudge-width="100" transition="scale-transition" origin="center center" hover>
       <v-btn
       slot="activator"
@@ -25,7 +25,7 @@
       <v-list-tile
       v-for="eicminfo in submenus.eicminfos"
       :key="eicminfo.id"
-      @click=""
+      @click="menuLink(eicminfo.link)"
       >
       <v-list-tile-title>{{ eicminfo.name }}</v-list-tile-title>
     </v-list-tile>
@@ -94,6 +94,7 @@
 </v-menu>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <v-btn flat>Contactos</v-btn>
+<v-btn flat>Notícias</v-btn>
 
 <template v-if="!currentUser">
   <v-btn flat to="/login">
@@ -108,7 +109,7 @@
   <v-menu offset-y origin="center center" :nudge-bottom="10" transition="scale-transition" z-index="100">
     <v-btn icon large flat slot="activator">
       <v-avatar size="30px">
-        <img src="http://i.pravatar.cc/300" alt="Estefanio Silva"/>
+        <img :src="image_src" alt="Estefanio Silva"/>
       </v-avatar>
     </v-btn>
     <v-list class="pa-0">
@@ -132,6 +133,7 @@
 export default {
   data () {
     return {
+      image_src: '/images/app/avatars/default.png',
 
       // =======================================
       // registerDialog: false,
@@ -159,7 +161,7 @@ export default {
           {id: 6, name: 'Mecanotécnia'}
         ],
         eicminfos: [
-          {id: 1, name: 'História'},
+          {id: 1, link: "historia", name: 'História'},
           {id: 2, name: 'Corpo Diretivo'},
         ],
       },
@@ -199,6 +201,10 @@ export default {
     logout: function () {
       this.$store.commit('logout')
       this.$router.push('/login')
+    },
+
+    menuLink: function (link) {
+      this.$router.push('/'+link)
     },
   },
 

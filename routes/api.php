@@ -14,36 +14,6 @@ Route::group([
 
 Route::group([
   'middleware' => 'jwt.auth',
-  'prefix' => 'cmd',
-  'namespace'=>'CMD'
-], function ($router) {
-  // ==========================================================
-  // ================   Tags   ================================
-  // ==========================================================
-  Route::get('tags', 'TagsController@all');
-  Route::get('tag/{id}', 'TagsController@get');
-  Route::post('tag/new', 'TagsController@new');
-  // ==========================================================
-  // ================   Articles   ============================
-  // ==========================================================
-});
-
-
-// Route::group([
-//   'middleware' => 'jwt.auth',
-//   'prefix' => 'sys',
-//   'namespace'=>'System'
-// ], function ($router) {
-//   // ==========================================================
-//   // ================   Users   ================================
-//   // ==========================================================
-//   Route::get('users', 'UsersController@all');
-//   Route::get('tag/{id}', 'UsersController@get');
-//   Route::post('tag/new', 'UsersController@new');
-// });
-
-Route::group([
-  // 'middleware' => 'jwt.auth',
   'prefix' => 'sys',
   'namespace'=>'System'
 ], function ($router) {
@@ -53,22 +23,21 @@ Route::group([
 });
 
 Route::group([
-  // 'middleware' => 'jwt.auth',
+  'middleware' => 'jwt.auth',
   'prefix' => 'helpers',
   'namespace'=>'Helpers'
 ], function ($router) {
   Route::apiResource('entities', 'EntitiesController');
-  Route::apiResource('folks', 'FolkController');
-  Route::apiResource('categories', 'CategoryController');
+  Route::apiResource('folks', 'FolksController');
+  Route::apiResource('categories', 'CategoriesController');
 });
 
-// Route::group([
-//   // 'middleware' => 'jwt.auth',
-//   'prefix' => 'cmd',
-//   'namespace'=>'CMD'
-// ], function ($router) {
-//   Route::apiResource([
-//     'tags', 'TagController',
-//     'articles', 'ArticleController'
-//   ]);
-// });
+
+Route::group([
+    'middleware' => 'jwt.auth',
+    'prefix' => 'cms',
+    'namespace' => 'CMS',
+], function ($router) {
+    Route::apiResource('articles', 'ArticlesController');
+    Route::apiResource('tags', 'Tags2Controller');
+});

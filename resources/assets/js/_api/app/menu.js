@@ -32,8 +32,9 @@ const Menu = [
       }, {
         name: 'tags',
         title: 'Marcadores',
-        component: 'tags_list'
+        component: 'tags'
       },
+      
       // {
       //   name: 'images',
       //   title: 'imagens',

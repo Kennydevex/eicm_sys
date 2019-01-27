@@ -67,7 +67,7 @@ return [
   |
   */
   'user_models' => [
-    'users' => 'User',
+    'users' => 'EICM\Models\System\User',
     // 'logons' => 'Logon',
   ],
 
@@ -85,12 +85,12 @@ return [
     /**
     * Role model
     */
-    'role' => 'Role',
+    'role' => 'EICM\Models\System\Role',
 
     /**
     * Permission model
     */
-    'permission' => 'Permission',
+    'permission' => 'EICM\Models\System\Permission',
 
     /**
     * Team model

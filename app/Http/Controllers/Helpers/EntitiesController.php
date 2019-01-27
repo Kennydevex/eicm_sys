@@ -33,7 +33,8 @@ class EntitiesController extends Controller
     $entity = new Entity();
     $entity::create([
       'name'=> $request->name,
-      'description'=> $request->description
+      'description'=> $request->description,
+      'status'=> $request->status
     ]);
   }
 

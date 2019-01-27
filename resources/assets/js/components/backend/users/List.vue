@@ -113,7 +113,7 @@ color="indigo">
   <mini-statistic
   icon="fa-user"
   title="200+"
-  sub-title="Utilizadores ativo"
+  sub-title="Utilizadores ativos"
   color="red"
   >
 </mini-statistic>

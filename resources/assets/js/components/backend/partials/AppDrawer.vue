@@ -14,11 +14,11 @@
     <v-list class="pa-0">
       <v-list-tile avatar>
         <v-list-tile-avatar>
-          <img src="https://randomuser.me/api/portraits/men/85.jpg">
+          <img :src="image_src">
         </v-list-tile-avatar>
 
         <v-list-tile-content>
-          <v-list-tile-title>John Leider</v-list-tile-title>
+          <v-list-tile-title>Estefânio Silva</v-list-tile-title>
         </v-list-tile-content>
 
         <v-list-tile-action>
@@ -101,6 +101,7 @@ import menu from '../../../_api/app/menu';
 export default {
   name: 'appDrawer',
   data: () => ({
+    image_src: '/images/app/avatars/default.png',
     menus: menu,
     drawer: true,
     mini: true,

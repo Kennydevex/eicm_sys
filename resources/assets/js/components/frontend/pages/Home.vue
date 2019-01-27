@@ -2,8 +2,8 @@
   <div class="">
     <!-- ====================================================================== -->
     <section>
-      <!-- <app-front-swiper-slide></app-front-swiper-slide> -->
-      <app-front-slide-show></app-front-slide-show>
+      <!-- <app-front-slide-show></app-front-slide-show> -->
+      <app-caroucel></app-caroucel>
     </section>
     <!-- ====================================================================== -->
     <section>
@@ -33,23 +33,19 @@
 <script>
 // import AppCaroucel from '../partials/AppCaroucel.vue'
 import AppMission from '../partials/AppMission.vue'
-import AppSchoolMsg from '../partials/AppSchoolMsg.vue'
 import AppBlog from '../partials/AppBlog.vue'
 import AppContact from '../partials/AppContact.vue'
 import AppTeam from '../partials/AppTeam.vue'
-import AppFrontSlideShow from '../partials/AppFrontSlideShow.vue'
-import AppFrontSwiperSlide from '../partials/AppFrontSwiperSlide.vue'
+import AppCaroucel from '../partials/sliders/AppCaroucel.vue'
 import AppMessages from '../partials/AppMessages.vue'
 
 export default {
   components: {
     AppMission,
-    AppSchoolMsg,
     AppTeam,
     AppBlog,
     AppContact,
-    AppFrontSlideShow,
-    AppFrontSwiperSlide,
+    AppCaroucel,
     AppMessages,
   }
 

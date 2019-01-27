@@ -40,7 +40,7 @@
             <v-select
             :items="permissions"
             v-model="role.permissions"
-            item-text="name"
+            item-text="display_name"
             item-value="id"
             multiple
             label="Associar permissões"
@@ -100,7 +100,7 @@ outline
 Registar
 </v-btn>
 
-</v-flex>
+</v-flex> 
 
 </v-card-actions>
 </v-card>

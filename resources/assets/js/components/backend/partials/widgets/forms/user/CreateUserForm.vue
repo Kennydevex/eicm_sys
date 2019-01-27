@@ -123,7 +123,6 @@
       <v-flex sm6 xs12>
         <v-switch
         v-model="user.status"
-        label="Ativar"
         :label="user.status ? 'Desativar':'Ativar'"
         color="indigo"
         value
@@ -205,7 +204,7 @@ export default {
         if (noErrorOnValidate) {
           axios.post('/api/auth/register', this.$data.user)
           .then((response) => {
-            // console.log(response.data)
+            window.getApp.$emit("APP_UPDATE_ALL_USERS_DATA");
             this.clear()
           })
           .catch((err) => {console.log(err)})

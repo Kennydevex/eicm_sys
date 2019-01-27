@@ -16,7 +16,8 @@
     <v-menu offset-y origin="center center" :nudge-bottom="10" transition="scale-transition">
       <v-btn icon large flat slot="activator">
         <v-avatar size="30px">
-          <img src="http://i.pravatar.cc/300" alt="Estefanio Silva"/>
+          <!-- <img src="http://i.pravatar.cc/300" alt="Estefanio Silva"/> -->
+          <img :src="image_src" alt="Estefanio Silva"/>
         </v-avatar>
       </v-btn>
       <v-list class="pa-0">
@@ -41,6 +42,7 @@ export default {
 
   data () {
     return {
+      image_src: '/images/app/avatars/default.png',
       items: [
         {
           icon: 'account_circle',

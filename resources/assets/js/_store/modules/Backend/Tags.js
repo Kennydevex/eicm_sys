@@ -17,8 +17,8 @@ export default({
 
   actions: {
     getTags(context) {
-      axios.get('/api/cmd/tags').then(function(response) {
-        context.commit('updateTags', response.data.tags)
+      axios.get('/api/cms/tags').then(function(response) {
+        context.commit('updateTags', response.data.data)
       })
     },
   }
