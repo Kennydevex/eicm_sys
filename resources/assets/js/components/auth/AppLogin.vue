@@ -1,76 +1,138 @@
 <template lang="html">
-  <div>
-    <v-container grid-list-md fluid>
-      <v-layout wrap>
+  <v-container grid-list-md fluid>
+    <v-form ref="form">
 
+      <v-layout wrap row>
         <v-flex xs12>
-          <v-text-field
-          v-model="loginForm.email"
-          :rules="[rules.required, rules.email]"
-          label="Email"
-          required
-          append-icon="fa fa-user"
-          type="email"
-          autofocus
-          clearable
-          ></v-text-field>
+          <v-card flat>
+            <v-card-title primary-title>
+              Entrar no sistema
+            </v-card-title>
+            <v-card-text>
+              <v-layout row wrap>
+
+                <v-flex xs12>
+                  <v-text-field
+                  v-model="loginForm.email"
+                  label="Email"
+                  required
+                  append-icon="fa fa-user"
+                  type="email"
+                  autofocus
+                  clearable
+                  hint="Insira o seu email de registo"
+                  v-validate="'required|email'"
+                  data-vv-name="email"
+                  :error-messages="errors.collect('email')"
+                  ></v-text-field>
+                </v-flex>
+
+                <v-flex xs12>
+                  <v-text-field
+                  v-model="loginForm.password"
+                  :append-icon="e1 ? 'fa-eye' : 'fa-eye-slash'"
+                  @click:append="() => (e1 = !e1)"
+                  :type="e1 ? 'password' : 'text'"
+                  name="input-10-1"
+                  label="Palavra passe"
+                  hint="Insira a sua palavra passe"
+                  counter
+                  v-validate="'required'"
+                  data-vv-name="password"
+                  :error-messages="errors.collect('password')"
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+
+            </v-card-text>
+
+            <v-card-actions>
+              <v-flex xs12 right>
+                <v-btn
+                color="primary"
+                small
+                flat
+                @click="authenticate"
+                :loading="sending"
+                :disabled="sending"
+                >Entrar</v-btn>
+                <v-btn
+                @click="clear"
+                flat
+                small
+                >Limpar</v-btn>
+                <v-btn
+                @click="handleShowHideAuthModel"
+                color="error"
+                flat
+                small
+                >Fechar</v-btn>
+              </v-flex>
+            </v-card-actions>
+          </v-card>
         </v-flex>
 
-        <v-flex xs12>
-          <v-text-field
-          v-model="loginForm.password"
-          :rules="[rules.required]"
-          required
-          :append-icon="e1 ? 'fa-eye' : 'fa-eye-slash'"
-          @click:append="() => (e1 = !e1)"
-          :type="e1 ? 'password' : 'text'"
-          name="input-10-1"
-          label="Palavra passe"
-          hint="No m]inimo 8 caractere"
-          min="8"
-          counter
-          ></v-text-field>
-        </v-flex>
-        <v-btn color="primary" @click="authenticate">Entrar</v-btn>
       </v-layout>
-    </v-container>
-  </div>
+    </v-form>
+  </v-container>
 </template>
 
 <script>
+import validateDictionary from '../../_helpers/api/validateDictionary'
 import {login} from '../../_helpers/auth'
+import {clearForm} from '../../_mixins/ClearForm'
+import {appFlashAlert} from '../../_mixins/AppFlashAlert'
+import {handleModels} from '../../_mixins/HandleModels'
 
 export default {
+  mixins: [clearForm, appFlashAlert, handleModels],
   data: () => ({
+    sending: false,
     loginForm: {
       email: '',
       password: ''
     },
-    error: null,
-    rules: {
-      required: (value) => !!value || 'Required.',
-      email: (value) => {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return pattern.test(value) || 'Invalid e-mail.'
-      }
-    },
-    drawer: null,
-    e1: true, 
+    e1: true,
+    dictionary: validateDictionary,
+
   }),
+
+
+
+  mounted() {
+    this.$validator.localize('pt', this.dictionary)
+  },
+
+  computed: {
+    loginError: function () {
+      return this.$store.getters.authError
+    }
+  },
 
 
   methods:{
 
     authenticate(){
-      this.$store.dispatch('login')
-      login(this.$data.loginForm).then((response) => {
-        this.$store.commit('loginSuccess', response)
-        this.$router.push({path: '/dashboard'})
-      }).catch((error) => {
-        this.$store.commit('loginFailed', {error})
-        this.errorAlert(this.loginError)
-      })
+      this.$validator.validateAll().then(noErrorOnValidate => {
+        if (noErrorOnValidate) {
+          this.sending = true;
+          this.$store.dispatch('login')
+          login(this.$data.loginForm).then((response) => {
+            this.$store.commit('loginSuccess', response)
+            this.$router.push({path: '/dashboard'})
+            this.sending = false;
+            this.clear()
+          }).catch((error) => {
+            this.$store.commit('loginFailed', {error})
+            this.errorAlert(this.loginError)
+            this.sending = false;
+
+          })
+        }
+      });
     },
+
+
 
     errorAlert(message){
 
@@ -79,11 +141,7 @@ export default {
         'question');
       }
     },
-    computed: {
-      loginError: function () {
-        return this.$store.getters.authError
-      }
-    }
+
 
   }
   </script>

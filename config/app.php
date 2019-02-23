@@ -223,7 +223,7 @@ return [
         'Category' => EICM\Models\Helpers\Category::class,
         'Article' => EICM\Models\CMS\Article::class,
         'Tag' => EICM\Models\CMS\Tag::class,
-        'Image' => EICM\Models\CMS\Image::class,
+        'ImageFile' => EICM\Models\CMS\Image::class,
 
         //Resources
         //################################# My Resources ##############################
@@ -250,6 +250,9 @@ return [
         'TagRequest' => EICM\Http\Requests\TagRequest::class,
 
         'ArticleRequest' => EICM\Http\Requests\ArticleRequest::class,
+
+        //Helpers
+        'Common' => EICM\Helpers\Common::class,
 
     ],
 

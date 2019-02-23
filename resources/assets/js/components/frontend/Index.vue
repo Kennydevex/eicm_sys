@@ -27,7 +27,6 @@ import AppAuth from '../auth/AppAuth.vue'
 
 
 export default {
-
   data: () => ({
   }),
 

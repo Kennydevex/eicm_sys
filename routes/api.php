@@ -23,21 +23,31 @@ Route::group([
 });
 
 Route::group([
-  'middleware' => 'jwt.auth',
   'prefix' => 'helpers',
   'namespace'=>'Helpers'
 ], function ($router) {
   Route::apiResource('entities', 'EntitiesController');
   Route::apiResource('folks', 'FolksController');
   Route::apiResource('categories', 'CategoriesController');
+  Route::get('article_categories', 'CategoriesController@articleCategories');
+
 });
 
 
 Route::group([
-    'middleware' => 'jwt.auth',
     'prefix' => 'cms',
     'namespace' => 'CMS',
 ], function ($router) {
     Route::apiResource('articles', 'ArticlesController');
-    Route::apiResource('tags', 'Tags2Controller');
+    Route::get('featuredArticles', 'ArticlesController@featuredArticles');
+    Route::get('publishedArticles', 'ArticlesController@publishedArticles');
+    // ================================================================
+    Route::apiResource('tags', 'TagsController');
+});
+
+Route::group([
+  'prefix' => 'services',
+  'namespace'=>'Services'
+], function ($router) {
+  Route::get('send_messages', 'ContactsController@sendMessages');
 });

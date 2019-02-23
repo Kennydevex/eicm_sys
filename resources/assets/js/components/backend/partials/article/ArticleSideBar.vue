@@ -11,54 +11,20 @@
     </v-layout>
   </v-container>
 </template>
-    
+
 
 
 <script>
+import {categoriesTags} from '../../../../_mixins/CategoriesTags'
 export default {
+  mixins: [categoriesTags],
   data() {
     return {};
   },
-
   created: function() {
-    this.getCategories();
+    this.getArticleCategories();
     this.getTags();
   },
 
-  computed: {
-    categories: function() {
-      return this.$store.getters.categories;
-    },
-    tags: function() {
-      return this.$store.getters.tags;
-    }
-  },
-
-  methods: {
-    //===========================================
-    getTags: function() {
-      if (this.tags.length) {
-        return;
-      }
-      this.getUpdatedTag();
-    },
-
-    getUpdatedTag: function() {
-      this.$store.dispatch("getTags");
-    },
-
-    //===========================================
-
-    getCategories: function() {
-      if (this.categories.length) {
-        return;
-      }
-      this.getUpdatedCategory();
-    },
-
-    getUpdatedCategory: function() {
-      this.$store.dispatch("getCategories");
-    }
-  }
 };
 </script>

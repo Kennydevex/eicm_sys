@@ -18,10 +18,11 @@ class CreateFolksTable extends Migration
       $table->string('first_name', 50);
       $table->string('last_name', 50);
       $table->string('identification_card', 15)->nullable();//Identification Card: Bilhete de Identidade
-      $table->enum('gender', ['M', 'F', 'Other'])->default('Other');
+      $table->enum('gender', ['0', '1', '2'])->default(0);
       $table->string('phone_number', 20)->nullable();
       $table->unsignedInteger('category_id');
 
+      
       $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
 

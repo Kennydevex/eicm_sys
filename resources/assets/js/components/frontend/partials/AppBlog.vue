@@ -6,93 +6,63 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-flex xs12 sm3 pa-3>
-        <v-card>
-          <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
-          height="200px"
-          ></v-img>
+      <template v-for="featuredArticle in featuredArticles">
+        <v-flex xs12 sm3 pa-3  :key="featuredArticle.id">
+          <v-card>
+            <v-img :src="`/images/app/articles/covers/${featuredArticle.image.name}`" aspect-ratio="2.75"></v-img>
 
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
+            <v-card-title primary-title>
+              <div>
+                <h3 class="headline mb-0">{{featuredArticle.title}}</h3>
+                <div><h4>{{ featuredArticle.summary}}</h4></div>
+              </div>
+            </v-card-title>
 
-          <v-card-actions>
-            <v-btn flat color="orange">LER</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm3 pa-3>
-        <v-card>
-          <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
-          height="200px"
-          ></v-img>
+            <v-card-actions>
+              <v-btn @click="onViewArticle('/view/',featuredArticle.id)" flat color="primary" tile>Ver</v-btn>
+              <!-- <v-btn flat color="orange">LER</v-btn> -->
+            </v-card-actions>
+          </v-card>
+        </v-flex>
 
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
+      </template>
 
-          <v-card-actions>
-            <v-btn flat color="orange">LER</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm3 pa-3>
-        <v-card>
-          <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
-          height="200px"
-          ></v-img>
-
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
-
-          <v-card-actions>
-            <v-btn flat color="orange">LER</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm3 pa-3>
-        <v-card>
-          <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
-          height="200px"
-          ></v-img>
-
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
-
-          <v-card-actions>
-            <v-btn flat color="orange">LER</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-export default {
+import {article} from '../../../_mixins/Article'
 
+export default {
+mixins: [article],
   data () {
     return {
-      card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
+
     }
+  },
+
+  created: function() {
+    this.getFeaturedArticles();
+  },
+
+  computed: {
+    featuredArticles: function() {
+      return this.$store.getters.featuredArticles;
+    }
+  },
+
+  methods: {
+    getFeaturedArticles: function() {
+      if (this.featuredArticles.length) {
+        return;
+      }
+      this.getUpdatedFeaturedArticles();
+    },
+
+    getUpdatedFeaturedArticles: function() {
+      this.$store.dispatch("getFeaturedArticles");
+    },
   }
 }
 </script>

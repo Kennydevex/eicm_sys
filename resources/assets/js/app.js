@@ -14,12 +14,12 @@ import VeeValidate, {
 from 'vee-validate'
 import VTooltip from 'v-tooltip'
 
-
-
+//import validateDictionary from './_helpers/api/validateDictionary'
 
 
 // ========================= Main Components ===================
 import App from './components/App.vue'
+  // Vue.component(App, require('./components/App.vue'));
   // ========================= Import Styles =====================
 import 'font-awesome/css/font-awesome.min.css'
 // import 'fortawesome/fontawesome-free/css/all.css'
@@ -65,7 +65,15 @@ Vue.use(VeeValidate)
 Vue.use(VTooltip)
 
 
+// Vue.mixin({
+//   mounted() {
+//     console.log('hello from mixin!')
+//   }
+// })
+
+
 initialize(store, router)
+
 
 const app = new Vue({
   store,

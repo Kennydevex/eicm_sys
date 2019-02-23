@@ -97,10 +97,9 @@
 <v-btn flat>Notícias</v-btn>
 
 <template v-if="!currentUser">
-  <v-btn flat to="/login">
+  <!-- <v-btn flat to="/login">
     Entrar
-  </v-btn>
-  <!-- <v-btn flat @click.stop="showRegsiterDialog">Registar</v-btn> -->
+  </v-btn> -->
   <v-btn color="primary" @click.stop="showAuthModel" icon><v-icon small>input</v-icon></v-btn>
 
 </template>
@@ -154,15 +153,17 @@ export default {
         ],
         cursos: [
           {id: 1, name: 'Artes Gráficas'},
-          {id: 2, name: 'Construção Cívil'},
-          {id: 3, name: 'Eletricidade'},
-          {id: 4, name: 'Informática'},
-          {id: 5, name: 'Mecânica'},
-          {id: 6, name: 'Mecanotécnia'}
+          {id: 2, name: 'Contabilidade'},
+          {id: 3, name: 'Construção Cívil'},
+          {id: 4, name: 'Eletricidade Eletrónica'},
+          {id: 5, name: 'Informática de Gestão'},
+          {id: 6, name: 'Mecânica'},
+          {id: 7, name: 'Mecanotécnia'}
         ],
         eicminfos: [
           {id: 1, link: "historia", name: 'História'},
           {id: 2, name: 'Corpo Diretivo'},
+          {id: 3, name: 'Missão, Visão e Valores'},
         ],
       },
       items: [

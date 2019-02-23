@@ -16,9 +16,10 @@ class CreateArticlesTable extends Migration
     Schema::create('articles', function (Blueprint $table) {
       $table->increments('id');
       $table->string('title')->unique();
+      $table->text('summary', 200)->nullable();
       $table->longText('content');
-      $table->boolean('status');
-      $table->enum('featuring', ['1', '2', '3']);
+      $table->boolean('status')->nullable()->default(false);
+      $table->boolean('featuring')->nullable()->default(false);
       $table->date('start');
       $table->date('end');
       $table->unsignedInteger('user_id');

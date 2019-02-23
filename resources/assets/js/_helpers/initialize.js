@@ -7,8 +7,13 @@ export function initialize(store, router) {
 
     //==============================================================
     if (currentUser) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${currentUser.token}`
+      //axios.defaults.headers.common["Authorization"] = `Bearer ${currentUser.token}`
+      axios.defaults.headers.common = {
+        "Authorization": `Bearer ${currentUser.token}`,
+        "Content-Type": "multipart/form-data"
+      };
     }
+
     //==============================================================
 
     if (requiresAuth && !currentUser) {

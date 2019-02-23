@@ -8,6 +8,7 @@ use Folk;
 use Illuminate\Http\Request;
 use JWTAuth;
 use User;
+use Common;
 
 class AuthController extends Controller
 {
@@ -24,9 +25,10 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         // ======================================================================================================================
+        $category = Common::verifyCategory('Utilizadores', 'Folks');
         $folk = new Folk();
         $folk->fill($request->only('first_name', 'last_name', 'last_name', 'identification_card', 'gender', 'phone_number'));
-        $folk->category()->associate(9);
+        $folk->category()->associate($category->id);
         $folk->save();
         // ======================================================================================================================
         $user = new User();

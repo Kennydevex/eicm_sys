@@ -12,6 +12,15 @@ use EntityRequest;
 class EntitiesController extends Controller
 {
   /**
+    * Create a new ArticlesController instance.
+    *
+    * @return void
+    */
+    public function __construct()
+    {
+        $this->middleware('jwt.auth');
+    }
+  /**
   * Display a listing of the resource.
   *
   * @return \Illuminate\Http\Response

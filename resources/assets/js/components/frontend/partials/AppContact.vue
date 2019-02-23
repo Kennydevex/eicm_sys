@@ -22,133 +22,139 @@
                 </v-list-tile-content>
 
                 <!-- <v-list-tile-action>
-                  <v-icon>chat</v-icon>
-                </v-list-tile-action> -->
-              </v-list-tile>
+                <v-icon>chat</v-icon>
+              </v-list-tile-action> -->
+            </v-list-tile>
 
-              <v-list-tile @click="">
-                <v-list-tile-action></v-list-tile-action>
+            <v-list-tile @click="">
+              <v-list-tile-action></v-list-tile-action>
 
-                <v-list-tile-content>
-                  <v-list-tile-title>(+238) 2318765</v-list-tile-title>
-                  <v-list-tile-sub-title>Secretaria</v-list-tile-sub-title>
-                </v-list-tile-content>
+              <v-list-tile-content>
+                <v-list-tile-title>(+238) 2318765</v-list-tile-title>
+                <v-list-tile-sub-title>Secretaria</v-list-tile-sub-title>
+              </v-list-tile-content>
 
-                <!-- <v-list-tile-action>
-                  <v-icon>chat</v-icon>
-                </v-list-tile-action> -->
-              </v-list-tile>
+              <!-- <v-list-tile-action>
+              <v-icon>chat</v-icon>
+            </v-list-tile-action> -->
+          </v-list-tile>
 
-              <v-divider inset></v-divider>
+          <v-divider inset></v-divider>
 
-              <v-list-tile @click="">
-                <v-list-tile-action>
-                  <v-icon color="indigo">mail</v-icon>
-                </v-list-tile-action>
+          <v-list-tile @click="teste()">
+            <v-list-tile-action>
+              <v-icon color="indigo">mail</v-icon>
+            </v-list-tile-action>
 
-                <v-list-tile-content>
-                  <v-list-tile-title>diretor@example.com</v-list-tile-title>
-                  <v-list-tile-sub-title>Diretor</v-list-tile-sub-title>
-                </v-list-tile-content>
-              </v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>diretor@example.com</v-list-tile-title>
+              <v-list-tile-sub-title>Diretor</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-              <v-list-tile @click="">
-                <v-list-tile-action></v-list-tile-action>
+          <v-list-tile @click="">
+            <v-list-tile-action></v-list-tile-action>
 
-                <v-list-tile-content>
-                  <v-list-tile-title>direcao@example.com</v-list-tile-title>
-                  <v-list-tile-sub-title>Direção</v-list-tile-sub-title>
-                </v-list-tile-content>
-              </v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>direcao@example.com</v-list-tile-title>
+              <v-list-tile-sub-title>Direção</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-              <v-divider inset></v-divider>
+          <v-divider inset></v-divider>
 
-              <v-list-tile @click="">
-                <v-list-tile-action>
-                  <v-icon color="indigo">location_on</v-icon>
-                </v-list-tile-action>
+          <v-list-tile @click="">
+            <v-list-tile-action>
+              <v-icon color="indigo">location_on</v-icon>
+            </v-list-tile-action>
 
-                <v-list-tile-content>
-                  <v-list-tile-title>Morada</v-list-tile-title>
-                  <v-list-tile-sub-title>Mindelo, São Vicente, Cabo Verde</v-list-tile-sub-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </v-list>
-          </v-card>
+            <v-list-tile-content>
+              <v-list-tile-title>Localização</v-list-tile-title>
+              <v-list-tile-sub-title>Mindelo, São Vicente, Cabo Verde</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-card>
 
-          <!-- <v-card color="transparent" flat>
-          <v-card-text>
-          <v-list>
-          <v-list-group
-          v-for="item in items"
-          v-model="item.active"
-          :key="item.title"
-          :prepend-icon="item.action"
-          no-action
-          >
-          <v-list-tile slot="activator">
-          <v-list-tile-content>
-          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
 
-      <v-list-tile
-      v-for="subItem in item.items"
-      :key="subItem.title"
-      @click=""
-      >
-      <v-list-tile-content>
-      <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
-    </v-list-tile-content>
+    </v-flex>
+    <v-flex xs12 sm6>
+      <v-card color="white" flat ml-5>
+        <v-card-text>
+          <v-form ref="form">
+            <!-- ================================================= -->
+            <v-container grid-list-xl fluid>
+              <v-layout wrap>
+                <v-flex xs12 sm6>
+                  <v-text-field
+                  :disabled="currentUser"
+                  color="purple darken-2"
+                  label="Nome"
+                  v-model="messageInfo.name"
+                  name="name"
+                  v-validate="'required'"
+                  data-vv-name="name"
+                  :error-messages="errors.collect('name')"
+                  >
+                </v-text-field>
+              </v-flex>
 
-    <v-list-tile-action>
-    <v-icon>{{ subItem.action }}</v-icon>
-  </v-list-tile-action>
-</v-list-tile>
-</v-list-group>
-</v-list>
-</v-card-text>
-</v-card> -->
-</v-flex>
-<v-flex xs12 sm6>
-  <v-card color="white" flat ml-5>
-    <v-card-text>
-      <v-form>
-        <!-- ================================================= -->
-        <v-container grid-list-xl fluid>
-          <v-layout wrap>
-            <v-flex xs12 sm6>
-              <v-text-field
-              color="purple darken-2"
-              label="Nome"
-              >
-            </v-text-field>
-          </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                :disabled="currentUser"
+                color="blue darken-2"
+                label="Email"
+                v-model="messageInfo.email"
+                name="email"
+                v-validate="'required'"
+                data-vv-name="email"
+                :error-messages="errors.collect('email')"
+                ></v-text-field>
+              </v-flex>
+              <!-- <v-flex xs12>
+                <v-select
+                  :items="items"
+                  v-model="value"
+                  label="Assunto"
+                  chips
+                  clearable
+                ></v-select>
+              </v-flex> -->
+              <v-flex xs12>
+                <v-text-field
+                color="blue darken-2"
+                label="Assunto"
+                v-model="messageInfo.assunto"
+                name="assunto"
+                v-validate="'required'"
+                data-vv-name="assunto"
+                :error-messages="errors.collect('assunto')"
+                hint="Diga o assunto da mensagem..."
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-textarea
+                outline
+                label="Escreva aqui a sua mensagem"
+                v-model="messageInfo.content"
+                name="message"
+                v-validate="'required'"
+                data-vv-name="message"
+                :error-messages="errors.collect('message')"
+                hint="Por favor seja claro e direto com a sua mensagem..."
+                ></v-textarea>
+              </v-flex>
+              <v-flex xs12 pa-1>
+                <v-btn outline color="primary" @click="sendMessage()">Enviar</v-btn>
+              </v-flex>
 
-          <v-flex xs12 sm6>
-            <v-text-field
-            color="blue darken-2"
-            label="Email"
-            ></v-text-field>
-          </v-flex>
-          <v-flex xs12>
-            <v-textarea
-            outline
-            name="input-7-4"
-            label="Escreva aqui a sua mensagem"
-            ></v-textarea>
-          </v-flex>
-          <v-flex xs12 pa-1>
-            <v-btn outline color="primary">Enviar</v-btn>
-          </v-flex>
-
-        </v-layout>
-      </v-container>
-      <!-- ================================================= -->
-    </v-form>
-  </v-card-text>
-</v-card>
-</v-flex>
+            </v-layout>
+          </v-container>
+          <!-- ================================================= -->
+        </v-form>
+      </v-card-text>
+    </v-card>
+  </v-flex>
 </v-layout>
 </v-container>
 </v-card>
@@ -156,54 +162,70 @@
 </template>
 
 <script>
-export default {
+import ContactInfo from '../../../_helpers/api/ContactInfo'
+import validateDictionary from '../../../_helpers/api/validateDictionary'
+import {appFlashAlert} from '../../../_mixins/AppFlashAlert'
+import {clearForm} from '../../../_mixins/ClearForm'
 
+export default {
+  mixins: [appFlashAlert, clearForm],
   data () {
     return {
-      items: [
-        {
-          action: 'fa fa-map fa-2x',
-          title: 'Localização',
-          items: [
-            { title: 'Cabo Verde, São Vicente, Mindelo, Morada, CP: 5050' }
-          ]
-        },
-        {
-          action: 'fa fa-phone-square fa-2x',
-          title: 'Telefone',
-          items: [
-            { title: '+238 9178599' },
-            { title: '+238 9178599' }
-          ]
-        },
-        {
-          action: 'fa fa-envelope fa-2x',
-          title: 'Email',
-          items: [
-            { title: 'eicm.gdc@gmail.com' },
-            { title: 'eicm.mindelo@gmail.com' },
-            { title: 'eicm.dir@gmail.com' },
-          ]
-        },
-        {
-          action: 'fa fa-facebook-official fa-2x',
-          title: 'Facebook',
-          items: [
-            { title: 'EICM-GDC Oficial' },
-            { title: 'Curso Informatica de Gestao' }
-          ]
-        },
-        {
-          action: 'fa fa-twitter-square fa-2x',
-          title: 'Twiter',
-          items: [
-            { title: '@eicmoficial' }
-          ]
-        },
+      items: ContactInfo,
+      messageInfo: {
+        name: '',
+        email: '',
+        dst: '',
+        assunto:'',
+        content: '',
 
+      },
+      dictionary: validateDictionary,
 
-      ]
     }
+  },
+  mounted() {
+    // Para utilizar mensagens de valida;\oes personalizadas
+    this.$validator.localize('pt', this.dictionary)
+  },
+
+  computed: {
+    currentUser: function() {
+      return this.$store.getters.currentUser;
+    },
+
+  },
+
+  created() {
+    this.settContactFields()
+  },
+
+  methods: {
+    settContactFields(){
+      if (this.currentUser) {
+        this.messageInfo.name = this.currentUser.username
+        this.messageInfo.email = this.currentUser.email
+      }
+    },
+
+    teste(){
+      console.log('testndo porra');
+    },
+    sendMessage() {
+      this.$validator.validateAll().then(noErrorOnValidate => {
+        if (noErrorOnValidate) {
+          axios
+          .post("/api/services/send_messages", this.$data.messageInfo)
+          .then(response => {
+            this.clear()
+            this.showToastAlert('success', 'Mensagem enviada com sucesso. A escola agradece a sua consideração')
+          })
+          .catch(err => {
+            console.log()
+          })
+        }
+      })
+    },
   }
 }
 </script>

@@ -116,8 +116,8 @@
       </v-flex>
       <v-flex sm6 xs12>
         <v-radio-group v-model="user.gender" row>
-          <v-radio label="Masculino" value="M"></v-radio>
-          <v-radio label="Feminino" value="F"></v-radio>
+          <v-radio label="Masculino" value="1"></v-radio>
+          <v-radio label="Feminino" value="0"></v-radio>
         </v-radio-group>
       </v-flex>
       <v-flex sm6 xs12>

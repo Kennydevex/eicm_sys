@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
   protected $guarded = ['id'];
+  // protected $touches = ['category', 'tag'];
 
   //########################### Relacionamentos ########################
   public function user()
@@ -19,9 +20,9 @@ class Article extends Model
     return $this->belongsTo('Category');
   }
 
-  public function images()
+  public function image()
   {
-    return $this->hasMany('Image');
+    return $this->hasOne('ImageFile');
   }
 
   public function tags()
@@ -29,9 +30,26 @@ class Article extends Model
     return $this->belongsToMany('Tag');
   }
 
+  // public function comments()
+  //   {
+  //       return $this->hasMany(Comment::class);
+  //   }
+ 
+  //   public function parentComments()
+  //   {
+  //       return $this->comments()->where('parent_id', 0);
+  //   }
 
   // Alterar o retorno da base de dados para valor booleano
   public function getStatusAttribute($value)
+  {
+    if ($value) {
+      return true;
+    }
+    return false;
+  }
+
+  public function getFeaturingAttribute($value)
   {
     if ($value) {
       return true;

@@ -92,6 +92,7 @@ Registar
 </template>
 
 <script>
+import validateDictionary from '../../../../../../_helpers/api/validateDictionary'
 export default {
   $_veeValidate: {
     validator: "new"
@@ -107,16 +108,7 @@ export default {
       },
       showCreateModel: false,
       valid: true,
-      dictionary: {
-        custom: {
-          name: {
-            required: () => "Campo de prenchimento obrigatório"
-          },
-          description: {
-            required: () => "Campo de prenchimento obrigatório"
-          }
-        }
-      }
+      dictionary: validateDictionary,
     };
   },
 

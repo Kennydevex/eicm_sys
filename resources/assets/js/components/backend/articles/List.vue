@@ -29,7 +29,7 @@
       dark
       small
       color="amber accent-4"
-      to="new"
+      :to="{ name: 'new_article'}"
       >
       <v-icon>fa-plus</v-icon>
     </v-btn>
@@ -68,9 +68,9 @@
   <v-layout row wrap>
     <v-flex lg3 sm6 xs12>
       <mini-statistic
-      icon="fa-users"
+      icon="fa-file"
       title="200+"
-      sub-title="Utilizadores ativo"
+      sub-title="Total de Artigos"
       color="indigo"
       >
     </mini-statistic>
@@ -79,7 +79,7 @@
     <mini-statistic
     icon="fa-user"
     title="200+"
-    sub-title="Utilizadores ativo"
+    sub-title="Artigos Publicados"
     color="red"
     >
   </mini-statistic>
@@ -88,7 +88,7 @@
   <mini-statistic
   icon="fa fa-twitter"
   title="200+"
-  sub-title="Followers"
+  sub-title="Artigos Por Publicar"
   color="light-blue"
   >
 </mini-statistic>
@@ -97,7 +97,7 @@
   <mini-statistic
   icon="fa fa-instagram"
   title="50+"
-  sub-title="Shots"
+  sub-title="Artgos Dispublicados"
   color="purple"
   >
 </mini-statistic>
