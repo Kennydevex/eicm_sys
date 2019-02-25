@@ -52,8 +52,8 @@
                   </div>
                 </template>
                 <v-spacer></v-spacer>
-                <v-btn flat color="primary" @click="onUpdateArticle(article.id)"icon large><v-icon>fa-plus</v-icon></v-btn>
-                <v-btn flat color="warning" @click="onUpdateArticle(article.id)"icon large><v-icon>fa-edit</v-icon></v-btn>
+                <v-btn flat color="primary" @click="onUpdateArticle(article.slug)"icon large><v-icon>fa-plus</v-icon></v-btn>
+                <v-btn flat color="warning" @click="onUpdateArticle(article.slug)"icon large><v-icon>fa-edit</v-icon></v-btn>
                 <v-btn flat color="error"icon large><v-icon>fa-trash</v-icon></v-btn>
                 <v-btn flat @click="backToAllArticles()" icon large><v-icon>fa-user</v-icon></v-btn>
                 <!-- <v-btn flat :to="{name: 'articles'}" icon large><v-icon>fa-user</v-icon></v-btn> -->
@@ -95,7 +95,7 @@ export default {
   mixins: [formattingDate, article],
   data() {
     return {
-      id: this.$route.params.article_id,
+      slug: this.$route.params.article_slug,
       article: {
         category: [],
         tags: [],
@@ -109,7 +109,7 @@ export default {
   },
 
   created: function() {
-    this.getSingleArticle(this.id);
+    this.getSingleArticle(this.slug);
   },
 
   computed: {
@@ -131,12 +131,12 @@ export default {
 
     },
 
-    getSingleArticle: function(id) {
+    getSingleArticle: function(slug) {
       if (this.articles.length) {
-        this.article = this.articles.find(article => article.id == id);
+        this.article = this.articles.find(article => article.slug == slug);
       } else {
         axios
-          .get("/api/cms/articles/" + id)
+          .get("/api/cms/articles/" + slug)
           .then(response => {
             this.article = response.data.data;
           })
@@ -144,15 +144,15 @@ export default {
       }
     },
 
-    onUpdateArticle: function(article_id) {
+    onUpdateArticle: function(article_slug) {
       this.$router.push({
-        path: "/dashboard/articles/update/" + article_id
+        path: "/dashboard/articles/update/" + article_slug
       });
     },
 
     onFiterArticle: function(filter_key) {
       this.$router.push({
-        path: "/dashboard/articles/filterKey/" + filter_key
+        path: "/dashboard/articles/filter/" + filter_key
       });
     }
   }

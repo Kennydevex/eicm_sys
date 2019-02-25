@@ -224,6 +224,7 @@ return [
         'Article' => EICM\Models\CMS\Article::class,
         'Tag' => EICM\Models\CMS\Tag::class,
         'ImageFile' => EICM\Models\CMS\Image::class,
+        'Comment' => EICM\Models\CMS\Comment::class,
 
         //Resources
         //################################# My Resources ##############################
@@ -253,6 +254,9 @@ return [
 
         //Helpers
         'Common' => EICM\Helpers\Common::class,
+
+        //Events
+        'UserRegistrationAlert' => EICM\Events\UserRegistered::class,
 
     ],
 

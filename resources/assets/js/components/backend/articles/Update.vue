@@ -164,7 +164,7 @@ export default {
 
   data() {
     return {
-      id: this.$route.params.article_id,
+      slug: this.$route.params.article_slug,
       startDateMenu: false,
       endDateMenu: false,
       date: new Date().toISOString().substr(0, 10),
@@ -175,7 +175,7 @@ export default {
   },
 
   created: function() {
-    this.getSingleArticle(this.id);
+    this.getSingleArticle(this.slug);
     this.getTags();
     this.getArticleCategories();
   },
@@ -189,12 +189,12 @@ export default {
   methods: {
 
     //===========================================
-    getSingleArticle: function(id) {
+    getSingleArticle: function(slug) {
       if (this.articles.length) {
-        this.article = this.articles.find(article => article.id == id);
+        this.article = this.articles.find(article => article.slug == slug);
       } else {
         axios
-        .get("/api/cms/articles/" + id)
+        .get("/api/cms/articles/" + slug)
         .then(response => {
           this.article = response.data.data;
         })
@@ -207,7 +207,7 @@ export default {
       this.$validator.validateAll().then(noErrorOnValidate => {
         if (noErrorOnValidate) {
           axios
-          .put("/api/cms/articles/" + this.id, this.$data.article)
+          .put("/api/cms/articles/" + this.slug, this.$data.article)
           .then(response => {
             this.showToastAlert("success", "Operação efetuada com sucesso!");
             window.getApp.$emit("APP_UPDATE_ALL_ARTICLES_DATA");

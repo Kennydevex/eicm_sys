@@ -26,7 +26,7 @@
               <!-- <h4>{{ article.content|truncate(300)}}<v-btn @click="onViewArticle(article.id)" flat color="primary">Ler mais</v-btn></h4>  -->
             </v-card-text>
             <v-card-actions>
-              <v-btn @click="onViewArticle('/dashboard/articles/view/', article.id)" flat color="primary" tile>Ver</v-btn>
+              <v-btn @click="onViewArticle('/dashboard/articles/view/', article.slug)" flat color="primary" tile>Ver</v-btn>
 
               <!-- «««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««« -->
               <!-- <v-bottom-sheet v-model="sheet">
@@ -50,7 +50,7 @@
   </v-bottom-sheet> -->
   <!-- «««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««««« -->
   <v-spacer></v-spacer>
-  <v-btn flat color="orange" icon @click="onUpdateArticle('/dashboard/articles/update/',article.id)">
+  <v-btn flat color="orange" icon @click="onUpdateArticle('/dashboard/articles/update/',article.slug)">
     <v-icon>edit</v-icon>
   </v-btn>
   <v-btn flat color="error" icon @click="onDeleteArticle(article.id)">

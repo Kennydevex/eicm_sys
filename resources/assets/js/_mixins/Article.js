@@ -8,15 +8,15 @@ export const article = {
         });
       },
 
-      onViewArticle(path, article_id) {
+      onViewArticle(path, article_slug) {
         this.$router.push({
-          path: path + article_id
+          path: path + article_slug
         });
       },
 
-      onUpdateArticle(path, article_id) {
+      onUpdateArticle(path, article_slug) {
         this.$router.push({
-          path: path + article_id,
+          path: path + article_slug,
         });
       },
   }

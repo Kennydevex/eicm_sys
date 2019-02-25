@@ -67,4 +67,11 @@ class UserController extends Controller
     {
         //
     }
+
+
+    public function activedUsers()
+    {
+      $users = User::where('status', true)->with('folk')->get();
+      return new UserCollection($users);
+    }
 }

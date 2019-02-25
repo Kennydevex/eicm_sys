@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'EICM\Events\Event' => [
             'EICM\Listeners\EventListener',
         ],
+        'EICM\Events\UserRegistered' => [
+            'EICM\Listeners\SendWelcomeEmail',
+        ],
     ];
 
     /**

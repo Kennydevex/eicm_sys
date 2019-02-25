@@ -2,7 +2,8 @@
    <v-container grid-list-xs>
        <v-layout row wrap>
            <v-flex xs12>
-             {{id}}
+             {{article}}
+
            </v-flex>
        </v-layout>
    </v-container>
@@ -15,16 +16,48 @@
 export default {
   data() {
     return {
-      id: this.$route.params.filter_key,
+      filter_key: this.$route.params.filter_key,
+      article: {
+        category: [],
+        tags: [],
+        user: [],
+      }
 
     };
   },
 
 
   created: function() {
-    console.log(this.id);
-    console.log('Aqui bem');
+    this.getSingleArticle(this.filter_key);
   },
+
+  computed: {
+    articleCategories: function() {
+      return this.$store.getters.articleCategories;
+    },
+    tags: function() {
+      return this.$store.getters.tags;
+    },
+
+    articles: function() {
+      return this.$store.getters.articles;
+    },
+  },
+
+  methods: {
+    getSingleArticle: function(filter_key) {
+      if (this.articles.length) {
+        this.article = this.articles.find(article => article.category.name == filter_key);
+      } else {
+        axios
+          .get("/api/cms/filteredArticle/" + filter_key)
+          .then(response => {
+            this.article = response.data.data;
+          })
+          .catch(error => {});
+      }
+    },
+  }
 
 
 

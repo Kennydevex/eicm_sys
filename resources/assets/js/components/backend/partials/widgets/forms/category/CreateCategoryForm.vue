@@ -18,7 +18,6 @@
             v-validate="'required'"
             data-vv-name="name"
             :error-messages="errors.collect('name')"
-            required
             hint="Idendificador único da categoria"
             ></v-text-field>
           </v-flex>
@@ -41,10 +40,13 @@
             name="description"
             hint="Escreva aqui uma pequena descrição desta categoria"
             v-model="category.description"
+            v-validate="'required'"
+            data-vv-name="description"
+            :error-messages="errors.collect('description')"
         outline>
           </v-textarea>
         </v-flex>
-       
+
 
 
 

@@ -41,6 +41,7 @@ Route::group([
     Route::apiResource('articles', 'ArticlesController');
     Route::get('featuredArticles', 'ArticlesController@featuredArticles');
     Route::get('publishedArticles', 'ArticlesController@publishedArticles');
+    Route::get('filteredArticle/{filter_key}', 'ArticlesController@filteredArticle');
     // ================================================================
     Route::apiResource('tags', 'TagsController');
 });

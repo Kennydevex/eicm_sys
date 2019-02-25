@@ -12,95 +12,40 @@
   <v-toolbar-items class="hidden-sm-and-down">
     <!-- ====================================================================== -->
     <v-btn to="/" flat>Início</v-btn>
-    <v-menu offset-y :nudge-width="100" transition="scale-transition" origin="center center" hover>
-      <v-btn
-      slot="activator"
-      flat
-      >
-      <span>Escola</span>
-      <v-icon dark>arrow_drop_down</v-icon>
 
-    </v-btn>
-    <v-list>
-      <v-list-tile
-      v-for="eicminfo in submenus.eicminfos"
-      :key="eicminfo.id"
-      @click="menuLink(eicminfo.link)"
-      >
-      <v-list-tile-title>{{ eicminfo.name }}</v-list-tile-title>
-    </v-list-tile>
-  </v-list>
-</v-menu>
-<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-<v-menu offset-y :nudge-width="100" transition="scale-transition" origin="center center">
-  <v-btn
-  slot="activator"
-  flat
-  >
+    <template v-for="menu in menus">
+      <v-btn to="/" flat v-if="!menu.submenus">{{menu.title}}</v-btn>
+      <v-menu v-else :key="menu.id" offset-y :nudge-width="100" transition="scale-transition" origin="center center" hover>
+        <v-btn
+        slot="activator"
+        flat
+        >
+        <span>{{menu.title}}</span>
+        <v-icon dark>arrow_drop_down</v-icon>
 
-  <span>Cursos</span>
-  <v-icon dark>arrow_drop_down</v-icon>
-</v-btn>
-<v-list>
-  <v-list-tile
-  v-for="curso in submenus.cursos"
-  :key="curso.id"
-  @click=""
-  >
-  <v-list-tile-title>{{ curso.name }}</v-list-tile-title>
-</v-list-tile>
-</v-list>
-</v-menu>
-<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-<v-menu offset-y :nudge-width="100" transition="scale-transition" origin="center center">
-  <v-btn
-  slot="activator"
-  flat
-  >
+      </v-btn>
+      <v-list>
+        <v-list-tile
+        v-for="submenu in menu.submenus"
+        :key="submenu.id"
+        @click="menuLink(submenu.name)"
+        >
+        <v-list-tile-title>{{ submenu.title }}</v-list-tile-title>
+      </v-list-tile>
+    </v-list>
+  </v-menu>
+</template>
 
-  <span>Alunos</span>
-  <v-icon dark>arrow_drop_down</v-icon>
-</v-btn>
-<v-list>
-  <v-list-tile
-  v-for="aluno in submenus.alunos"
-  :key="aluno.id"
-  @click=""
-  >
-  <v-list-tile-title>{{ aluno.name }}</v-list-tile-title>
-</v-list-tile>
-</v-list>
-</v-menu>
-<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-<v-menu offset-y :nudge-width="100" transition="scale-transition" origin="center center">
-  <v-btn
-  slot="activator"
-  flat
-  >
 
-  <span>Dinâmica</span>
-  <v-icon dark>arrow_drop_down</v-icon>
-</v-btn>
-<v-list>
-  <v-list-tile
-  v-for="dinamica in submenus.dinamicas"
-  :key="dinamica.id"
-  @click=""
-  >
-  <v-list-tile-title>{{ dinamica.name }}</v-list-tile-title>
-</v-list-tile>
-</v-list>
-</v-menu>
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <v-btn flat>Contactos</v-btn>
 <v-btn flat>Notícias</v-btn>
 
 <template v-if="!currentUser">
   <!-- <v-btn flat to="/login">
-    Entrar
-  </v-btn> -->
-  <v-btn color="primary" @click.stop="showAuthModel" icon><v-icon small>input</v-icon></v-btn>
+  Entrar
+</v-btn> -->
+<v-btn color="primary" @click.stop="showAuthModel" icon><v-icon small>input</v-icon></v-btn>
 
 </template>
 <!-- ====================================================================== -->
@@ -129,6 +74,7 @@
 </template>
 
 <script>
+import menus from '../../../_api/app/frontMenu'
 export default {
   data () {
     return {
@@ -138,34 +84,8 @@ export default {
       // registerDialog: false,
       // =======================================
       fav: false,
-      submenus: {
-        alunos: [
-          {id: 1, name: 'Quadro de Honra'},
-          {id: 2, name: 'Comissão de Finalista'},
-          {id: 3, name: 'Disporto'},
-          {id: 4, name: 'Mensagem do Diretor'}
-        ],
-        dinamicas: [
-          {id: 1, name: 'Ano Complimentar Profissionalizante'},
-          {id: 2, name: 'Apoio à Vocação Profissional'},
-          {id: 3, name: 'Ação Social'},
-          {id: 4, name: 'Atividades'}
-        ],
-        cursos: [
-          {id: 1, name: 'Artes Gráficas'},
-          {id: 2, name: 'Contabilidade'},
-          {id: 3, name: 'Construção Cívil'},
-          {id: 4, name: 'Eletricidade Eletrónica'},
-          {id: 5, name: 'Informática de Gestão'},
-          {id: 6, name: 'Mecânica'},
-          {id: 7, name: 'Mecanotécnia'}
-        ],
-        eicminfos: [
-          {id: 1, link: "historia", name: 'História'},
-          {id: 2, name: 'Corpo Diretivo'},
-          {id: 3, name: 'Missão, Visão e Valores'},
-        ],
-      },
+      menus:menus,
+
       items: [
         {
           icon: 'account_circle',

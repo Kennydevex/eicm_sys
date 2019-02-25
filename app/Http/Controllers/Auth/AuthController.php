@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use JWTAuth;
 use User;
 use Common;
+use UserRegistrationAlert;
 
 class AuthController extends Controller
 {
@@ -36,6 +37,10 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->folk()->associate($folk->id);
         $user->save();
+
+        //===========================================================================
+        //Chamar evento para alertar utilizador sobre glyphicon-registration-mark
+        event(new UserRegistrationAlert($user));
         // ======================================================================================================================
         $token = JWTAuth::fromUser($user);
         return response()->json(compact('token', 'user'));

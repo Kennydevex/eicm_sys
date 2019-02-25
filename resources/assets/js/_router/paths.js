@@ -4,6 +4,16 @@ import Dashboard from '../_pages/backend/Dashboard.vue'
 import Index from '../components/frontend/Index.vue'
 import Home from '../components/frontend/pages/Home.vue'
 import Historia from '../components/frontend/pages/eicm/Historia.vue'
+import ArtesGraficas from
+  '../components/frontend/pages/cursos/ArtesGraficas.vue'
+import ConstrucaoCivil from
+  '../components/frontend/pages/cursos/ConstrucaoCivil.vue'
+import Contabilidade from
+  '../components/frontend/pages/cursos/Contabilidade.vue'
+import Eletricidade from '../components/frontend/pages/cursos/Eletricidade.vue'
+import Informatica from '../components/frontend/pages/cursos/Informatica.vue'
+import Mecanica from '../components/frontend/pages/cursos/Mecanica.vue'
+import Mecanotecnia from '../components/frontend/pages/cursos/Mecanotecnia.vue'
 import Login from '../components/auth/Login.vue'
   // ================================================
 import ArticlesHome from '../components/backend/articles/Index.vue'
@@ -140,21 +150,21 @@ export default [{
           },
           component: CreateArticle
         }, {
-          path: 'view/:article_id',
+          path: 'view/:article_slug',
           name: 'article',
           meta: {
             breadcrumb: true
           },
           component: Article
         }, {
-          path: 'update/:article_id',
+          path: 'update/:article_slug',
           name: 'update_article',
           meta: {
             breadcrumb: true
           },
           component: UpdateArticle
         }, {
-          path: 'filterKey/:filter_key',
+          path: 'filter/:filter_key',
           name: 'filter_article',
           meta: {
             breadcrumb: true
@@ -401,6 +411,34 @@ export default [{
       path: '/historia',
       name: 'history',
       component: Historia
+    }, {
+      path: '/artes_graficas',
+      name: 'ag',
+      component: ArtesGraficas
+    }, {
+      path: '/contabilidade',
+      name: 'cont',
+      component: Contabilidade
+    }, {
+      path: '/construcao_civil',
+      name: 'ccv',
+      component: ConstrucaoCivil
+    }, {
+      path: '/eletricidade_eletronica',
+      name: 'elect',
+      component: Eletricidade
+    }, {
+      path: '/informatica_de_gestao',
+      name: 'inf',
+      component: Informatica
+    }, {
+      path: '/mecanica',
+      name: 'mec',
+      component: Mecanica
+    }, {
+      path: '/mecanotecnia',
+      name: 'mecan',
+      component: Mecanotecnia
     }, {
       path: '/login',
       component: Login,

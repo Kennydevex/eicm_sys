@@ -21,7 +21,7 @@ class ArticlesController extends Controller
   */
   public function __construct()
   {
-    $this->middleware('jwt.auth', ['except' => ['publishedArticles', 'featuredArticles', 'show']]);
+    $this->middleware('jwt.auth', ['except' => ['publishedArticles', 'featuredArticles', 'show', 'filteredArticle']]);
   }
 
   /**
@@ -82,9 +82,9 @@ class ArticlesController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function show($id)
+  public function show($slug)
   {
-    $article = Article::findOrFail($id);
+    $article = Article::findOrFail($slug);
     $article->category;
     $article->tags;
     $article->user;
@@ -100,9 +100,9 @@ class ArticlesController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function update(Request $request, $id)
+  public function update(Request $request, $slug)
   {
-    $article = Article::findOrFail($id);
+    $article = Article::findOrFail($slug);
     $article->title = $request->title;
     $article->summary = $request->summary;
     $article->content = $request->content;
@@ -146,7 +146,7 @@ class ArticlesController extends Controller
 
   public function featuredArticles()
   {
-    $articles = Article::where('featuring', true)->get();
+    $articles = Article::where('featuring', true)->orderBy('created_at', 'desc')->take(4)->get();
     $articles->each(function ($articles) {
       $articles->category;
       $articles->tags;
@@ -161,5 +161,22 @@ class ArticlesController extends Controller
     $articles = Article::where('status', true)->get();
     return new ArticleCollection($articles);
 
+  }
+
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  string  $filter_key
+    * @return \Illuminate\Http\Response
+    */
+
+  public function filteredArticle($filter_key)
+  {
+    $articles = Article::whereHas('category', function ($query)  use ($filter_key) {
+      $query->where('name', '=', $filter_key);
+    })->get();
+
+    return new ArticleCollection($articles);
   }
 }
