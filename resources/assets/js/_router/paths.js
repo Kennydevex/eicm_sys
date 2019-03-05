@@ -3,7 +3,28 @@ import AppBackend from '../components/backend/App.vue'
 import Dashboard from '../_pages/backend/Dashboard.vue'
 import Index from '../components/frontend/Index.vue'
 import Home from '../components/frontend/pages/Home.vue'
+import Eicm from '../components/frontend/pages/eicm/Index.vue'
 import Historia from '../components/frontend/pages/eicm/Historia.vue'
+import Equipa from '../components/frontend/pages/eicm/Equipa.vue'
+import MissaoVisaoValores from
+  '../components/frontend/pages/eicm/MissaoVisaoValores.vue'
+import Dinamicas from '../components/frontend/pages/dinamicas/Index.vue'
+import Avp from
+  '../components/frontend/pages/dinamicas/Avp.vue'
+import Atividades from '../components/frontend/pages/dinamicas/Atividades.vue'
+import AcaoSocial from
+  '../components/frontend/pages/dinamicas/AcaoSocial.vue'
+import Contactos from '../components/frontend/pages/Contactos.vue'
+import NoticiaHome from '../components/frontend/pages/noticias/Index.vue'
+import Noticias from '../components/frontend/pages/noticias/List.vue'
+import Alunos from '../components/frontend/pages/alunos/Index.vue'
+import ComissaoFinalista from
+  '../components/frontend/pages/alunos/ComissaoFinalista.vue'
+import Disporto from '../components/frontend/pages/alunos/Disporto.vue'
+import MsgDiretor from '../components/frontend/pages/alunos/MsgDiretor.vue'
+import QuadroHonra from '../components/frontend/pages/alunos/QuadroHonra.vue'
+import Cursos from '../components/frontend/pages/cursos/Index.vue'
+import Acp from '../components/frontend/pages/cursos/Acp.vue'
 import ArtesGraficas from
   '../components/frontend/pages/cursos/ArtesGraficas.vue'
 import ConstrucaoCivil from
@@ -15,7 +36,9 @@ import Informatica from '../components/frontend/pages/cursos/Informatica.vue'
 import Mecanica from '../components/frontend/pages/cursos/Mecanica.vue'
 import Mecanotecnia from '../components/frontend/pages/cursos/Mecanotecnia.vue'
 import Login from '../components/auth/Login.vue'
-  // ================================================
+  // ===================================================
+
+// ================================================
 import ArticlesHome from '../components/backend/articles/Index.vue'
 import Articles from '../components/backend/articles/List.vue'
 import Article from '../components/backend/articles/View.vue'
@@ -404,49 +427,121 @@ export default [{
     path: '/',
     component: Index,
     children: [{
-      path: '/',
-      name: 'home',
-      component: Home
-    }, {
-      path: '/historia',
-      name: 'history',
-      component: Historia
-    }, {
-      path: '/artes_graficas',
-      name: 'ag',
-      component: ArtesGraficas
-    }, {
-      path: '/contabilidade',
-      name: 'cont',
-      component: Contabilidade
-    }, {
-      path: '/construcao_civil',
-      name: 'ccv',
-      component: ConstrucaoCivil
-    }, {
-      path: '/eletricidade_eletronica',
-      name: 'elect',
-      component: Eletricidade
-    }, {
-      path: '/informatica_de_gestao',
-      name: 'inf',
-      component: Informatica
-    }, {
-      path: '/mecanica',
-      name: 'mec',
-      component: Mecanica
-    }, {
-      path: '/mecanotecnia',
-      name: 'mecan',
-      component: Mecanotecnia
-    }, {
-      path: '/login',
-      component: Login,
-      name: 'login',
-    }, {
-      path: 'view/:article_id',
-      name: 'frontArticle',
-      component: Article
-    }]
+        path: '/',
+        name: 'home',
+        component: Home
+      },
+
+
+      {
+        path: '/eicm',
+        component: Eicm,
+        children: [{
+          path: 'historia',
+          name: 'history',
+          component: Historia
+        }, {
+          path: 'corpo_diretivo',
+          name: 'equipa',
+          component: Equipa
+        }, {
+          path: 'missao_visao_e_valores',
+          name: 'missaoVisaoValores',
+          component: MissaoVisaoValores
+        }, ]
+      }, {
+        path: '/alunos',
+        component: Alunos,
+        children: [{
+          path: 'comissao_de_finalista',
+          name: 'comissaoFinalista',
+          component: ComissaoFinalista
+        }, {
+          path: 'disporto',
+          name: 'disporto',
+          component: Disporto
+        }, {
+          path: 'mensagem_do_diretor',
+          name: 'msgDiretor',
+          component: MsgDiretor
+        }, {
+          path: 'Qudro_de_honra',
+          name: 'quadroHonra',
+          component: QuadroHonra
+        }, ]
+      }, {
+        path: '/dinamicas',
+        component: Dinamicas,
+        children: [{
+          path: 'apoio_a_vocacao_profissional',
+          name: 'avp',
+          component: Avp
+        }, {
+          path: 'atividades',
+          name: 'atividades',
+          component: Atividades
+        }, {
+          path: 'acao_social',
+          name: 'acaoSocial',
+          component: AcaoSocial
+        }, ]
+      }, {
+        path: '/cursos',
+        component: Cursos,
+        children: [{
+          path: 'acp',
+          name: 'acp',
+          component: Acp
+        }, {
+          path: 'artes_graficas',
+          name: 'ag',
+          component: ArtesGraficas
+        }, {
+          path: 'contabilidade',
+          name: 'cont',
+          component: Contabilidade
+        }, {
+          path: 'construcao_civil',
+          name: 'ccv',
+          component: ConstrucaoCivil
+        }, {
+          path: 'eletricidade_eletronica',
+          name: 'elect',
+          component: Eletricidade
+        }, {
+          path: 'informatica_de_gestao',
+          name: 'inf',
+          component: Informatica
+        }, {
+          path: 'mecanica',
+          name: 'mec',
+          component: Mecanica
+        }, {
+          path: 'mecanotecnia',
+          name: 'mecan',
+          component: Mecanotecnia
+        }, ]
+      }, {
+        path: '/contactos',
+        name: 'contactos',
+        component: Contactos
+      }, {
+        path: 'noticias',
+        component: NoticiaHome,
+        children: [{
+          path: '/',
+          name: 'noticias',
+          component: Noticias
+        }, {
+          path: 'view/:article_id',
+          name: 'frontArticle',
+          component: Article
+        }]
+      }, {
+        path: '/login',
+        component: Login,
+        name: 'login',
+      },
+    ]
   }
 ]

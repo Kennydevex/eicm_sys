@@ -258,8 +258,8 @@ export default {
           .post("/api/cms/articles", this.$data.article)
           .then(response => {
             this.tempImagePreview = ''
+            this.article.content=""
             this.clear()
-            this.showToastAlert('success', 'Suceco de mixins')
             this.handleShowHideModel()
             window.getApp.$emit("APP_UPDATE_ALL_ARTICLES_DATA")
           })

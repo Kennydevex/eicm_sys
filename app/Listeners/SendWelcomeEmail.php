@@ -6,6 +6,7 @@ use EICM\Events\UserRegistered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
+use Log;
 
 class SendWelcomeEmail
 {
@@ -18,7 +19,6 @@ class SendWelcomeEmail
     {
         //
     }
-
     /**
      * Handle the event.
      *
@@ -27,11 +27,14 @@ class SendWelcomeEmail
      */
     public function handle(UserRegistered $event)
     {
-        $data = array('name'=>$event->user->name, 'email'=>$event->user->email, 'body'=>'Seja benvindo ao siste da escola EICM');
-        Mail::send('Services.Mails.userRegisteredEmail', $data, function($message) use($data)
-        {
-          $message->to($data['email'])->subject('Welcomo to EICM Sys');
-          $message->from('kenny.compra@yahoo.com');
-        });
+        //
+        // $data = array('name'=>$event->user->username, 'email'=>$event->user->email, 'body'=>'Seja benvindo ao siste da escola EICM');
+        // Mail::send('Services.Mails.userRegisteredEmail', $data, function($message) use($data)
+        // {
+        //   $message->to($data['email'])->subject('Welcomo to EICM Sys');
+        //   $message->from('kenny.compra@yahoo.com');
+        // });
+        Log::info('Welcome', ['user'=>$event->user]);
+
     }
 }

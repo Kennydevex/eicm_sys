@@ -5,7 +5,10 @@
         <v-flex xs12>
           <v-card flat>
             <v-card-title primary-title>
-              Registe uma conta no sistema
+              <v-layout align-center justify-center>
+                <v-icon size="45" color="primary">create</v-icon>
+              </v-layout>
+
             </v-card-title>
             <v-card-text>
               <v-layout row wrap>
@@ -87,6 +90,17 @@
                   <v-radio label="Feminino" value="2"></v-radio>
                 </v-radio-group>
               </v-flex>
+              <v-flex xs12>
+                <v-switch label="Manter sempre informado" v-model="user.subscribed"></v-switch>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field v-if="user.subscribed"
+                name="phone_number"
+                label="Seu número (Opcional)"
+                type="text"
+                v-model="user.phone_number"
+                ></v-text-field>
+              </v-flex>
               <small>Por favor, preencha todos os campos</small>
 
             </v-layout>
@@ -107,12 +121,12 @@
               flat
               small
               >Limpar</v-btn>
-              <v-btn
+              <!-- <v-btn
               color="error"
               flat
               small
               @click="handleShowHideAuthModel"
-              >Fechar</v-btn>
+              >Fechar</v-btn> -->
             </v-flex>
 
           </v-card-actions>
@@ -128,10 +142,10 @@
 import validateDictionary from '../../_helpers/api/validateDictionary'
 import {clearForm} from '../../_mixins/ClearForm'
 import {appFlashAlert} from '../../_mixins/AppFlashAlert'
-import {handleModels} from '../../_mixins/HandleModels'
+// import {handleModels} from '../../_mixins/HandleModels'
 
 export default {
-mixins: [clearForm, appFlashAlert, handleModels],
+mixins: [clearForm, appFlashAlert],
   data () {
     return {
       sending: false,
@@ -146,6 +160,7 @@ mixins: [clearForm, appFlashAlert, handleModels],
         phone_number: '',
         status: false,
         avatar: 'default.png',
+        subscribed: ''
       },
       dictionary: validateDictionary,
     }

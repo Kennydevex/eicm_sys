@@ -18,8 +18,8 @@
         dark
         fab
         v-model="fab">
-        <v-icon>fa-lock</v-icon>
-        <v-icon>fa-unlock</v-icon>
+        <v-icon>fa-id-card</v-icon>
+        <v-icon>fa-id-card-o</v-icon>
       </v-btn>
 
       <v-btn
@@ -104,6 +104,7 @@
 <v-divider></v-divider>
 
 <v-layout row wrap>
+
   <v-flex xs12>
     <app-all-roles></app-all-roles>
   </v-flex>
@@ -125,8 +126,13 @@ import CreateRoleForm from '../partials/widgets/forms/role/CreateRoleForm'
 import MiniStatistic from '../partials/widgets/statistic/MiniStatistic'
 import AppAllRoles from '../partials/datas/AppAllRoles'
 
+import {handleModels} from '../../../_mixins/HandleModels'
+
+
 
 export default {
+  mixins: [handleModels],
+
   data: () => ({
     direction: 'top',
     fab: false,
@@ -166,11 +172,6 @@ export default {
     }
   },
 
-  methods: {
-    handleToggleCreateRoleDialog () {
-      window.getApp.$emit('APP_ROLE_CREATE_DIALOG')
-    },
-  }
 }
 
 </script>

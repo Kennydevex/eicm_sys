@@ -1,160 +1,190 @@
 <template>
-  <v-form v-model="valid">
-    <v-subheader class="pa-0">INFORMAÇÕES DO UTILIZADOR</v-subheader>
-    <v-layout row wrap>
-      <v-flex sm6 xs12>
-        <v-text-field
-        label="Nome"
-        name="first_name"
-        placeholder="Seu nome aqui"
-        v-model="user.first_name"
-        v-validate="'required'"
-        data-vv-name="nome"
-        :error-messages="errors.collect('nome')"
-        required
-        ></v-text-field>
-      </v-flex>
+  <v-layout row justify-center>
+    <v-card>
+      <v-card-title>
+        <span class="headline"><v-icon>person_add</v-icon> Registo</span>
+      </v-card-title>
+      <v-card-text>
+        <v-container grid-list-md>
+          <v-form ref="form">
+            <v-layout wrap>
 
-      <v-flex sm6 xs12>
-        <v-text-field
-        label="Apelido"
-        name="last_name"
-        placeholder="Seu apelido aqui"
-        v-model="user.last_name"
-        v-validate="'required'"
-        data-vv-name="apelido"
-        :error-messages="errors.collect('apelido')"
-        required
-        ></v-text-field>
-      </v-flex>
-      <v-flex sm6 xs12>
-        <v-text-field
-        label="Utilizador"
-        placeholder="Um nome como utilizador"
-        name="username"
-        v-validate="'required'"
-        data-vv-name="utilizador"
-        :error-messages="errors.collect('utilizador')"
-        v-model="user.username"
-        required
-        hint="Um nome único para se identificar no sistema"
+              <v-flex xs12 sm6 md4>
+                <v-text-field
+                label="Nome*"
+                name="first_name"
+                v-model="user.first_name"
+                v-validate="'required|alpha'"
+                data-vv-name="first_name"
+                :error-messages="errors.collect('first_name')"
+                required
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6 md4>
+                <v-text-field
+                label="Apelido*"
+                name="last_name"
+                v-model="user.last_name"
+                v-validate="'required|alpha'"
+                data-vv-name="last_name"
+                :error-messages="errors.collect('last_name')"
+                required
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6 md4>
+                <v-text-field
+                label="Utilizador*"
+                name="username"
+                v-validate="'required'"
+                data-vv-name="username"
+                :error-messages="errors.collect('username')"
+                v-model="user.username"
+                required
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                label="Email*"
+                name="email"
+                v-validate="'required|email'"
+                data-vv-name="email"
+                :error-messages="errors.collect('email')"
+                v-model="user.email"
+                required
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                label="Phone"
+                v-model="user.phone_number"
+                mask="###-##-##"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                label="Palavra Passe*"
+                name="password"
+                v-model="user.password"
+                v-validate="'required|min:8'"
+                data-vv-name="password"
+                :error-messages="errors.collect('password')"
+                :type="showPass ? 'text' : 'password'"
+                :append-icon="showPass ? 'visibility_off' : 'visibility'"
+                @click:append="showPass = !showPass"
+                required
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-text-field
+                label="Confirmacão da palavra passe"
+                name="password_confirmation"
+                v-model="user.password_confirmation"
+                v-validate="'required'"
+                data-vv-name="password_confirmation"
+                :error-messages="errors.collect('password_confirmation')"
+                type="password"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                label="BI/CNI"
+                placeholder="######"
+                v-validate="'required'"
+                data-vv-name="BI"
+                :error-messages="errors.collect('BI')"
+                v-model="user.identification_card"
+                hint="Insira o seu nº de BI ou CNI"
+                ></v-text-field>
+              </v-flex>
 
-        ></v-text-field>
-      </v-flex>
-      <v-flex sm6 xs12>
-        <v-text-field
-        label="Email"
-        placeholder="Um endereço de email válido"
-        name="email"
-        v-validate="'required|email'"
-        data-vv-name="email"
-        :error-messages="errors.collect('email')"
-        v-model="user.email"
-        required
-        hint="Deve ter no mínimo 8 caracteres"
+              <v-flex xs12>
+                <p>Sexo do utilizador</p>
+                <v-radio-group v-model="user.gender" row>
+                  <v-radio label="Masculino" value="1"></v-radio>
+                  <v-radio label="Feminino" value="0"></v-radio>
+                </v-radio-group>
+              </v-flex>
+              <v-flex xs12>
+                <p>Ativação da conta</p>
+                <v-switch
+                v-model="user.status"
+                :label="user.status ? 'Ativo':'Inativo'"
+                color="indigo"
+                value
+                input-value="true"
+                hide-details
+                ></v-switch>
+              </v-flex>
 
-        ></v-text-field>
-      </v-flex>
-      <v-flex sm6 xs12>
-        <v-text-field
-        label="Palavra Passe"
-        name="password"
-        placeholder="********"
-        v-model="user.password"
-        v-validate="'required'"
-        data-vv-name="palavra passe"
-        :error-messages="errors.collect('palavra passe')"
-        required
-        :type="show1 ? 'text' : 'password'"
-        :append-icon="show1 ? 'visibility_off' : 'visibility'"
-        @click:append="show1 = !show1"
-        ></v-text-field>
-      </v-flex>
-      <v-flex sm6 xs12>
-        <v-text-field
-        label="Confirmacoa da palavra passe"
-        name="password_confirmation"
-        placeholder="Seu apelido aqui"
-        v-model="user.password_confirmation"
-        v-validate="'required'"
-        data-vv-name="canfirmacao"
-        :error-messages="errors.collect('canfirmacao')"
-        required
-        type="password"
-        hint="Certifica-se de inserir palavra passe inserido anteriormente"
-        ></v-text-field>
-      </v-flex>
-      <v-flex sm6 xs12>
-        <v-text-field
-        label="Phone"
-        placeholder="(+238) ###-##-##"
-        v-validate="'required'"
-        data-vv-name="phone"
-        :error-messages="errors.collect('phone')"
-        v-model="user.phone_number"
-        mask="(+238) ###-##-##"
-        required
-        hint="Certifica-se de inserir um numero ativo"
+              <v-layout row wrap>
+                <v-divider></v-divider>
+                <v-flex xs12>
+                  <v-subheader>Funções e Permissões</v-subheader>
 
-        ></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-select
+                  name="roles"
+                  :items="roles"
+                  v-model="user.roles"
+                  item-text="display_name"
+                  item-value="id"
+                  label="Função de utilizador"
+                  prepend-icon="assignment_ind"
+                  no-data-text="Nenhuma função registada"
+                  chips
+                  multiple
+                  deletable-chips
+                  ></v-select>
+                </v-flex>
+                <v-flex xs12>
+                  <v-select
+                  name="permissions"
+                  :items="permissions"
+                  v-model="user.permissions"
+                  item-text="display_name"
+                  item-value="id"
+                  label="Permissão de utilizador"
+                  prepend-icon="lock_open"
+                  no-data-text="Nenhuma permissão registada"
+                  chips
+                  multiple
+                  deletable-chips
+                  ></v-select>
+                </v-flex>
 
-      </v-flex>
-      <v-flex sm6 xs12>
-        <v-text-field
-        label="BI"
-        placeholder="######"
-        v-validate="'required'"
-        data-vv-name="BI"
-        :error-messages="errors.collect('BI')"
-        v-model="user.identification_card"
-        mask="######"
-        required
-        hint="Insira o seu nº de BI"
-
-        ></v-text-field>
-
-      </v-flex>
-      <v-flex sm6 xs12>
-        <v-radio-group v-model="user.gender" row>
-          <v-radio label="Masculino" value="1"></v-radio>
-          <v-radio label="Feminino" value="0"></v-radio>
-        </v-radio-group>
-      </v-flex>
-      <v-flex sm6 xs12>
-        <v-switch
-        v-model="user.status"
-        :label="user.status ? 'Desativar':'Ativar'"
-        color="indigo"
-        value
-        input-value="true"
-        hide-details
-        ></v-switch>
-      </v-flex>
+              </v-layout>
 
 
-      <v-flex xs12>
-        <div class="form-btn">
-          <v-btn outline @click="addUser" color="primary">Guardar</v-btn>
-          <v-btn outline @click="clear">Limpar</v-btn>
-          <v-btn outline @click="handleShowCreateUserDialog">Sair</v-btn>
-        </div>
-
-      </v-flex>
-    </v-layout>
-
-
-  </v-form>
+            </v-layout>
+          </v-form>
+        </v-container>
+        <small>*Campos de preenchimento obrigatório</small>
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn flat @click="addUser" color="primary">Guardar</v-btn>
+        <v-btn flat @click="clear" color="warning">Limpar</v-btn>
+        <v-btn flat @click="handleShowCreateUserDialog" color="error">Sair</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-layout>
 </template>
-
 <script>
-// import Countries from '../../../../../_api/source/country'
+import validateDictionary from '../../../../../../_helpers/api/validateDictionary'
+import {clearForm} from '../../../../../../_mixins/ClearForm'
+import {appFlashAlert} from '../../../../../../_mixins/AppFlashAlert'
+import {handleModels} from '../../../../../../_mixins/HandleModels'
+import {rolesPermissions} from '../../../../../../_mixins/RolesPermissions'
 
 export default {
+  mixins: [clearForm, appFlashAlert, handleModels, rolesPermissions],
   $_veeValidate: {
     validator: 'new'
   },
   data: () => ({
-    show1: false,
+    showPass: false,
     user: {
       first_name: '',
       last_name: '',
@@ -164,36 +194,20 @@ export default {
       phone_number: '',
       email: '',
       password: '',
-      // password_confirmation: '',
+      password_confirmation: '',
       status: false,
       avatar: 'default.png',
+      roles: "",
+      permissions: "",
     },
+    dictionary: validateDictionary,
 
-
-    valid: true,
-
-    dictionary: {
-      attributes: {
-        email: 'E-mail Address2'
-        // custom attributes
-      },
-      custom: {
-        nome: {
-          required: () => 'Name can not be empty',
-          max: 'The name field may not be greater than 10 characters'
-          // custom messages
-        },
-
-        email: {
-          email: () => 'Por favor insira um email válido',
-        },
-        select: {
-          required: 'Select field is required'
-        }
-      }
-    }
-
+    dialog: false
   }),
+  created () {
+    this.getPermissions()
+    this.getRoles()
+  },
   mounted () {
     // Para utilizar mensagens de valida;\oes personalizadas
     this.$validator.localize('pt', this.dictionary)
@@ -213,15 +227,6 @@ export default {
     },
 
 
-    clear () {
-      this.user = {};
-      this.$validator.reset()
-    },
-
-    handleShowCreateUserDialog () {
-      window.getApp.$emit('APP_SHOW_CREATE_USER_DIALOG');
-      this.clear()
-    },
   }
-};
+}
 </script>

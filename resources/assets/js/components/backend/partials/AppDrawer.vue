@@ -14,11 +14,11 @@
     <v-list class="pa-0">
       <v-list-tile avatar>
         <v-list-tile-avatar>
-          <img :src="image_src">
+          <img :src="`/images/app/users/avatars/${currentUser.avatar}`">
         </v-list-tile-avatar>
 
         <v-list-tile-content>
-          <v-list-tile-title>Estefânio Silva</v-list-tile-title>
+          <v-list-tile-title>{{currentUser.folk.first_name}} {{currentUser.folk.last_name}}</v-list-tile-title>
         </v-list-tile-content>
 
         <v-list-tile-action>
@@ -111,7 +111,11 @@ export default {
     },
   }),
 
+
   computed: {
+    currentUser: function () {
+      return this.$store.getters.currentUser
+    },
     sideToolbarColor () {
       return this.$vuetify.options.extra.sideNav;
     }

@@ -21,7 +21,7 @@ class ArticlesController extends Controller
   */
   public function __construct()
   {
-    $this->middleware('jwt.auth', ['except' => ['publishedArticles', 'featuredArticles', 'show', 'filteredArticle']]);
+    $this->middleware('jwt.auth', ['except' => ['publishedArticles', 'featuredArticles', 'show', 'filteredArticle', 'index']]);
   }
 
   /**
@@ -79,15 +79,16 @@ class ArticlesController extends Controller
   /**
   * Display the specified resource.
   *
-  * @param  int  $id
+  * @param  string  $slug
   * @return \Illuminate\Http\Response
   */
   public function show($slug)
   {
-    $article = Article::findOrFail($slug);
+    // $article = Article::findOrFail($slug);
+    $article = Article::whereSlug($slug)->firstOrFail();
     $article->category;
     $article->tags;
-    $article->user;
+    $article->user->folk;
     $article->image;
     return new ArticleResource($article);
 
@@ -97,12 +98,13 @@ class ArticlesController extends Controller
   * Update the specified resource in storage.
   *
   * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
+  * @param  string  $slug
   * @return \Illuminate\Http\Response
   */
   public function update(Request $request, $slug)
   {
-    $article = Article::findOrFail($slug);
+    // $article = Article::findOrFail($slug);
+    $article = Article::whereSlug($slug)->firstOrFail();
     $article->title = $request->title;
     $article->summary = $request->summary;
     $article->content = $request->content;
@@ -174,7 +176,7 @@ class ArticlesController extends Controller
   public function filteredArticle($filter_key)
   {
     $articles = Article::whereHas('category', function ($query)  use ($filter_key) {
-      $query->where('name', '=', $filter_key);
+      $query->whereSlug($filter_key);
     })->get();
 
     return new ArticleCollection($articles);

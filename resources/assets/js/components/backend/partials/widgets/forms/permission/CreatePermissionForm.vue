@@ -5,10 +5,12 @@
   persistent
   >
   <v-card>
-    <v-card-title class="headline grey">Criar Permissão</v-card-title>
+    <v-card-title>
+      <span class="headline"><v-icon>lock_open</v-icon> Criar permissão</span>
+    </v-card-title>
 
     <v-card-text>
-      <v-form v-model="valid">
+      <v-form ref="form">
         <v-layout row wrap>
           <v-flex xs12>
             <v-text-field
@@ -42,7 +44,7 @@
             name="description"
             hint="Escreva aqui uma pequena descrição desta permissão"
             v-model="permission.description"
-            solo>
+            outline>
           </v-textarea>
         </v-flex>
 
@@ -52,41 +54,35 @@
 
   <v-card-actions>
     <v-spacer></v-spacer>
-
     <v-btn
-    color="red"
+    color="primary"
     flat="flat"
-    @click="showCreateModel = false"
-    outline
+
+    @click="addPermission"
     >
-    Sair
+    Guardar
   </v-btn>
 
+
   <v-btn
-  color="blue"
+  color="warning"
   flat="flat"
   @click="clear"
-  outline
+
   >
   Limpar
 </v-btn>
-
 <v-btn
-color="green darken-1"
+color="error"
 flat="flat"
-outline
-@click="addPermission"
+@click="showCreateModel = false"
+
 >
-Registar
+Sair
 </v-btn>
 
 
-<v-overflow-btn
-:items="dropdown_icon"
-label="Guardar"
-segmented
-target="#dropdown-example"
-></v-overflow-btn>
+
 </v-flex>
 
 </v-card-actions>
@@ -95,18 +91,18 @@ target="#dropdown-example"
 </template>
 
 <script>
+import validateDictionary from '../../../../../../_helpers/api/validateDictionary'
+import {clearForm} from '../../../../../../_mixins/ClearForm'
+import {appFlashAlert} from '../../../../../../_mixins/AppFlashAlert'
+import {handleModels} from '../../../../../../_mixins/HandleModels'
 export default {
+  mixins: [clearForm, appFlashAlert, handleModels],
+
   $_veeValidate: {
     validator: 'new'
   },
   data () {
     return {
-      dropdown_icon: [
-        { text: 'list', callback: () => console.log('list') },
-        { text: 'favorite', callback: () => console.log('favorite') },
-        { text: 'delete', callback: () => console.log('delete') }
-      ],
-
 
       permission: {
         name: '',
@@ -114,18 +110,7 @@ export default {
         description: '',
       },
       showCreateModel: false,
-      valid: true,
-      dictionary: {
-        custom: {
-          name: {
-            required: () => 'Campo de prenchimento obrigatório',
-          },
-
-          rotulo: {
-            required: () => 'Campo de prenchimento obrigatório',
-          },
-        }
-      }
+      dictionary: validateDictionary,
     }
   },
 
@@ -152,8 +137,11 @@ export default {
           axios.post('/api/sys/permissions', this.$data.permission)
           .then((response) => {
             this.clear()
+            this.showToastAlert('success', 'Permissão criada com sucesso')
             this.handleShowHideModel()
             window.getApp.$emit('APP_UPDATE_ALL_PERMISSTIONS_DATA')
+            window.getApp.$emit('APP_UPDATE_ALL_ROLE_DATA')
+
 
           })
           .catch((err) => {console.log()})
@@ -161,10 +149,6 @@ export default {
       });
     },
 
-    clear () {
-      this.permission = {};
-      this.$validator.reset()
-    },
 
   }
 

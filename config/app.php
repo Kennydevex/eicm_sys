@@ -255,8 +255,6 @@ return [
         //Helpers
         'Common' => EICM\Helpers\Common::class,
 
-        //Events
-        'UserRegistrationAlert' => EICM\Events\UserRegistered::class,
 
     ],
 

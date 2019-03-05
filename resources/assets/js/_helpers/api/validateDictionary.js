@@ -6,6 +6,7 @@ export default {
     username: 'Utilizador',
     password: 'Palavra passe',
     password_confirmation: 'Confirmação',
+    display_name: 'Rótulo',
   },
   custom: {
 
@@ -58,7 +59,7 @@ export default {
 
     description: {
       required: () => "Campo de prenchimento obrigatório"
-    }
+    },
 
 
 

@@ -1,42 +1,29 @@
-export default [
+export default [{
+    action: 'phone',
+    title: '(+238) 2324289',
+    subtitle: 'Direção'
+  }, {
+    title: '(+238) 2324289',
+    subtitle: 'Secretaria',
+    divider: true
+  },
+
   {
-    action: 'fa fa-map fa-2x',
+    action: 'mail',
+    title: 'diretor@gmail.com',
+    subtitle: 'Direção'
+  }, {
+    title: 'subdir@gmail.com',
+    subtitle: 'Sud-Direcao',
+  }, {
+    title: 'sec@gmail.com',
+    subtitle: 'Secretaria',
+    divider: true
+  }, {
+    action: 'location_on',
     title: 'Localização',
-    items: [
-      { title: 'Cabo Verde, São Vicente, Mindelo, Morada, CP: 5050' }
-    ]
-  },
-  {
-    action: 'fa fa-phone-square fa-2x',
-    title: 'Telefone',
-    items: [
-      { title: '+238 9178599' },
-      { title: '+238 9178599' }
-    ]
-  },
-  {
-    action: 'fa fa-envelope fa-2x',
-    title: 'Email',
-    items: [
-      { title: 'eicm.gdc@gmail.com' },
-      { title: 'eicm.mindelo@gmail.com' },
-      { title: 'eicm.dir@gmail.com' },
-    ]
-  },
-  {
-    action: 'fa fa-facebook-official fa-2x',
-    title: 'Facebook',
-    items: [
-      { title: 'EICM-GDC Oficial' },
-      { title: 'Curso Informatica de Gestao' }
-    ]
-  },
-  {
-    action: 'fa fa-twitter-square fa-2x',
-    title: 'Twiter',
-    items: [
-      { title: '@eicmoficial' }
-    ]
+    subtitle: 'Mindelo, São Vicente, Cabo Verde',
+    event: true,
   },
 
 

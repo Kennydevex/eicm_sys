@@ -10,17 +10,16 @@
 
 <script>
   import CreateArticleForm from '../partials/widgets/forms/article/CreateArticleForm';
-  
+
   export default {
     components: {
       CreateArticleForm,
-  
     },
     data() {
       return {
-  
+
       }
     },
-  
+
   };
 </script>

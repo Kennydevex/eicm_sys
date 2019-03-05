@@ -2,6 +2,9 @@
   <v-layout row wrap>
     <v-dialog persistent v-model="authModel" max-width="640" origin="center center">
       <v-card flat>
+        <v-btn icon @click="authModel = false">
+          <v-icon>close</v-icon>
+        </v-btn>
         <v-flex xs12 pa-0>
           <v-card-text>
             <v-tabs>
@@ -47,7 +50,6 @@ export default {
     window.getApp.$on('APP_SHOW_AUTH_MODEL', () => {
       this.setAuthModel()
     });
-
   },
 
   methods: {

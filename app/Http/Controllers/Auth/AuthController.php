@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use JWTAuth;
 use User;
 use Common;
-use UserRegistrationAlert;
+use EICM\Events\UserRegistered;
 
 class AuthController extends Controller
 {
@@ -28,7 +28,7 @@ class AuthController extends Controller
         // ======================================================================================================================
         $category = Common::verifyCategory('Utilizadores', 'Folks');
         $folk = new Folk();
-        $folk->fill($request->only('first_name', 'last_name', 'last_name', 'identification_card', 'gender', 'phone_number'));
+        $folk->fill($request->only('first_name', 'last_name', 'identification_card', 'gender', 'phone_number'));
         $folk->category()->associate($category->id);
         $folk->save();
         // ======================================================================================================================
@@ -38,9 +38,12 @@ class AuthController extends Controller
         $user->folk()->associate($folk->id);
         $user->save();
 
+        $user->syncPermissions($request->roles);
+        $user->syncPermissions($request->permissions);
+
         //===========================================================================
         //Chamar evento para alertar utilizador sobre glyphicon-registration-mark
-        event(new UserRegistrationAlert($user));
+        event(new UserRegistered($user));
         // ======================================================================================================================
         $token = JWTAuth::fromUser($user);
         return response()->json(compact('token', 'user'));
@@ -53,16 +56,20 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+      $remember = $request->remember_token;
         $credentials = $request->only('email', 'password');
-        $token = JWTAuth::attempt($credentials);
         $user = User::where('email', $request->email)->with('folk')->first();
+        if (!$user) {
+          return response()->Json(['error' => 'Esta conta não se concontra registada'], 401);
+        }
+        $token = JWTAuth::attempt($credentials, $remember);
         if ($user->status) {
             if ($token) {
                 return response()->json(compact('token', 'user'));
             }
-            return response()->Json(['code' => 2, 'message' => 'Credenciais inv]alidas'], 401);
+            return response()->Json(['error' => 'Palavra passe incorreta'], 401);
         }
-        return response()->Json(['message' => 'Conta desativada, por favor contacte o administrador do sitema'], 401);
+        return response()->Json(['error' => 'Conta desativada, por favor contacte o administrador do sitema'], 401);
 
     }
 

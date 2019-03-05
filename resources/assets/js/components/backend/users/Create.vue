@@ -5,8 +5,8 @@
         <v-flex xs12>
 
           <v-card>
-            <v-toolbar color="success" dark flat dense cad>
-              <v-toolbar-title class="subheading">Criar Utilizador</v-toolbar-title>
+            <v-toolbar color="grey lighten-3" dark flat dense cad>
+              <v-toolbar-title class="subheading">Registar Utilizador</v-toolbar-title>
               <v-spacer></v-spacer>
             </v-toolbar>
             <v-divider></v-divider>

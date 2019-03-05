@@ -124,9 +124,12 @@
 import CreatePermissionForm from '../partials/widgets/forms/permission/CreatePermissionForm'
 import MiniStatistic from '../partials/widgets/statistic/MiniStatistic'
 import AppAllPermissions from '../partials/datas/AppAllPermissions'
+import {handleModels} from '../../../_mixins/HandleModels'
 
 
 export default {
+  mixins: [handleModels],
+
   data: () => ({
     direction: 'top',
     fab: false,
@@ -165,12 +168,6 @@ export default {
       this.right = !val
     }
   },
-
-  methods: {
-    handleToggleCreatePermissionDialog () {
-      window.getApp.$emit('APP_PERMISSION_CREATE_DIALOG')
-    },
-  }
 
 
 }

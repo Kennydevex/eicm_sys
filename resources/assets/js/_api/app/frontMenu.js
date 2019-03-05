@@ -1,22 +1,24 @@
 const Menu = [{
     id: 1,
     title: 'EICM',
+    name: 'eicm',
     submenus: [{
       id: 1,
-      name: 'history',
+      name: 'historia',
       title: 'História',
     }, {
       id: 2,
-      name: 'directive',
+      name: 'corpo_diretivo',
       title: 'Corpo Diretivo',
     }, {
-      id: 2,
+      id: 3,
       name: 'missao_visao_e_valores',
       title: 'Missão, Visão e Valores',
     }]
   }, {
     id: 2,
     title: 'Alunos',
+    name: 'alunos',
     submenus: [{
       id: 1,
       name: 'quadro_de_honra',
@@ -37,6 +39,7 @@ const Menu = [{
   }, {
     id: 3,
     title: 'Dinamicas',
+    name: 'dinamicas',
     submenus: [{
       id: 1,
       name: 'apoio_a_vocacao_profissional',
@@ -53,10 +56,11 @@ const Menu = [{
   }, {
     id: 4,
     title: 'Cursos',
+    name: 'cursos',
     submenus: [{
       id: 1,
-      name: 'ano_complimentar_profissionalizante',
-      title: 'Ano Complimentar Profissionalizante',
+      name: 'acp',
+      title: 'ACP',
     }, {
       id: 2,
       name: 'artes_graficas',
@@ -86,11 +90,15 @@ const Menu = [{
       name: 'mecanotecnia',
       title: 'Mecanotécnia',
     }]
+  }, {
+    id: 5,
+    title: 'Contactos',
+    name: 'contactos',
+  }, {
+    id: 6,
+    title: 'Notícias',
+    name: 'noticias',
   },
-  // {
-  //   title: 'Dashboard',
-  //   name: 'dashboard',
-  // },
   // ===============================================
 ];
 

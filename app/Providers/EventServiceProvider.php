@@ -7,29 +7,30 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class EventServiceProvider extends ServiceProvider
 {
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array
-     */
-    protected $listen = [
-        'EICM\Events\Event' => [
-            'EICM\Listeners\EventListener',
-        ],
-        'EICM\Events\UserRegistered' => [
-            'EICM\Listeners\SendWelcomeEmail',
-        ],
-    ];
+  /**
+  * The event listener mappings for the application.
+  *
+  * @var array
+  */
+  protected $listen = [
+    'EICM\Events\Event' => [
+      'EICM\Listeners\EventListener',
+    ],
+    'EICM\Events\UserRegistered' => [
+      'EICM\Listeners\SendWelcomeEmail',
+      'EICM\Listeners\SendActivationCode',
+    ],
+  ];
 
-    /**
-     * Register any events for your application.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        parent::boot();
+  /**
+  * Register any events for your application.
+  *
+  * @return void
+  */
+  public function boot()
+  {
+    parent::boot();
 
-        //
-    }
+    //
+  }
 }

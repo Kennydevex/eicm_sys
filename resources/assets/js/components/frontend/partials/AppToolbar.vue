@@ -14,7 +14,7 @@
     <v-btn to="/" flat>Início</v-btn>
 
     <template v-for="menu in menus">
-      <v-btn to="/" flat v-if="!menu.submenus">{{menu.title}}</v-btn>
+      <v-btn @click="menuLink(menu.name, '')" flat v-if="!menu.submenus">{{menu.title}}</v-btn>
       <v-menu v-else :key="menu.id" offset-y :nudge-width="100" transition="scale-transition" origin="center center" hover>
         <v-btn
         slot="activator"
@@ -28,7 +28,7 @@
         <v-list-tile
         v-for="submenu in menu.submenus"
         :key="submenu.id"
-        @click="menuLink(submenu.name)"
+        @click="menuLink(menu.name, submenu.name)"
         >
         <v-list-tile-title>{{ submenu.title }}</v-list-tile-title>
       </v-list-tile>
@@ -38,8 +38,6 @@
 
 
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-<v-btn flat>Contactos</v-btn>
-<v-btn flat>Notícias</v-btn>
 
 <template v-if="!currentUser">
   <!-- <v-btn flat to="/login">
@@ -53,7 +51,7 @@
   <v-menu offset-y origin="center center" :nudge-bottom="10" transition="scale-transition" z-index="100">
     <v-btn icon large flat slot="activator">
       <v-avatar size="30px">
-        <img :src="image_src" alt="Estefanio Silva"/>
+        <img :src="`/images/app/users/avatars/${currentUser.avatar}`" alt="Estefanio Silva"/>
       </v-avatar>
     </v-btn>
     <v-list class="pa-0">
@@ -78,7 +76,6 @@ import menus from '../../../_api/app/frontMenu'
 export default {
   data () {
     return {
-      image_src: '/images/app/avatars/default.png',
 
       // =======================================
       // registerDialog: false,
@@ -100,7 +97,7 @@ export default {
           href: '#',
           title: 'Dashboard',
           click: (e) => {
-            this.$router.push({ path: 'dashboard'})
+            this.$router.push({ name: 'dashboard'})
           }
         },
         {
@@ -124,8 +121,8 @@ export default {
       this.$router.push('/login')
     },
 
-    menuLink: function (link) {
-      this.$router.push('/'+link)
+    menuLink: function (menu, link) {
+        this.$router.push('/'+menu+'/'+link)
     },
   },
 

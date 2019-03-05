@@ -40,7 +40,7 @@ export const categoriesTags = {
 
       //===========================================
       getCategories() {
-        if (this.articleCategories.length) {
+        if (this.categories.length) {
           return
         }
         this.getUpdatedCategory()

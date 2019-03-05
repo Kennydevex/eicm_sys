@@ -3,7 +3,7 @@ export function login(credentials) {
     axios.post('/api/auth/login', credentials).then((response) => {
       resolve(response.data)
     }).catch((err) => {
-      reject("Incorrect Credentials")
+      reject(err.response.data.error)
     })
   });
 }

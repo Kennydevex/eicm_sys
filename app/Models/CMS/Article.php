@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Article extends Model
 {
-  
+
   use Sluggable;
 
   /**
@@ -27,6 +27,7 @@ class Article extends Model
 
   protected $guarded = ['id'];
   // protected $touches = ['category', 'tag'];
+  // protected $primaryKey = 'slug';
 
   //########################### Relacionamentos ########################
   public function user()
