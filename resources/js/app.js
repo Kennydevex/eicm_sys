@@ -5,6 +5,7 @@ require('./bootstrap')
   // =============================================================
   // ============================= Main Lib ======================
 import Vue from 'vue'
+import Eagle from 'eagle.js'
 import Vuetify from 'vuetify'
 import VueSweetalert2 from 'vue-sweetalert2'
 import pt from 'vee-validate/dist/locale/pt_PT'
@@ -15,7 +16,7 @@ from 'vee-validate'
 import VTooltip from 'v-tooltip'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
-import Eagle from 'eagle.js'
+
 // import eagle.js default styles
 import 'eagle.js/dist/eagle.css'
 // import animate.css for slide transition
@@ -75,6 +76,8 @@ Vue.use(VueGoogleMaps, {
   //// then disable the following:
   // installComponents: true,
 })
+Vue.use(Eagle)
+
 
 Vue.use(Vuetify, {
   // theme: {
@@ -102,7 +105,6 @@ Vue.use(Vuetify, {
 Vue.use(VueSweetalert2)
 Vue.use(VeeValidate)
 Vue.use(VTooltip)
-Vue.use(Eagle)
 
 
 // Vue.mixin({
