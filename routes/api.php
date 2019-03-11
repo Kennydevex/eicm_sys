@@ -50,5 +50,12 @@ Route::group([
   'prefix' => 'services',
   'namespace'=>'Services'
 ], function ($router) {
-  Route::get('send_messages', 'ContactsController@sendMessages');
+  Route::post('send_messages', 'ContactsController@sendMessages');
+});
+
+Route::group([
+  'prefix' => 'front',
+  'namespace'=>'Front'
+], function ($router) {
+  Route::post('subscribe', 'SubscribersController@subscribe');
 });

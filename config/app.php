@@ -213,7 +213,7 @@ return [
         'JWTSubject' => Tymon\JWTAuth\Contracts\JWTSubject::class,
 
         //Models
-        //################################# My Models ##############################
+        //################################# My Back Models ##############################
         'User' => EICM\Models\System\User::class,
         'Permission' => EICM\Models\System\Permission::class,
         'Role' => EICM\Models\System\Role::class,
@@ -225,7 +225,10 @@ return [
         'Tag' => EICM\Models\CMS\Tag::class,
         'ImageFile' => EICM\Models\CMS\Image::class,
         'Comment' => EICM\Models\CMS\Comment::class,
+        'Contact' => EICM\Models\Services\Contact::class,
 
+        //################################# My Front Models ##############################
+        'Subscriber' => EICM\Models\Front\Subscriber::class,
         //Resources
         //################################# My Resources ##############################
         'UserCollection' => EICM\Http\Resources\System\UserCollection::class,

@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->text('body');
             $table->boolean('status')->nullable()->default(false);
+            $table->boolean('featured')->nullable()->default(false);
             //Auto relacionament6o para permitir utuloizadores a comentar comentários
             $table->unsignedInteger('parrent_id')->default(0);
             //Agora vamos utilizar the morph relationchip

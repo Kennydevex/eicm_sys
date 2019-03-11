@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
       $table->string('slug')->nullable();
       $table->text('summary', 200)->nullable();
       $table->longText('content');
+      $table->boolean('cover')->nullable()->default(false);
       $table->boolean('status')->nullable()->default(false);
       $table->boolean('featuring')->nullable()->default(false);
       $table->date('start');
